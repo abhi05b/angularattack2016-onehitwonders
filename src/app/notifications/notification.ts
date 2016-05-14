@@ -1,3 +1,3 @@
 export class Notification{
-	constructor(type: string, data: any){}
+	constructor(type: string, data: any, read?: boolean){}
 }

@@ -148,10 +148,9 @@
 </p>
 
 <div *ngFor="let account of parentAccounts">
-	<account-card account="account"></account-card>
+	<account-card [account]="account"></account-card>
 </div>
 
-<div *ngFor="let notification of notifications">
-	<notification notification="notification"></notification>
-</div>
+<badge-list></badge-list>
+
 

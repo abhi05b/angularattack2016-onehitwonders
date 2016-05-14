@@ -21,7 +21,12 @@ export class AccountService {
   }
   
   getParentAccounts(){
-    return this.getAccounts().then(accounts => accounts.filter(account => account.parent === null));
+    return this.getAccounts().then(accounts => {
+        return accounts.filter(account => {
+          return account.parent === undefined;
+        })
+      }
+    );
   }
 
   getExpenseAccount(){
