@@ -18,5 +18,4 @@ export class TransactionService {
   	return this.dataStore.getTransactions();
   }
 
-
 }

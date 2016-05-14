@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Notification } from '../notification';
+import { Notification } from '../notificationDto';
 import { BadgeComponent } from './badge/badge.component';
 import { FinancialHealthComponent } from './financial-health/financial-health.component';
 

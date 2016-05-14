@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { TransactionsComponent } from './+transactions';
 import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router} from '@angular/router';
 import { ReportsComponent } from './+reports';
@@ -18,6 +18,7 @@ import { BadgeService } from './badge/badge.service';
 import { FinanceHealthIndicatorService } from './finance-health-indicator/finance-health-indicator.service';
 import { NotificationComponent } from './notifications/notification/notification.component';
 import { Notification } from './notifications/notificationDto';
+import { BS_MODAL_PROVIDERS , Modal} from 'angular2-modal/plugins/bootstrap';
 
 @Component({
   moduleId: module.id,
@@ -25,7 +26,7 @@ import { Notification } from './notifications/notificationDto';
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES, NotificationComponent],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService, BS_MODAL_PROVIDERS]
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},
@@ -35,8 +36,8 @@ import { Notification } from './notifications/notificationDto';
 ])
 export class ExpenseManagementAppComponent implements OnInit {
 
-  constructor(private demoData : DemoData, private router: Router, private notificationsService: NotificationsService){
-
+  constructor(private demoData: DemoData, private router: Router, public modal: Modal, viewContainer: ViewContainerRef, private notificationsService: NotificationsService) {
+      modal.defaultViewContainer = viewContainer;
   }
   title = 'expense-management works!';
   notifications: Notification[];
