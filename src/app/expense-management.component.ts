@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { TransactionsComponent } from './+transactions';
 import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router} from '@angular/router';
 import { ReportsComponent } from './+reports';
@@ -15,6 +15,9 @@ import { DemoData } from './data-store/demo-data';
 import { AccountService } from './account/account.service';
 import { NotificationsService } from './notifications/notifications.service';
 import { BadgeService } from './badge/badge.service';
+import { FinanceHealthIndicatorService } from './finance-health-indicator/finance-health-indicator.service';
+import { BS_MODAL_PROVIDERS , Modal} from 'angular2-modal/plugins/bootstrap';
+
 
 @Component({
   moduleId: module.id,
@@ -22,7 +25,8 @@ import { BadgeService } from './badge/badge.service';
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService, BS_MODAL_PROVIDERS]
+
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},
@@ -30,12 +34,14 @@ import { BadgeService } from './badge/badge.service';
   {path: '/reports', component: ReportsComponent},
   {path: '/overview', component: OverviewComponent}
 ])
+
 export class ExpenseManagementAppComponent {
 
-  constructor(private demoData : DemoData, private router: Router){
-
+  constructor(private demoData: DemoData, private router: Router, public modal: Modal, viewContainer: ViewContainerRef) {
+      modal.defaultViewContainer = viewContainer;
   }
   title = 'expense-management works!';
+
   goToDemo(){
     this.demoData.populateDemoData().then(() => this.router.navigate(['/dashboard']));
   }

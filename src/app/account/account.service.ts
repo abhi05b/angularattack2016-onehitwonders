@@ -19,6 +19,12 @@ export class AccountService {
   getAccounts(){
   	return this.dataStoreService.getAccounts();
   }
+
+  isExistingAccount(account: Account){
+    return this.getAccounts().
+      then(accounts => accounts.findIndex(_account => _account.name === account.name))
+      .then(index => index > -1);
+  }
   
   getParentAccounts(){
     return this.getAccounts().then(accounts => {
@@ -30,6 +36,31 @@ export class AccountService {
   }
 
   getExpenseAccount(){
-    return this.getParentAccounts().then(accounts => accounts.find(account => account.name == 'Expenses'));
+    return this.getAccountByName('Expenses');
+  }
+
+  getAssetsAccount(){
+    return this.getAccountByName('Assets');
+  }
+
+  getLiabilityAccount(){
+    return this.getAccountByName('Liability');
+  }
+
+  getCashAccount(){
+    return this.getAccountByName('Cash');
+  }
+
+  getAccountByName(name: string){
+    return this.getParentAccounts().then(accounts => accounts.find(account => account.name == name));
+  }
+
+  updateAccount(account : Account){
+
+  }
+
+  getAccount(account : Account){
+    return this.getAccounts().
+      then(accounts => accounts.find(_account => _account.name === account.name));           
   }
 }
