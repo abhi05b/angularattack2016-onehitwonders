@@ -1,6 +1,5 @@
-<p>
-  add works!
-</p>
+
+<div class="container">
 <form  #transactionForm="ngForm" (ngSubmit)="addTransaction()">
       <div class="form-group">
         <label for="name">Merchant</label>
@@ -36,3 +35,4 @@
       
     </form>
     {{model | json}}
+</div>
