@@ -35,10 +35,16 @@ const barrels: string[] = [
   'app/+dashboard',
   'app/+reports',
   'app/dashboard/account-card',
+  'app/tag-input',
+  'app/tag-input-item',
   /** @cli-barrel */
 ];
 
-const cliSystemConfigPackages: any = {};
+const cliSystemConfigPackages: any = {
+  'vendor/ng2-bootstrap': {
+          defaultExtension: 'js',           
+        }
+};
 barrels.forEach((barrelName: string) => {
   cliSystemConfigPackages[barrelName] = { main: 'index' };
 });
@@ -53,7 +59,8 @@ System.config({
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
     'moment': 'vendor/moment/moment.js',
-    'ng2-bootstrap': 'vendor/ng2-bootstrap/bundles/ng2-bootstrap.js'
+    'ng2-bootstrap': 'vendor/ng2-bootstrap/ng2-bootstrap.js',
+    'angular2-tag-input': 'vendor/angular2-tag-input/dist/tag-input.component.js'
   },
   packages: cliSystemConfigPackages
 });
