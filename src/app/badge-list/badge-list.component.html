@@ -1,10 +1,7 @@
-<p>
-  badge-list works!
-</p>
-<ul>
-	<li *ngFor="let badge of badgeList">
-		Name : {{badge.name}}
-		Count : {{badge.count}}
+<div class="pull-right badgeWidget">
+	<p class="pull-left badgeHeading">Your Badges:</p>
+	<div *ngFor="let badge of badgeList" class="badges pull-left" >
+	   <span [ngClass]="getClassName(badge.name)" class="badge-icon" *ngIf="badge.count"></span> 
+	</div>
+</div>
 
-	</li>
-</ul>

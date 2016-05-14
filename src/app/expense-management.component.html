@@ -10,7 +10,9 @@
         </div>
       </div>
       <div class="top-bar-right pull-right">
-        
+        <div class="action-group hidden-xs hidden-sm">
+          <notifications [notifications] = "notifications"></notifications>
+      </div>
         <div class="logged-user">
           <div class="btn-group">
             <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
@@ -48,15 +50,16 @@
         <nav id="main-nav" class="main-nav">
           <h3>MAIN</h3>
           <ul class="main-menu">
-            <li class=" active withripple">
-              <a href="#" class="" [routerLink]="['/dashboard']"><i class="icon icon-dashboard"></i><span class="text">Dashboard</span></a>
-              
+            <li class="withripple" [class.active]="getLinkStyle('/dashboard')">
+              <a href="#"  class="" [routerLink]="['/dashboard']"><i class="icon icon-dashboard"></i><span class="text">Dashboard</span></a>
             </li>
-            <li class="withripple">
+            <li class="withripple" [class.active]="getLinkStyle('/transactions')">
               <a href="#" class="" [routerLink]="['/transactions']"><i class="icon icon-transaction"></i><span class="text">Transaction(s)</span></a>
-              
             </li>
-            <li class="withripple">
+            <li class="withripple" [class.active]="getLinkStyle('/badges')">
+              <a href="#" class="" [routerLink]="['/badges']"><i class="icon icon-tags"></i><span class="text">Badges</span></a>
+            </li>
+            <li class="withripple" [class.active]="getLinkStyle('/reports')">
               <a href="" class="" [routerLink]="['/reports']"><i class="icon icon-budget"></i><span class="text">Budget</span></a>
             </li>
             <li><a href="widgets.html"><i class="icon icon-bank"></i><span class="text">Account</span></a></li>
@@ -70,14 +73,4 @@
         </nav>
       </div>
     </div>
-    <!-- END COLUMN LEFT
-<h1>
-  {{title}}
-</h1>
--->
- <button type="button" (click)="goToDemo()">Demo</button>
-
-<notifications [notifications] = "notifications"></notifications>
-
-
 <router-outlet></router-outlet>

@@ -3,6 +3,7 @@ import { TransactionsComponent } from './+transactions';
 import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router} from '@angular/router';
 import { ReportsComponent } from './+reports';
 import { OverviewComponent } from './+overview';
+import { BadgesComponent } from './+badges';
 
 import { DashboardComponent } from './+dashboard';
 import { TagService } from './tag/tag.service';
@@ -19,6 +20,7 @@ import { FinanceHealthIndicatorService } from './finance-health-indicator/financ
 import { NotificationComponent } from './notifications/notification/notification.component';
 import { Notification } from './notifications/notificationDto';
 import { BS_MODAL_PROVIDERS , Modal} from 'angular2-modal/plugins/bootstrap';
+import { Location } from '@angular/common';
 
 @Component({
   moduleId: module.id,
@@ -26,23 +28,27 @@ import { BS_MODAL_PROVIDERS , Modal} from 'angular2-modal/plugins/bootstrap';
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES, NotificationComponent],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService, BS_MODAL_PROVIDERS]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService, BS_MODAL_PROVIDERS, Location]
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},
   {path: '/dashboard', component: DashboardComponent},
   {path: '/reports', component: ReportsComponent},
-  {path: '/overview', component: OverviewComponent}
+  {path: '/overview', component: OverviewComponent},
+  {path: '/badges', component: BadgesComponent}
 ])
 export class ExpenseManagementAppComponent implements OnInit {
 
-  constructor(private demoData: DemoData, private router: Router, public modal: Modal, viewContainer: ViewContainerRef, private notificationsService: NotificationsService) {
+  constructor(private demoData: DemoData, public router: Router, public modal: Modal, viewContainer: ViewContainerRef, private notificationsService: NotificationsService, private location: Location) {
       modal.defaultViewContainer = viewContainer;
   }
   title = 'expense-management works!';
   notifications: Notification[];
   goToDemo(){
     this.demoData.populateDemoData().then(() => this.router.navigate(['/dashboard']));
+  }
+  getLinkStyle(path) {
+        return this.location.path() === path;
   }
   ngOnInit() {
     this.notificationsService.getNotifications().then(notifications => {

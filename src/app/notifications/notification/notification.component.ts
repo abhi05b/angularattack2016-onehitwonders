@@ -17,16 +17,9 @@ export class NotificationComponent implements OnInit {
 
   @Input()
   notifications: Notification[];
-  constructor(
-     //notificationsService: NotificationsService
-    ) {}
+  constructor() {}
 
   ngOnInit() {
-    //this.notifications = [];
-    // this.notificationsService.getNotifications().then(notifications => {
-    //   Array.prototype.push.apply(this.notifications, notifications);
-    // });
-
   }
 
 }

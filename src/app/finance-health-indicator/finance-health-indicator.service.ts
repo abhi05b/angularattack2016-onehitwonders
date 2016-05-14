@@ -34,25 +34,28 @@ export class FinanceHealthIndicatorService {
 		  					finalHealth = 4;
 		  				}
 		  			}
-		  			let percentage = Math.abs(liabilityAccountAmount)/totalAssets;
-		  			if(0 <= percentage && percentage < 0.125){
-		  				finalHealth = 0;
+		  			else{
+		  				let percentage = Math.abs(liabilityAccountAmount)/totalAssets;
+			  			if(0 <= percentage && percentage < 0.125){
+			  				finalHealth = 0;
+			  			}
+			  			else if(0.125 <= percentage && percentage < 0.375){
+			  				finalHealth = 1;
+			  			}
+			  			else if(0.375 <= percentage && percentage < 0.625){
+			  				finalHealth = 2;
+			  			}
+			  			else if(0.625 <= percentage && percentage < 0.875){
+			  				finalHealth = 3;
+			  			}
+			  			else if(0.875 <= percentage && percentage < 1){
+			  				finalHealth = 4;
+			  			}
+			  			else {
+			  				finalHealth = 4;
+			  			}
 		  			}
-		  			else if(0.125 <= percentage && percentage < 0.375){
-		  				finalHealth = 1;
-		  			}
-		  			else if(0.375 <= percentage && percentage < 0.625){
-		  				finalHealth = 2;
-		  			}
-		  			else if(0.625 <= percentage && percentage < 0.875){
-		  				finalHealth = 3;
-		  			}
-		  			else if(0.875 <= percentage && percentage < 1){
-		  				finalHealth = 4;
-		  			}
-		  			else {
-		  				finalHealth = 4;
-		  			}
+		  			
 		  			if(initialHealth != finalHealth){
 		  				this.notificationService.addNotification(new Notification('financialHealth', {initialHealth: initialHealth, finalHealth:finalHealth}));
 		  			}

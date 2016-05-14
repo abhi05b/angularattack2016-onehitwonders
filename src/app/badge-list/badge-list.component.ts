@@ -22,4 +22,8 @@ export class BadgeListComponent implements OnInit {
   	this.badgeService.getAllBadges().then(badgeList => Array.prototype.push.apply(this.badgeList, badgeList));
   }
 
+  getClassName(badgeName: string){
+    return badgeName.trim().replace(' ', '_').toLowerCase();
+  }
+
 }
