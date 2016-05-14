@@ -1990,7 +1990,7 @@ hr {
   background-color: #fafcfe;
   background-image: url("../images/gray_jean.png");
   background-repeat: repeat;
-  min-height: 700px;
+  min-height: 800px;
   padding: 0 0px 30px 15px;
 }
 #col-right.no-heading {
@@ -3161,7 +3161,7 @@ div[class*="col-"] > .form-group {
 .top-bar .dropdown-menu {
   padding: 0;
   width: 365px;
-  top: 37px;
+  top: 34px;
 }
 .top-bar .dropdown-menu:before, .top-bar .dropdown-menu:after {
   position: absolute;
@@ -3830,6 +3830,18 @@ ul.widget-inbox-list .timestamp {
   padding-left: 0;
   list-style: none;
 }
+.top-bar .action-group ul.notify li a:hover, .top-bar .action-group ul.notify  li a:hover .text {
+  color: #656565;
+}
+.top-bar .action-group ul.notify li a:hover i {
+  color: #fff;
+}
+.top-bar .action-group ul.notify  ul.dropdown-menu li a:hover i.ion-chatbubble {
+  color: #7bae16;
+}
+.top-bar .action-group ul.notify li li a {
+  display: block;
+}
 .action-item.general .btn-group {
   margin: 1px;
 }
@@ -3913,7 +3925,6 @@ hr.alt {
   margin-top: 10px;
 }
 .badges {
-  margin-left: 10px;
   text-align: center;
 }
 .badgeHeading {
@@ -3932,6 +3943,10 @@ hr.alt {
   width: 50px;
   height: 50px;
   display: inline-block; 
+  margin-left: 5px;
+}
+.trend_setter {
+  background-image: url("../images/trendsetter.png");
 }
 .foodie {
   background-image: url("../images/foodie.png");
@@ -3948,8 +3963,27 @@ hr.alt {
   background-image: url("../images/gymrat.png");
 }
 
+.health-icon {
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 63px;
+  height: 88px;
+  display: inline-block;
+}
 
-
+.two-star {
+  background-image: url("../images/2star.png");
+}
+.healthText {
+  float: left;
+  font-size: 24px;
+  vertical-align: middle;
+  margin-left: 20px;
+  padding-top: 20px;
+}
+.healthText a {
+  text-decoration: underline;
+}
 
 
 
