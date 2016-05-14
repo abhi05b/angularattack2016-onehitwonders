@@ -11,6 +11,8 @@ import { DataStore } from './data-store/data-store';
 import { MasterDataStore } from './data-store/master-data-store';
 import { DataStoreService } from './data-store/data-store.service';
 import { DemoData } from './data-store/demo-data';
+import { AccountService } from './account/account.service';
+import { NotificationsService } from './notifications/notifications.service';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +20,7 @@ import { DemoData } from './data-store/demo-data';
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService]
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},
