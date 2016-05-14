@@ -110,4 +110,8 @@ export class DataStoreService {
     getNotifications(){
       return Promise.resolve(this.data.notifications); 
     }
+
+    setData(data: DataStore){
+      this.data = data;
+    }
 }
