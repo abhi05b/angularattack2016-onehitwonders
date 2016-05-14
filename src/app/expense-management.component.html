@@ -1,78 +1,13 @@
-   <!-- TOP NAV BAR -->
-    <nav class="top-bar navbar-fixed-top" role="navigation">
-      <div class="logo-area">
-        <a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i class="icon ion-arrow-swap"></i></a>
-        <a class="btn btn-link btn-off-canvas pull-left"><i class="icon ion-navicon"></i></a>
-        <div class="logo pull-left">
-          <a href="index.html">
-            <img src="images/logo.png" alt="Expense Manager" />
-          </a>
-        </div>
-      </div>
-      <div class="top-bar-right pull-right">
-        
-        <div class="logged-user">
-          <div class="btn-group">
-            <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-             <span class="name">Welcome, Test User <i class="icon ion-ios-arrow-down"></i></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li class="">
-                <a href="#">
-                  <i class="icon ion-ios-person"></i>
-                  <span class="text">Profile</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="icon ion-ios-gear"></i>
-                  <span class="text">Settings</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="icon ion-power"></i>
-                  <span class="text">Logout</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-      </div>
-    </nav>
-    <!-- END TOP NAV BAR -->
-    <!-- COLUMN LEFT -->
-    <div id="col-left" class="col-left">
-      <div class="main-nav-wrapper">
-        <nav id="main-nav" class="main-nav">
-          <h3>MAIN</h3>
-          <ul class="main-menu">
-            <li class=" active withripple">
-              <a href="#" class="" [routerLink]="['/dashboard']"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Dashboard</span></a>
-              
-            </li>
-            <li class="withripple">
-              <a href="#" class="" [routerLink]="['/transactions']"><i class="icon ion-ios-paper-outline"></i><span class="text">Transaction(s)</span></a>
-              
-            </li>
-            <li class="withripple">
-              <a href="" class="" [routerLink]="['/reports']"><i class="icon ion-ios-flask-outline"></i><span class="text">Budget</span></a>
-            </li>
-            <li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Account</span></a></li>
-            <li class="withripple">
-              <a href="#" class=""><i class="icon ion-ios-copy-outline"></i><span class="text">Tags</span></a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <!-- END COLUMN LEFT -->
-<!-- <h1>
+<h1>
   {{title}}
 </h1>
 
-<!-- <button type="button" (click)="goToDemo()">Demo</button> -->
+<button type="button" (click)="goToDemo()">Demo</button>
 
+<nav>
+	 	<a [routerLink]="['/dashboard']">Dashboard</a>
+    	<a [routerLink]="['/transactions']">Transactions</a>
+    	<a [routerLink]="['/reports']">Reports</a>
+</nav>
 
 <router-outlet></router-outlet>

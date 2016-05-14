@@ -15,10 +15,10 @@ import { Notification } from '../notifications/notification';
 })
 export class DashboardComponent implements OnInit {
 
-	parentAccounts: Account[];
+	parentAccounts: Account[] = [];
 	accountService: AccountService;
 	notificationsService: NotificationsService;
-	notifications : Notification[];
+	notifications : Notification[] = [];
 
   constructor(accountService: AccountService, notificationsService: NotificationsService) {
   	this.accountService = accountService;
@@ -26,8 +26,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.accountService.getParentAccounts().then(accounts => this.parentAccounts = accounts);
-  	this.notificationsService.getNotifications().then(notifications => this.notifications = notifications);
+  	this.accountService.getParentAccounts().then(accounts => {
+      Array.prototype.push.apply(this.parentAccounts, accounts)
+    });
+  	this.notificationsService.getNotifications().then(notifications => Array.prototype.push.apply(this.notifications, notifications));
 
   }
 
