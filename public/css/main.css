@@ -3879,3 +3879,51 @@ ul.widget-inbox-list .timestamp {
   }
 }
 
+/* cards */
+.cards .widget {
+  text-align: center;
+   background: #fff linear-gradient(to right, rgba(36, 82, 115, 0) 0px, rgba(36, 82, 115, 0.05) 100%) repeat scroll 0 0;
+}
+.cards .widget-content {
+  padding-top: 0;
+  font-size: 20px;
+}
+.cards .widget h3 {
+  color: #008fe2;
+}
+.cards .widget-content {
+  color: #07747e;
+}
+.transaction-icon {
+  background: url("../images/transaction-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+.budget-icon {
+  background: url("../images/budget-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+.bank-icon {
+  background: url("../images/bank-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+.tags-icon {
+  background: url("../images/tags-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+.quick-widget .single-widget:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+.quick-widget .single-widget a {
+  font-size: 16px;
+  color: #00b29c;
+}
+
+
