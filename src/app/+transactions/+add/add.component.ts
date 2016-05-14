@@ -10,6 +10,12 @@ import { TransactionService } from '../../transaction/transaction.service';
 
 import { Account } from '../../account/account';
 import { AccountService } from '../../account/account.service';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
+
+
+
+
+
 
 
 @Component({
@@ -18,23 +24,92 @@ import { AccountService } from '../../account/account.service';
   templateUrl: 'add.component.html',
   styleUrls: ['add.component.css']
 })
+
+
+/*export class Modal1 {
+    constructor(public modal: Modal, viewContainer: ViewContainerRef) {
+        modal.defaultViewContainer = viewContainer;
+    }
+
+    openAlert() {
+        return this.modal.alert()
+      .size('lg')
+      .showClose(true)
+      .title('A simple Alert style modal window')
+      .open();
+    }
+}*/
+
 export class AddComponent implements OnInit {
  
  	model: Transaction;
+  dummyModel: Transaction;
  	tags: Tag[];
+  _parentAccount: Account;
   
 
- 	addTransaction(){
-      this.transactionService.createTransaction(this.model);
-      
-      console.log(this.model.from.name);  
-      console.log(this.model.to.name);
-      //this.toAccount.name = this.model.to;
+    addTransaction() {      
+      let that = this;
 
-      console.log(this.accountService.addAccount(this.model.from));
-      console.log(this.accountService.addAccount(this.model.to));   
-      this.accountService.isExistingAccount(this.model.from).then(result => console.log(result));      
- 	}
+      this.dummyModel = this.model;
+      this.model = new Transaction();
+
+    this.openModal();    
+
+      this.accountService.getAccounts().then((_accounts) => {
+        console.log("Accounts: 1", _accounts);
+      });
+
+      this.dummyModel.from.removeAmount(this.dummyModel.amount);
+      this.dummyModel.to.addAmount(this.dummyModel.amount);
+
+       this.updateAccounts(this,'from');
+       this.updateAccounts(this, 'to');
+
+
+      this.transactionService.createTransaction(this.dummyModel).then(() => {
+
+        this.transactionService.getTransactions().then((_transactions) => {
+          console.log("Transactions: ", _transactions);
+        });
+        this.accountService.getAccounts().then((_accounts) => {
+          console.log("Accounts: ", _accounts);
+        });
+
+      });     
+    }
+
+   
+
+    updateAccounts(that, accountType){
+
+    that.accountService.getAccount(that.dummyModel[accountType]).then((_account) => {
+      if (_account) {
+           _account.addAmount(that.dummyModel[accountType].amount);
+               that.dummyModel[accountType] = _account;
+         
+         //Updating the Parents
+         that.updateParents(that.dummyModel[accountType], that.dummyModel[accountType].amount, accountType)
+        }
+        else {
+          that.accountService.addAccount(that.dummyModel[accountType]).then(() => {
+          });
+        }
+
+   
+      });
+    }
+
+
+    updateParents(account: Account, amount, accountType) {
+
+    this._parentAccount = account.parent;     
+          while (this._parentAccount) {
+            this._parentAccount.addAmount(amount);
+              account = account.parent;
+              this._parentAccount = account.parent;
+          }
+    }
 
 
 
@@ -42,12 +117,23 @@ export class AddComponent implements OnInit {
   	private tagService: TagService, 
   	private transactionService: TransactionService, 
     private accountService: AccountService,
-  	private router: Router
+  	private router: Router,
+    private modal: Modal  
   	) {}
 
   ngOnInit() {
   	this.model = new Transaction();
+    this.dummyModel = new Transaction();
   	this.tagService.getTags().then(tags => this.tags = tags);
+
   }
 
-}
+  openModal(){
+    return this.modal.alert()
+      .size('lg')
+      .showClose(true)
+      .title('A simple Alert style modal window')
+      .open();
+  }
+
+}  
