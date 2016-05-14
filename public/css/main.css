@@ -2033,7 +2033,7 @@ hr {
 }
 
 .fixed-top-active #col-right {
-  padding-top: 47px;
+  padding-top: 52px;
 }
 
 #col-right {
@@ -3878,4 +3878,124 @@ ul.widget-inbox-list .timestamp {
     margin-top: 0;
   }
 }
+
+/* cards */
+.cards .widget {
+  text-align: center;
+   background: #fff linear-gradient(to right, rgba(36, 82, 115, 0) 0px, rgba(36, 82, 115, 0.05) 100%) repeat scroll 0 0;
+}
+.cards .widget-content {
+  padding-top: 0;
+  font-size: 20px;
+}
+.cards .widget h3 {
+  color: #008fe2;
+}
+.cards .widget-content {
+  color: #07747e;
+}
+.main-menu .icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle; 
+}
+.icon-dashboard {
+    background: url("../images/icon-dashboard.png") no-repeat scroll center;
+}
+.icon-transaction {
+    background: url("../images/icon-transaction.png") no-repeat scroll center;
+}
+.icon-budget {
+    background: url("../images/icon-budget.png") no-repeat scroll center;
+}
+.icon-bank {
+    background: url("../images/icon-bank.png") no-repeat scroll center;
+}
+.icon-tags {
+    background: url("../images/icon-tags.png") no-repeat scroll center;
+}
+.transaction-icon {
+  background: url("../images/transaction-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+.budget-icon {
+  background: url("../images/budget-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+.bank-icon {
+  background: url("../images/bank-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+.tags-icon {
+  background: url("../images/tags-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+}
+.quick-widget .single-widget:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+.quick-widget .single-widget a {
+  font-size: 16px;
+  color: #00b29c;
+}
+hr.alt {
+  margin-top: 10px;
+}
+.badgeWidget {
+  margin-top: 10px;
+}
+.badges {
+  margin-left: 10px;
+  text-align: center;
+}
+.badgeHeading {
+  padding-top: 15px;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.badgeText {
+  clear: both;
+  display: block;
+}
+.badge-icon {
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  display: inline-block; 
+}
+.foodie {
+  background-image: url("../images/foodie.png");
+}
+.traveller {
+  background-image: url("../images/traveller.png");
+}
+.movie-buff {
+  background-image: url("../images/movie-buff.png");
+  height: 51px;
+  width: 51px;
+}
+.gymrat {
+  background-image: url("../images/gymrat.png");
+}
+
+
+
+
+
+
+
+
+
+
+
 

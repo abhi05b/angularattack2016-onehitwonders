@@ -1,7 +1,9 @@
-<p>
-  notification works!
-</p>
+<div *ngFor="let notification of notifications">
+	<div *ngIf="notification.type === 'badge'">
+		<badge [data]="notification.data"></badge>
+	</div>
+	<div *ngIf="notification.type === 'financialHealth'">
+		<financial-health [data]="notification.data"></financial-health>
+	</div>
 
-<div *ngIf="notification.type === 'badge'">
-	<badge badge="notification.data"></badge>
 </div>

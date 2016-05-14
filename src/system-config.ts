@@ -25,6 +25,8 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
+  'angular2-modal',
+  'angular2-modal/plugins/bootstrap',
 
   // App specific barrels.
   'app',
@@ -42,6 +44,9 @@ const barrels: string[] = [
   'app/notifications/notification/account',
   'app/+overview',
   'app/badge-list',
+  'app/finance-health-indicator',
+  'app/notifications/notification/financial-health/financial-health',
+  'app/notifications/notification/financial-health',
   /** @cli-barrel */
 ];
 
@@ -64,7 +69,8 @@ System.config({
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
     'moment': 'vendor/moment/moment.js',
-    'ng2-bootstrap': 'vendor/ng2-bootstrap/ng2-bootstrap.js'
+    'ng2-bootstrap': 'vendor/ng2-bootstrap/bundles/ng2-bootstrap.js',
+    'angular2-modal': 'vendor/angular2-modal'
   },
   packages: cliSystemConfigPackages
 });
