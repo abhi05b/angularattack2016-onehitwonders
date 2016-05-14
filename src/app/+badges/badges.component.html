@@ -1,0 +1,14 @@
+<div id="col-right" class="col-right ">
+   <div class="container-fluid primary-content">
+      <!-- PRIMARY CONTENT HEADING -->
+      <div class="primary-content-heading clearfix">
+         <h2 class="pull-left">BADGES</h2>
+     </div>
+      <hr class="alt">
+      <div *ngFor="let badge of badgeList" class="badges pull-left" >
+	   		<span [ngClass]="getClassName(badge.name)" class="badge-icon" *ngIf="badge.count"></span> 
+	</div>
+    </div>
+</div>
+
+
