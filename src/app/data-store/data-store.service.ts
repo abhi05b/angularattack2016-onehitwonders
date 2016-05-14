@@ -5,6 +5,7 @@ import { Transaction } from '../transaction/transaction';
 import { Account } from '../account/account';
 import { Tag } from '../tag/tag';
 import { Badge } from '../badge/badge';
+import { Notification} from '../notifications/notification';
 import { DataStore} from './data-store';
 
 
@@ -89,4 +90,21 @@ export class DataStoreService {
   	getBadges(){
   		return Promise.resolve(this.data.badges); 
   	}
+
+    addNotification(notification: Notification){
+      this.data.notifications.push(Notification);
+      return Promise.resolve();
+    }
+
+    deleteNotification(notification: Notification){
+      let index = this.data.notifications.indexOf(Notification);
+      if(index > -1){
+        this.data.notifications.splice(index, 1);
+      }
+      return Promise.resolve();
+    }
+
+    getNotifications(){
+      return Promise.resolve(this.data.notifications); 
+    }
 }

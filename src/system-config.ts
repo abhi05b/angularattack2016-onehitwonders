@@ -34,6 +34,7 @@ const barrels: string[] = [
   'app/+transactions/+list',
   'app/+dashboard',
   'app/+reports',
+  'app/dashboard/account-card',
   /** @cli-barrel */
 ];
 
