@@ -3,7 +3,6 @@ import { Transaction } from '../transaction/transaction';
 import { Account } from '../account/account';
 import { Tag } from '../tag/tag';
 import { Badge } from '../badge/badge';
-import { Notification } from '../notifications/notification';
 
 export class MasterDataStore {
 

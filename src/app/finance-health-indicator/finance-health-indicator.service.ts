@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 
 import { FinanceHealthIndicator } from './finance-health-indicator';
 import { AccountService } from '../account/account.service';
+import { Notification } from '../notifications/notificationDto';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Injectable()
 export class FinanceHealthIndicatorService {
 
 	financeHealthIndicator: FinanceHealthIndicator = new FinanceHealthIndicator();
 
-  	constructor(private accountService: AccountService) {
+  	constructor(private accountService: AccountService
+  		, private notificationService: NotificationsService
+  		) {
   		this.updateFinanceHealthIndicator();
   	}
 
@@ -20,33 +24,39 @@ export class FinanceHealthIndicatorService {
 		  			let assetsAccountAmount = assetsAccount.amount;
 		  			let cashAccountAmount = cashAccount.amount;
 		  			let totalAssets = assetsAccountAmount + cashAccountAmount;
+		  			let initialHealth = this.financeHealthIndicator.health;
+		  			let finalHealth = 0;
 		  			if(totalAssets === 0){
 		  				if(liabilityAccountAmount === 0){
-		  					this.financeHealthIndicator.health = 2;
+		  					finalHealth = 2;
 		  				}
 		  				else{
-		  					this.financeHealthIndicator.health = 4;
+		  					finalHealth = 4;
 		  				}
 		  			}
 		  			let percentage = Math.abs(liabilityAccountAmount)/totalAssets;
 		  			if(0 <= percentage && percentage < 0.125){
-		  				this.financeHealthIndicator.health = 0;
+		  				finalHealth = 0;
 		  			}
 		  			else if(0.125 <= percentage && percentage < 0.375){
-		  				this.financeHealthIndicator.health = 1;
+		  				finalHealth = 1;
 		  			}
 		  			else if(0.375 <= percentage && percentage < 0.625){
-		  				this.financeHealthIndicator.health = 2;
+		  				finalHealth = 2;
 		  			}
 		  			else if(0.625 <= percentage && percentage < 0.875){
-		  				this.financeHealthIndicator.health = 3;
+		  				finalHealth = 3;
 		  			}
 		  			else if(0.875 <= percentage && percentage < 1){
-		  				this.financeHealthIndicator.health = 4;
+		  				finalHealth = 4;
 		  			}
 		  			else {
-		  				this.financeHealthIndicator.health = 4;
+		  				finalHealth = 4;
 		  			}
+		  			if(initialHealth != finalHealth){
+		  				this.notificationService.addNotification(new Notification('financialHealth', {initialHealth: initialHealth, finalHealth:finalHealth}));
+		  			}
+		  			this.financeHealthIndicator.health = finalHealth;
   				})
   			})
   		});

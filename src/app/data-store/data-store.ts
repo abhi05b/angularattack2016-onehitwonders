@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Account } from '../account/account';
 import { Tag } from '../tag/tag';
 import { Badge } from '../badge/badge';
-import { Notification } from '../notifications/notification';
+import { Notification } from '../notifications/notificationDto';
 import { MasterDataStore } from './master-data-store';
 
 @Injectable()

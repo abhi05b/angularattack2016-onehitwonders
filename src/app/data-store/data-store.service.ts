@@ -5,7 +5,7 @@ import { Transaction } from '../transaction/transaction';
 import { Account } from '../account/account';
 import { Tag } from '../tag/tag';
 import { Badge } from '../badge/badge';
-import { Notification} from '../notifications/notification';
+import { Notification} from '../notifications/notificationDto';
 import { DataStore} from './data-store';
 import { MasterDataStore} from './master-data-store';
 
@@ -95,12 +95,12 @@ export class DataStoreService {
     }
 
     addNotification(notification: Notification){
-      this.data.notifications.push(Notification);
+      this.data.notifications.push(notification);
       return Promise.resolve();
     }
 
     deleteNotification(notification: Notification){
-      let index = this.data.notifications.indexOf(Notification);
+      let index = this.data.notifications.indexOf(notification);
       if(index > -1){
         this.data.notifications.splice(index, 1);
       }
