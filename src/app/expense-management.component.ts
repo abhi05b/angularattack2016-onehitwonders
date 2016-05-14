@@ -8,6 +8,7 @@ import { TagService } from './tag/tag.service';
 import { TransactionService } from './transaction/transaction.service';
 
 import { DataStore } from './data-store/data-store';
+import { MasterDataStore } from './data-store/master-data-store';
 import { DataStoreService } from './data-store/data-store.service';
 
 @Component({
@@ -16,7 +17,7 @@ import { DataStoreService } from './data-store/data-store.service';
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore]
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},
