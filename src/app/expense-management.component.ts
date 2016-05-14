@@ -9,13 +9,14 @@ import { TransactionService } from './transaction/transaction.service';
 import { DataStore } from './data-store/data-store';
 import { DataStoreService } from './data-store/data-store.service';
 
+import { AccountService } from './account/account.service';
 @Component({
   moduleId: module.id,
   selector: 'expense-management-app',
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, AccountService]
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},

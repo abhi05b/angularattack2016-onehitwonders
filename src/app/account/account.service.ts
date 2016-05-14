@@ -20,4 +20,14 @@ export class AccountService {
   	return this.dataStoreService.getAccounts();
   }
 
+  updateAccount(){
+    return 'a';
+  }
+
+  isExistingAccount(account: Account){
+    return this.getAccounts().
+      then(accounts => accounts.findIndex(_account => _account.name === account.name))
+      .then(index => index > -1);
+  }
+
 }
