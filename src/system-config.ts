@@ -64,8 +64,7 @@ System.config({
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
     'moment': 'vendor/moment/moment.js',
-    'ng2-bootstrap': 'vendor/ng2-bootstrap/ng2-bootstrap.js',
-    'angular2-tag-input': 'vendor/angular2-tag-input/dist/tag-input.component.js'
+    'ng2-bootstrap': 'vendor/ng2-bootstrap/ng2-bootstrap.js'
   },
   packages: cliSystemConfigPackages
 });
