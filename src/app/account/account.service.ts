@@ -30,6 +30,22 @@ export class AccountService {
   }
 
   getExpenseAccount(){
-    return this.getParentAccounts().then(accounts => accounts.find(account => account.name == 'Expenses'));
+    return this.getAccountByName('Expenses');
+  }
+
+  getAssetsAccount(){
+    return this.getAccountByName('Assets');
+  }
+
+  getLiabilityAccount(){
+    return this.getAccountByName('Liability');
+  }
+
+  getCashAccount(){
+    return this.getAccountByName('Cash');
+  }
+
+  getAccountByName(name: string){
+    return this.getParentAccounts().then(accounts => accounts.find(account => account.name == name));
   }
 }

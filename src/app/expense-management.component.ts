@@ -15,6 +15,7 @@ import { DemoData } from './data-store/demo-data';
 import { AccountService } from './account/account.service';
 import { NotificationsService } from './notifications/notifications.service';
 import { BadgeService } from './badge/badge.service';
+import { FinanceHealthIndicatorService } from './finance-health-indicator/finance-health-indicator.service';
 
 @Component({
   moduleId: module.id,
@@ -22,7 +23,7 @@ import { BadgeService } from './badge/badge.service';
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService]
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},
