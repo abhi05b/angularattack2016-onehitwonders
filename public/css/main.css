@@ -2033,7 +2033,7 @@ hr {
 }
 
 .fixed-top-active #col-right {
-  padding-top: 47px;
+  padding-top: 52px;
 }
 
 #col-right {
@@ -3894,6 +3894,27 @@ ul.widget-inbox-list .timestamp {
 .cards .widget-content {
   color: #07747e;
 }
+.main-menu .icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle; 
+}
+.icon-dashboard {
+    background: url("../images/icon-dashboard.png") no-repeat scroll center;
+}
+.icon-transaction {
+    background: url("../images/icon-transaction.png") no-repeat scroll center;
+}
+.icon-budget {
+    background: url("../images/icon-budget.png") no-repeat scroll center;
+}
+.icon-bank {
+    background: url("../images/icon-bank.png") no-repeat scroll center;
+}
+.icon-tags {
+    background: url("../images/icon-tags.png") no-repeat scroll center;
+}
 .transaction-icon {
   background: url("../images/transaction-icon.png") no-repeat;
   width: 48px;
@@ -3925,5 +3946,56 @@ ul.widget-inbox-list .timestamp {
   font-size: 16px;
   color: #00b29c;
 }
+hr.alt {
+  margin-top: 10px;
+}
+.badgeWidget {
+  margin-top: 10px;
+}
+.badges {
+  margin-left: 10px;
+  text-align: center;
+}
+.badgeHeading {
+  padding-top: 15px;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.badgeText {
+  clear: both;
+  display: block;
+}
+.badge-icon {
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  display: inline-block; 
+}
+.foodie {
+  background-image: url("../images/foodie.png");
+}
+.traveller {
+  background-image: url("../images/traveller.png");
+}
+.movie-buff {
+  background-image: url("../images/movie-buff.png");
+  height: 51px;
+  width: 51px;
+}
+.gymrat {
+  background-image: url("../images/gymrat.png");
+}
+
+
+
+
+
+
+
+
+
+
 
 
