@@ -1,4 +1,3 @@
-
 <div class="container">
 <form  #transactionForm="ngForm" (ngSubmit)="addTransaction()">
       <div class="form-group">
@@ -24,7 +23,7 @@
       </div>
      <div class="form-group">
         <label for="tags">Tags</label>
-        <input type="text" class="form-control" [(ngModel)]="model.tags">
+        <tag-input></tag-input>
       </div>
       <div class="form-group">
         <label for="comments">Comments</label>

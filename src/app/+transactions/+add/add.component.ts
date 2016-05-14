@@ -7,22 +7,17 @@ import { Tag } from '../../tag/tag';
 import { TagService } from '../../tag/tag.service';
 import { Transaction } from '../../transaction/transaction';
 import { TransactionService } from '../../transaction/transaction.service';
-
+import {TagInputComponent} from './../../tag-input/tag-input.component';
 import { Account } from '../../account/account';
 import { AccountService } from '../../account/account.service';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
-
-
-
-
-
-
 
 @Component({
   moduleId: module.id,
   selector: 'app-add',
   templateUrl: 'add.component.html',
-  styleUrls: ['add.component.css']
+  styleUrls: ['add.component.css'],
+  directives: [TagInputComponent]
 })
 
 
