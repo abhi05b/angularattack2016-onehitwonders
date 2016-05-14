@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Badge } from '../../../badge/badge';
-
 @Component({
   moduleId: module.id,
   selector: 'badge',
@@ -11,7 +9,7 @@ import { Badge } from '../../../badge/badge';
 export class BadgeComponent implements OnInit {
 
 	@Input()
-	badge: Badge;
+	data: any;
 
   constructor() {}
 

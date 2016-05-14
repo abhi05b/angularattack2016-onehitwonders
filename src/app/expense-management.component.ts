@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TransactionsComponent } from './+transactions';
 import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router} from '@angular/router';
 import { ReportsComponent } from './+reports';
@@ -16,13 +16,15 @@ import { AccountService } from './account/account.service';
 import { NotificationsService } from './notifications/notifications.service';
 import { BadgeService } from './badge/badge.service';
 import { FinanceHealthIndicatorService } from './finance-health-indicator/finance-health-indicator.service';
+import { NotificationComponent } from './notifications/notification/notification.component';
+import { Notification } from './notifications/notificationDto';
 
 @Component({
   moduleId: module.id,
   selector: 'expense-management-app',
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
-  directives: [ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES, NotificationComponent],
   providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService]
 })
 @Routes([
@@ -31,13 +33,19 @@ import { FinanceHealthIndicatorService } from './finance-health-indicator/financ
   {path: '/reports', component: ReportsComponent},
   {path: '/overview', component: OverviewComponent}
 ])
-export class ExpenseManagementAppComponent {
+export class ExpenseManagementAppComponent implements OnInit {
 
-  constructor(private demoData : DemoData, private router: Router){
+  constructor(private demoData : DemoData, private router: Router, private notificationsService: NotificationsService){
 
   }
   title = 'expense-management works!';
+  notifications: Notification[];
   goToDemo(){
     this.demoData.populateDemoData().then(() => this.router.navigate(['/dashboard']));
+  }
+  ngOnInit() {
+    this.notificationsService.getNotifications().then(notifications => {
+      this.notifications = notifications;
+    })
   }
 }

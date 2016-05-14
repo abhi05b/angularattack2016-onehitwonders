@@ -6,11 +6,14 @@ import { AccountService } from '../account/account.service';
 
 import { Transaction } from '../transaction/transaction';
 
+import { Notification } from '../notifications/notificationDto';
+import { NotificationsService } from '../notifications/notifications.service'; 
+
 @Injectable()
 export class BadgeService {
 
 
-  constructor(private dataStoreService: DataStoreService, private accountService: AccountService) {
+  constructor(private dataStoreService: DataStoreService, private accountService: AccountService, private notificationService: NotificationsService) {
 
   }
 
@@ -40,7 +43,8 @@ export class BadgeService {
           badge.amount += transaction.amount;
           if(badge.amount/expenseAmount > 0.5)
             badge.count++;
-            //this.addBadge(badge);
+            this.notificationService.addNotification(new Notification('badge', {name: badge.name}));
+            this.addBadge(badge);
         });
       });
     });
