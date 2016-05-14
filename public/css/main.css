@@ -3826,6 +3826,10 @@ ul.widget-inbox-list .timestamp {
     margin-top: 0;
   }
 }
+.top-bar .action-group ul.notify {
+  padding-left: 0;
+  list-style: none;
+}
 .action-item.general .btn-group {
   margin: 1px;
 }
