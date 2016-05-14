@@ -5,21 +5,21 @@ import { Transaction } from '../transaction/transaction';
 import { Account } from '../account/account';
 import { Tag } from '../tag/tag';
 import { Badge } from '../badge/badge';
+import { Notification} from '../notifications/notification';
 import { DataStore} from './data-store';
+import { MasterDataStore} from './master-data-store';
 
 
 @Injectable()
 export class DataStoreService {
 
 	data: DataStore;
+  masterDataStore: MasterDataStore;
 
-  	constructor(data?: DataStore) {
-  		if(data != null){
-  			this.data = data;
-  		}
-  		else{
-  			this.data = new DataStore();
-  		}
+  	constructor(masterDataStore: MasterDataStore, data: DataStore) {
+      this.masterDataStore = masterDataStore;
+      this.data = data;
+  		
   	}
 
   	addTransaction(transaction: Transaction){
@@ -89,4 +89,29 @@ export class DataStoreService {
   	getBadges(){
   		return Promise.resolve(this.data.badges); 
   	}
+
+    getAllBadges(){
+      return Promise.resolve(this.masterDataStore.badges);
+    }
+
+    addNotification(notification: Notification){
+      this.data.notifications.push(Notification);
+      return Promise.resolve();
+    }
+
+    deleteNotification(notification: Notification){
+      let index = this.data.notifications.indexOf(Notification);
+      if(index > -1){
+        this.data.notifications.splice(index, 1);
+      }
+      return Promise.resolve();
+    }
+
+    getNotifications(){
+      return Promise.resolve(this.data.notifications); 
+    }
+
+    setData(data: DataStore){
+      this.data = data;
+    }
 }

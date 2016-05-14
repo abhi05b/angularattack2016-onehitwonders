@@ -19,5 +19,12 @@ export class AccountService {
   getAccounts(){
   	return this.dataStoreService.getAccounts();
   }
+  
+  getParentAccounts(){
+    return this.getAccounts().then(accounts => accounts.filter(account => account.parent === null));
+  }
 
+  getExpenseAccount(){
+    return this.getParentAccounts().then(accounts => accounts.find(account => account.name == 'Expenses'));
+  }
 }

@@ -13,8 +13,8 @@ export class Transaction{
 		this.date = date || new Date(); 
 		this.merchant = merchant || '';
 		this.amount = amount || 0;
-		this.from = from || new Account();
-		this.to = to || new Account();
+		this.from = from || new Account('',0);
+		this.to = to || new Account('',0);
 		this.comments = comments || '';
 		this.tags = tags || [];
 

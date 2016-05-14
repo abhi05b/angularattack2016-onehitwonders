@@ -1,5 +1,8 @@
 import { Account } from '../account/account'
 
 export class Badge{
-	constructor(name: string, accounts: Account[]){}
+	constructor(public name: string, public accounts: Account[], public amount: number){
+
+	}
+	
 }

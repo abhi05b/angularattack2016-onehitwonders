@@ -57,7 +57,7 @@
               
             </li>
             <li class="withripple">
-              <a href="#" class=""><i class="icon ion-ios-flask-outline"></i><span class="text">Budget</span></a>
+              <a href="" class="" [routerLink]="['/reports']"><i class="icon ion-ios-flask-outline"></i><span class="text">Budget</span></a>
             </li>
             <li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Account</span></a></li>
             <li class="withripple">
@@ -72,8 +72,7 @@
   {{title}}
 </h1>
 
-<nav>
-	 	<a [routerLink]="['/dashboard']">Dashboard</a>
-    	<a [routerLink]="['/transactions']">Transactions</a>
-</nav> -->
+<!-- <button type="button" (click)="goToDemo()">Demo</button> -->
+
+
 <router-outlet></router-outlet>

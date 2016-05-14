@@ -33,6 +33,11 @@ const barrels: string[] = [
   'app/+transactions/+add',
   'app/+transactions/+list',
   'app/+dashboard',
+  'app/+reports',
+  'app/dashboard/account-card',
+  'app/notifications/notification',
+  'app/notifications/notification/badge',
+  'app/notifications/notification/account',
   /** @cli-barrel */
 ];
 
