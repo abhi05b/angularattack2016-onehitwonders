@@ -5,13 +5,14 @@ import { Account } from '../account/account';
 import { AccountCardComponent } from '../dashboard/account-card/account-card.component';
 import { NotificationsService } from '../notifications/notifications.service';
 import { Notification } from '../notifications/notification';
+import { BadgeListComponent } from '../badge-list/badge-list.component'
 
 @Component({
   moduleId: module.id,
   selector: 'app-dashboard',
   templateUrl: 'dashboard.component.html',
   styleUrls: ['dashboard.component.css'],
-  directives: [AccountCardComponent]
+  directives: [AccountCardComponent, BadgeListComponent]
 })
 export class DashboardComponent implements OnInit {
 

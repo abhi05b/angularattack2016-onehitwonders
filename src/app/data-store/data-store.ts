@@ -20,7 +20,7 @@ export class DataStore {
 		this.transactions = [];
 		this.accounts = masterDataStore.accounts;
 		this.tags = masterDataStore.tags;
-		this.badges = [];
+		this.badges = masterDataStore.badges;
 		this.notifications = [];
 	}
 }

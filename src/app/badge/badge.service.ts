@@ -39,7 +39,8 @@ export class BadgeService {
         targetBadges.forEach(badge => {
           badge.amount += transaction.amount;
           if(badge.amount/expenseAmount > 0.5)
-            this.addBadge(badge);
+            badge.count++;
+            //this.addBadge(badge);
         });
       });
     });

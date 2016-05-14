@@ -39,6 +39,7 @@ const barrels: string[] = [
   'app/notifications/notification/badge',
   'app/notifications/notification/account',
   'app/+overview',
+  'app/badge-list',
   /** @cli-barrel */
 ];
 
