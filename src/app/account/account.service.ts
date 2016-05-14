@@ -27,7 +27,32 @@ export class AccountService {
   }
   
   getParentAccounts(){
-    return this.getAccounts().then(accounts => accounts.filter(account => account.parent === null));
+    return this.getAccounts().then(accounts => {
+        return accounts.filter(account => {
+          return account.parent === undefined;
+        })
+      }
+    );
+  }
+
+  getExpenseAccount(){
+    return this.getAccountByName('Expenses');
+  }
+
+  getAssetsAccount(){
+    return this.getAccountByName('Assets');
+  }
+
+  getLiabilityAccount(){
+    return this.getAccountByName('Liability');
+  }
+
+  getCashAccount(){
+    return this.getAccountByName('Cash');
+  }
+
+  getAccountByName(name: string){
+    return this.getParentAccounts().then(accounts => accounts.find(account => account.name == name));
   }
 
   updateAccount(account : Account){

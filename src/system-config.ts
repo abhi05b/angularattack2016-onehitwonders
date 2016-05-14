@@ -37,10 +37,22 @@ const barrels: string[] = [
   'app/+dashboard',
   'app/+reports',
   'app/dashboard/account-card',
+  'app/tag-input',
+  'app/tag-input-item',
+  'app/notifications/notification',
+  'app/notifications/notification/badge',
+  'app/notifications/notification/account',
+  'app/+overview',
+  'app/badge-list',
+  'app/finance-health-indicator',
   /** @cli-barrel */
 ];
 
-const cliSystemConfigPackages: any = {};
+const cliSystemConfigPackages: any = {
+  'vendor/ng2-bootstrap': {
+          defaultExtension: 'js',           
+        }
+};
 barrels.forEach((barrelName: string) => {
   cliSystemConfigPackages[barrelName] = { main: 'index' };
 });

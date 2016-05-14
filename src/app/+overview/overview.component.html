@@ -1,0 +1,12 @@
+<p>
+  overview works!
+</p>
+
+<div *ngFor="let parentAccount of parentAccounts">
+	{{parentAccount.name}}
+	<ul>
+		<li *ngFor="let account of accounts[parentAccount.name]">
+			{{account.name}}
+		</li>
+	</ul>
+</div>
