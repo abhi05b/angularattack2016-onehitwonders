@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TransactionsComponent } from './+transactions';
 import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
+import { ReportsComponent } from './+reports';
 
 import { DashboardComponent } from './+dashboard';
 import { TagService } from './tag/tag.service';
@@ -19,7 +20,8 @@ import { DataStoreService } from './data-store/data-store.service';
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},
-  {path: '/dashboard', component: DashboardComponent}
+  {path: '/dashboard', component: DashboardComponent},
+  {path: '/reports', component: ReportsComponent}
 ])
 export class ExpenseManagementAppComponent {
   title = 'expense-management works!';
