@@ -6,11 +6,13 @@
     *ngFor="#tag of tagsList; #index = index">
   </tag-input-item>
   <input
-    class="ng2-tag-input-field"
+    class="ng2-tag-input-field form-control"
     type="text"
-    [typeahead]="statesComplex"
+    [typeahead]="getAsyncData()"
+    (typeaheadLoading)="changeTypeaheadLoading($event)"
+    (typeaheadNoResults)="changeTypeaheadNoResults($event)"
     (typeaheadOnSelect)="typeaheadOnSelect($event)"
-    [typeaheadOptionField]="'name'"
+    [typeaheadOptionsLimit]="7"
     [placeholder]="placeholder"
     [(ngModel)]="inputValue"
     (paste)="inputPaste($event)"
@@ -18,3 +20,4 @@
     (blur)="inputBlurred($event)"
     (focus)="inputFocused()"
     #tagInputRef>
+    

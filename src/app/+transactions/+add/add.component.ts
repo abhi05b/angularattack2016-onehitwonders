@@ -7,13 +7,14 @@ import { Tag } from '../../tag/tag';
 import { TagService } from '../../tag/tag.service';
 import { Transaction } from '../../transaction/transaction';
 import { TransactionService } from '../../transaction/transaction.service';
-
+import {TagInputComponent} from './../../tag-input/tag-input.component';
 
 @Component({
   moduleId: module.id,
   selector: 'app-add',
   templateUrl: 'add.component.html',
-  styleUrls: ['add.component.css']
+  styleUrls: ['add.component.css'],
+  directives: [TagInputComponent]
 })
 export class AddComponent implements OnInit {
  
