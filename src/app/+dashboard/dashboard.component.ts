@@ -15,7 +15,7 @@ import { Notification } from '../notifications/notification';
 })
 export class DashboardComponent implements OnInit {
 
-	parentAccounts: Account[] = [];
+	parentAccounts: Account[];
 	accountService: AccountService;
 	notificationsService: NotificationsService;
 	notifications : Notification[] = [];
@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.parentAccounts = [];
   	this.accountService.getParentAccounts().then(accounts => {
       Array.prototype.push.apply(this.parentAccounts, accounts)
     });
