@@ -13,8 +13,11 @@ module.exports = function(defaults) {
       'rxjs/**/*.js',
       '@angular/**/*.js',
       'moment/moment.js',
-      'ng2-bootstrap/**/*.js',
       'angular2-tag-input/dist/*.js'
-    ]
+      'ng2-bootstrap/bundles/ng2-bootstrap.js',
+      'bootstrap-material-design/dist/js/*.js',
+      'bootstrap-material-design/dist/css/*.css',
+      'arrive/minified/arrive.min.js'
+      ]
   });
 };

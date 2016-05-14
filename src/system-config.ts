@@ -37,6 +37,11 @@ const barrels: string[] = [
   'app/dashboard/account-card',
   'app/tag-input',
   'app/tag-input-item',
+  'app/notifications/notification',
+  'app/notifications/notification/badge',
+  'app/notifications/notification/account',
+  'app/+overview',
+  'app/badge-list',
   /** @cli-barrel */
 ];
 
