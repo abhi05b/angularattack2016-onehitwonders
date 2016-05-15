@@ -14,19 +14,22 @@
             </div>
 
             <div class="widget-content">
-            <alert *ngIf="model.budget && getBalance(budgetBreakup)>model.budget"type="danger" dismissible="true">
-              Reduce expense below Budget Limit
-            </alert>
-            <alert *ngIf="!model.budget" type="danger" dismissible="true">
-              Please Enter Budget Limit
-            </alert>
-               <form (ngSubmit)="updateBudget()">
+            
+               <form #budgetForm="ngForm" (ngSubmit)="updateBudget()">
+                  <span *ngIf="!budgetForm.form.pristine">
+                  <alert *ngIf="model.budget && getBalance(budgetBreakup)>model.budget"type="danger" dismissible="true">
+                    Reduce expense below Budget Limit
+                  </alert>
+                  <alert *ngIf="!model.budget" type="danger" dismissible="true">
+                    Please Enter Budget Limit
+                  </alert>
+                  </span>
                   <div class="inputs">
                      <div class="row">
                         <div class="col-sm-12">
                            <div class="form-group form-group-lg label-floating">
                               <label for="i5" class="control-label">Budget limit</label>
-                              <input type="number" class="form-control" [(ngModel)]="model.budget">
+                              <input ngControl="name" #name="ngForm" type="number" class="form-control" [(ngModel)]="model.budget">
                            </div>
                         </div>
                      </div>
@@ -34,7 +37,7 @@
                         <div class="col-sm-4" *ngFor="let account of accounts">
                            <div class="form-group form-group-lg label-floating">
                               <label class="control-label">{{account.name}}</label>
-                              <input type="number" class="form-control" [(ngModel)]="budgetBreakup[account.name]">
+                              <input ngControl="account" #account="ngForm" type="number" class="form-control" [(ngModel)]="budgetBreakup[account.name]">
                            </div>
                         </div>
                      </div>
