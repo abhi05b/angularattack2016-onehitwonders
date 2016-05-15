@@ -4282,8 +4282,12 @@ font-size: 16px;
 .voteLink:focus {
   color: #db7406;
 }
-
-
+.teamPage {
+  padding-bottom: 20px;
+}
+.teamPage .headText {
+  margin-bottom: 0;
+}
 
 
 
