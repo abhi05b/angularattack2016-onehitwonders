@@ -12,7 +12,7 @@ import { AccountService } from '../../account/account.service';
 import { Modal, TwoButtonPresetBuilder} from 'angular2-modal/plugins/bootstrap';
 import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { BadgeService } from '../../badge/badge.service';
-
+declare var jQuery: any;
 
 @Component({
   moduleId: module.id,
@@ -23,24 +23,6 @@ import { BadgeService } from '../../badge/badge.service';
 })
 
 export class AddComponent implements OnInit {
-   
-   /*@ViewChild('modal')
-    modal: ModalComponent;
-
-    saveModal() {
-        this.modal.close().then(result => console.log('ok'));        
-    }
-
-    openModal() {      
-        this.accountService.getParentAccounts().then(_accounts => {
-          this.parentAccounts = _accounts;
-        });
-        this.modal.open().then(result => console.log('Open'));
-    }
-
-    dismissModal() {
-        this.modal.close().then(result => console.log('Dismiss'));               
-    }*/
 
     model: Transaction;
     dummyModel: Transaction;
@@ -51,87 +33,77 @@ export class AddComponent implements OnInit {
     toParentSelect: Account;
     fromAccountPresent: Boolean;
     toAccountPresent: Boolean;
-    showFromAccountParents: Boolean;
-    showToAccountParents: Boolean;
+    showfromAccountParents: Boolean;
+    showtoAccountParents: Boolean;
     toParentAccountsList: Account[];
     fromParentAccountsList: Account[];
     
 
     addTransaction() {
-        let that = this;
+      let that = this;
 
-        this.dummyModel = this.model;
-        this.model = new Transaction();
+      this.dummyModel = this.model;
+      this.model = new Transaction();
 
-        if(this.showFromAccountParents) {
-            this.dummyModel.from.parent = this.fromParentSelect;
-            this.dummyModel.from.removeAmount(this.dummyModel.amount)       
-            this.accountService.addAccount(this.dummyModel.from).then((result) => { ; });
-        }else{
-            
-            this.accountService.getAccount(this.dummyModel.from).then((_account)=> {
-                this.dummyModel.from = _account;
-                this.dummyModel.from.removeAmount(this.dummyModel.amount);
-            });       
-        }
-
-        if (this.showToAccountParents) {
-            this.dummyModel.to.parent = this.toParentSelect;
-            this.dummyModel.to.addAmount(this.dummyModel.amount);   
-            this.accountService.addAccount(this.dummyModel.to).then((result) => { ; });
-        }else{
-            this.accountService.getAccount(this.dummyModel.to).then((_account) => {
-                this.dummyModel.to = _account;
-                this.dummyModel.to.addAmount(this.dummyModel.amount);
-            });
-        }
-
-        
-       
-
-          
-        this.transactionService.createTransaction(this.model).then((result) => {
-
-            
-          });
-          
-        
+      this.updateAccount('from');
+      this.updateAccount('to');  
     }
 
-  onBlurFromMethod(account : Account) {
-    if (!account.name)
-      return;
 
-    this.accountService.getAccount(account).then(_account => {
-          if(!_account){
-            this.accountService.getParentAccounts().then(_accounts => {
-              this.fromParentAccountsList = _accounts;
-              this.showFromAccountParents = true;
-            });  
-          }
-    })
-    
-  }
+    updateAccount(type : string){
+    let that = this;
 
-   
-  onBlurToMethod(account : Account) {
-    if (!account.name)
-      return;
-    this.accountService.getAccount(account).then(_account => {
-          if (!_account) {
-        this.accountService.getParentAccounts().then(_accounts => {
-          this.toParentAccountsList = _accounts;
-          this.showToAccountParents = true;
+      if (that['show' + type + 'AccountParents']) {      
+              that.dummyModel[type].parent = that[type + 'ParentSelect'];
+                if (type == 'to')
+                  that.dummyModel[type].addAmount(that.dummyModel.amount);
+                else
+                  that.dummyModel[type].removeAmount(that.dummyModel.amount);
+                    that.accountService.addAccount(that.dummyModel[type]).then((result) => { ; });
+                    that.transactionService.createTransaction(that.dummyModel).then((result) => { 
+                      
+                    });
+      } else {
+        that.accountService.getAccount(that.dummyModel[type]).then((_account) => {
+          that.dummyModel[type] = _account;          
+            if(type == 'to')
+                that.dummyModel[type].addAmount(that.dummyModel.amount);          
+            else
+              that.dummyModel[type].removeAmount(that.dummyModel.amount);
+                  that.transactionService.createTransaction(that.dummyModel).then((result) => { });
         });
+      }
+    }
+   
+  onBlurMethod( type : string) {
+    if (jQuery('typeahead-container').length === 0) {
+        this.handleParentSelectBox( type);
+    }      
+  }
+
+  handleParentSelectBox(type : string){
+    let that = this;
+    
+    if (!that.model[type].name)
+      return;
+    that.accountService.getAccount(that.model[type]).then(_account => {
+          if (!_account) {
+              that.accountService.getParentAccounts().then(_accounts => {
+                that[type + 'ParentAccountsList'] = _accounts;
+                that['show' + type + 'AccountParents'] = true;
+              });
+          }
+          else{
+              that.clearList(type);
           }
     })
-    
+
   }
 
 
-  onFocusFromMethod(account: Account) {
-     this.fromParentAccountsList = null;
-     this.showFromAccountParents = false;
+  clearList(type : string) {
+    this[type + 'ParentAccountsList'] = null;
+    this['show' + type + 'AccountParents'] = false;
   }
 
   public getAsyncData(accountType:string,transactionType:string):Function {
@@ -171,15 +143,16 @@ export class AddComponent implements OnInit {
 
 
   public typeaheadOnSelect(e:any,accountType:string):void {
-    setTimeout(() => this.model[accountType].name = e.item);
+    setTimeout(() => {
+      this.model[accountType].name = e.item;
+      this.handleParentSelectBox(accountType);
+    }  
+    );
   }
 
 
 
-  onFocusToMethod(account: Account) {
-    this.toParentAccountsList = null;
-    this.showToAccountParents = false;
-  }
+ 
 
   constructor(
   	private tagService: TagService, 
