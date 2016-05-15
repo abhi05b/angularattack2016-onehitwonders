@@ -44,7 +44,6 @@ export class BadgeService {
           if(badge.amount/expenseAmount > 0.5)
             badge.count++;
             this.notificationService.addNotification(new Notification('badge', {name: badge.name}));
-            this.addBadge(badge);
         });
       });
     });
