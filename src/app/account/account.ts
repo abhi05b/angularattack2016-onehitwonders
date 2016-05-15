@@ -9,9 +9,15 @@ export class Account{
 	}
 	addAmount(amount: number){
 		this.amount += amount;
+		if(this.parent){
+			this.parent.addAmount(amount);
+		}
 	}
 
 	removeAmount(amount: number){
 		this.amount -= amount;
+		if(this.parent){
+			this.parent.removeAmount(amount);
+		}
 	}
 }

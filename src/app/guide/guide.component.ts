@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES} from '@angular/router';
+
 import { Guide } from './guide';
 import { GuideService } from './guide.service';
 
@@ -6,7 +8,8 @@ import { GuideService } from './guide.service';
   moduleId: module.id,
   selector: 'guide',
   templateUrl: 'guide.component.html',
-  styleUrls: ['guide.component.css']
+  styleUrls: ['guide.component.css'],
+  directives: [ROUTER_DIRECTIVES]
 })
 export class GuideComponent implements OnInit {
 
