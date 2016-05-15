@@ -1,13 +1,13 @@
 import { Tag } from '../../tag/tag';
 export class TableDataModel{
 	date: Date;
-	amount: number;
+	amount: string;
 	from: string;
 	to: string;
 	merchant: string;
 	comments: string;
 
-	constructor(date?: any, merchant?: string, amount?: number, from?: string, to?: string, comments?: string) {
+	constructor(date?: any, merchant?: string, amount?: string, from?: string, to?: string, comments?: string) {
 
 	
 		date = date || new Date(); 
@@ -17,7 +17,7 @@ export class TableDataModel{
 		this.date = date.toLocaleDateString('en-US');
 		
 		this.merchant = merchant || '';
-		this.amount = amount || 0;
+		this.amount = amount || '';
 		this.from = from || '';
 		this.to = to || '';
 		this.comments = comments || '';

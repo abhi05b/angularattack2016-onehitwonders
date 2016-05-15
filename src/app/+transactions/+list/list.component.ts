@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
   formatTransactions(transactions : Transaction[]){
     
       this.dataModel = transactions.map(transaction => {
-        let t = new TableDataModel(transaction.date, transaction.merchant, transaction.amount, transaction.from.name, transaction.to.name, transaction.comments);        
+      let t = new TableDataModel(transaction.date, transaction.merchant, ('$' + transaction.amount.toString()), transaction.from.name, transaction.to.name, transaction.comments);        
         return t;
       });
 
