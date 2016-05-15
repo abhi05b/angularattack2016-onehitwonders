@@ -78,6 +78,16 @@ export class BudgetComponent implements OnInit {
     });
     return budget;
   }
+  progressBarWidth(account: Account){
+    let budget = account.budget;
+    let amount = account.amount;
+    if(amount <= budget){
+      return amount/budget*100;
+    }
+    if(amount/budget > 2)
+      return 100;
+    return (budget - (amount % budget))/budget*100;
+  }
 
   private initBudgetBreakup(){
   	this.accounts.forEach(account => {

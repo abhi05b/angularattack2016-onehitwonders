@@ -13,7 +13,7 @@
               <h3>Available Badges</h3>
             </div>
             <div class="widget-content">
-              <h4 class="bottom-30px">You've unlocked 1 out of 11 available badges. You can unlock more badge(s) in your next transaction.</h4>
+              <h4 class="bottom-30px">You've unlocked {{unlockedBadges}} out of {{totalBadges}} available badges. You can unlock more badge(s) in your next transaction.</h4>
 
               <div class="row">
                 <div *ngFor="let badge of badgeList" class="badges col-sm-6" >
