@@ -3021,7 +3021,7 @@ div[class*="col-"] > .form-group {
 }
 .btn-nav-sidebar-minified i:hover,
 .btn-off-canvas i:hover {
-  color: #696565;
+  color: #fff;
 }
 
 .btn-off-canvas {
@@ -3047,6 +3047,7 @@ div[class*="col-"] > .form-group {
   text-align: center;
   padding: 6px 0;
   margin-right: -10px;
+  margin-left: 20px;
 }
 .logo img {
 /*  width: 105px;*/
@@ -3195,7 +3196,7 @@ div[class*="col-"] > .form-group {
 }
 .top-bar .action-group .action-item {
   position: relative;
-  width: 30px;
+  width: auto;
   margin: 0 15px;
   top: 2px;
 }
