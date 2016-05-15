@@ -199,8 +199,8 @@ export class AddComponent implements OnInit {
   	this.model = new Transaction();
     this.dummyModel = new Transaction();
   	this.tagService.getTags().then(tags => this.tags = tags);
-
-  }
+      console.log(this.dummyModel);
+       }
 
   
 }  
