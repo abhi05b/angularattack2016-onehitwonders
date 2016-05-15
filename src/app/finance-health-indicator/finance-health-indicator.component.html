@@ -6,7 +6,11 @@
       	</div>
       	<div *ngIf="financeHealthIndicator.health === 0">
       		<span class="health-icon zero-star pull-left"></span>
-         	<p class="healthText">Your financial health is strong. Is this Warren Buffet?</p>
+         	<p class="healthText">Your financial health is strong.
+                <span *ngIf="financeHealthIndicator.budgetHealth === -1">
+                  However, define your budget to get better insights. Click <a href="#"  class="" [routerLink]="['/budget']">here</a>.
+                </span>
+            </p>
       	</div>
 
       	<div *ngIf="financeHealthIndicator.health === 1">
@@ -16,19 +20,49 @@
 
       	<div *ngIf="financeHealthIndicator.health === 2">
       		 <span class="health-icon two-star pull-left"></span>
-         	  <p class="healthText">Your financial health is ok. Beware of the pilling liabilities though.</p>
+         	     <p class="healthText">
+                     Your financial health is ok.
+                     <span *ngIf="financeHealthIndicator.liabilityHealth < financeHealthIndicator.budgetHealth">
+                        Keep an eye on the budget though. Click <a href="#"  class="" [routerLink]="['/budget']">here</a> to review your budget.
+                     </span>
+                     <span *ngIf="financeHealthIndicator.liabilityHealth > financeHealthIndicator.budgetHealth">
+                         Keep an eye on the liabilities though.
+                     </span>
+                     <span *ngIf="financeHealthIndicator.liabilityHealth === financeHealthIndicator.budgetHealth">
+                         Keep an eye on both budget and liabilities though. Click <a href="#"  class="" [routerLink]="['/budget']">here</a> to review your budget.
+                     </span>  
+                  </p>
       	</div>
-
       	<div *ngIf="financeHealthIndicator.health === 3">
       		 <span class="health-icon three-star pull-left"></span>
-         	 <p class="healthText">Your financial health is not ok. Take care of the liabilities before things get out of control!</p>
+         	 <p class="healthText">Your financial health is not ok. 
+               <span *ngIf="financeHealthIndicator.liabilityHealth < financeHealthIndicator.budgetHealth">
+                     It's time to hit the breaks on expenses! Click <a href="#"  class="" [routerLink]="['/budget']">here</a> to review your budget.
+               </span>
+               <span *ngIf="financeHealthIndicator.liabilityHealth > financeHealthIndicator.budgetHealth">
+                     Take care of the liabilities before things get out of control!
+               </span>
+               <span *ngIf="financeHealthIndicator.liabilityHealth === financeHealthIndicator.budgetHealth">
+                     It's time to hit the breaks on expenses and take care of the liabilities before things get out of control! Click <a href="#"  class="" [routerLink]="['/budget']">here</a> to review your budget.
+               </span>  
+               </p>
       	</div>
 
       	<div *ngIf="financeHealthIndicator.health === 4">
       		 <span class="health-icon four-star pull-left"></span>
-         	 <p class="healthText">Your financial health is in a bad shape. Reducing liabilities should be your topmost concern.</p>
+         	 <p class="healthText">Your financial health is in a bad shape. 
+                <span *ngIf="financeHealthIndicator.liabilityHealth < financeHealthIndicator.budgetHealth">
+                     It's time to hit the breaks on expenses! Click <a href="#"  class="" [routerLink]="['/budget']">here</a> to review your budget.
+               </span>
+               <span *ngIf="financeHealthIndicator.liabilityHealth > financeHealthIndicator.budgetHealth">
+                     Reducing liabilities should be your topmost concern.
+               </span>
+               <span *ngIf="financeHealthIndicator.liabilityHealth === financeHealthIndicator.budgetHealth">
+                     It's time to hit the breaks on expenses and take care of the liabilities before things get out of control! Click <a href="#"  class="" [routerLink]="['/budget']">here</a> to review your budget.
+               </span>  
+            </p>
       	</div>
-         <a href="#" tooltip="Financial health is calculated by comparing liabilities with assets and cash.">?</a>
+         <a href="#" tooltip="Financial health is calculated by analysing your budget, expenses, liabilities, assets and cash.">?</a>
       </div>
    </div>
 </div>

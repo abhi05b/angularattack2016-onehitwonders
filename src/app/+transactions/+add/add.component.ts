@@ -39,7 +39,7 @@ export class AddComponent implements OnInit {
     fromParentAccountsList: Account[];
     fromParentSelect: Account;
     toParentSelect: Account;
-    
+    tagsList: string[] = [];
 
     addTransaction() {
       let that = this;
@@ -90,6 +90,7 @@ export class AddComponent implements OnInit {
                   });
         });
       }
+      this.tagsList=[];
     }
    
   onBlurMethod( type : string) {

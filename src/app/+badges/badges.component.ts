@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { BadgeService } from '../badge/badge.service';
 import { Badge } from '../badge/badge';
-
+import { BadgeListComponent } from '../badge-list/badge-list.component';
 @Component({
   moduleId: module.id,
   selector: 'app-badges',
   templateUrl: 'badges.component.html',
-  styleUrls: ['badges.component.css']
+  styleUrls: ['badges.component.css'],
+  directives: [BadgeListComponent]
 })
 export class BadgesComponent implements OnInit {
 	badgeList: Badge[];
