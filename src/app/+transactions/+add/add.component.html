@@ -40,8 +40,9 @@
           <option *ngFor="let account of toParentAccountsList" [ngValue]="account">{{account.name}}</option>
         </select>
          <div [hidden]="toParentSelect1.pristine || toParentSelect1.valid">This is a required field</div>
+         
       </div>
-      
+
      <div class="form-group">
         <label for="tags">Tags</label>
         <tag-input  [(bindModelData)]="model.tags"></tag-input>
