@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit, ElementRef} from '@angular/core';
+import {Component, HostBinding, Input, OnInit, ElementRef,Output, EventEmitter} from '@angular/core';
 import {NgFor} from '@angular/common';
 import {isBlank} from '@angular/common/src/facade/lang';
 import {TagInputItemComponent} from './../tag-input-item/tag-input-item.component';
@@ -22,6 +22,9 @@ export class TagInputComponent{
   @Input() addOnPaste: boolean = true;
   @Input() allowedTagsPattern: RegExp = /.+/;
   @HostBinding('class.ng2-tag-input-focus') isFocussed;
+  @Input() bindModelData: any;
+  @Output() bindModelDataChange: EventEmitter<any> = new EventEmitter();
+
   private _cache:any;
   private _prevContext:any;
   public tagsList: string[] = [];
@@ -140,6 +143,8 @@ export class TagInputComponent{
     this._resetSelected();
     this._resetInput();
     this.onChange(this.tagsList);
+    this.bindModelData = this.tagsList;
+    this.bindModelDataChange.emit(this.tagsList);
   }
 
   private _removeTag(tagIndexToRemove) {
@@ -182,4 +187,3 @@ export class TagInputComponent{
     this.onTouched = fn;
   }
 }
-
