@@ -1,0 +1,13 @@
+<p>
+  budget works!
+</p>
+
+Budget : {{model.budget}}
+
+Budget breakup
+
+<div *ngFor="let account of accounts">
+	{{account | json}}
+</div>
+
+<button>

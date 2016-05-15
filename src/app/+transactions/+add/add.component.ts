@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import {NgForm} from '@angular/common';
 import { Router } from '@angular/router';
 import {TYPEAHEAD_DIRECTIVES} from 'ng2-bootstrap';
@@ -9,8 +9,10 @@ import { TransactionService } from '../../transaction/transaction.service';
 import {TagInputComponent} from './../../tag-input/tag-input.component';
 import { Account } from '../../account/account';
 import { AccountService } from '../../account/account.service';
-import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { Modal, TwoButtonPresetBuilder} from 'angular2-modal/plugins/bootstrap';
+import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { BadgeService } from '../../badge/badge.service';
+
 
 @Component({
   moduleId: module.id,
@@ -20,88 +22,117 @@ import { BadgeService } from '../../badge/badge.service';
   directives: [TagInputComponent,TYPEAHEAD_DIRECTIVES]
 })
 
-
-/*export class Modal1 {
-    constructor(public modal: Modal, viewContainer: ViewContainerRef) {
-        modal.defaultViewContainer = viewContainer;
-    }
-
-    openAlert() {
-        return this.modal.alert()
-      .size('lg')
-      .showClose(true)
-      .title('A simple Alert style modal window')
-      .open();
-    }
-}*/
-
 export class AddComponent implements OnInit {
- 
- 	model: Transaction;
-  dummyModel: Transaction;
- 	tags: Tag[];
-  _parentAccount: Account;
-  
+   
+   /*@ViewChild('modal')
+    modal: ModalComponent;
 
-    addTransaction() {      
-      let that = this;
-
-      this.dummyModel = this.model;
-      this.model = new Transaction();
-
-    this.openModal();    
-
-      this.accountService.getAccounts().then((_accounts) => {
-        console.log("Accounts: 1", _accounts);
-      });
-
-      this.dummyModel.from.removeAmount(this.dummyModel.amount);
-      this.dummyModel.to.addAmount(this.dummyModel.amount);
-
-       this.updateAccounts(this,'from');
-       this.updateAccounts(this, 'to');
-
-
-      this.transactionService.createTransaction(this.dummyModel).then(() => {
-        this.badgeService.processBadge(this.dummyModel);
-        this.transactionService.getTransactions().then((_transactions) => {
-          console.log("Transactions: ", _transactions);
-        });
-        this.accountService.getAccounts().then((_accounts) => {
-          console.log("Accounts: ", _accounts);
-        });
-
-      });     
+    saveModal() {
+        this.modal.close().then(result => console.log('ok'));        
     }
+
+    openModal() {      
+        this.accountService.getParentAccounts().then(_accounts => {
+          this.parentAccounts = _accounts;
+        });
+        this.modal.open().then(result => console.log('Open'));
+    }
+
+    dismissModal() {
+        this.modal.close().then(result => console.log('Dismiss'));               
+    }*/
+
+    model: Transaction;
+    dummyModel: Transaction;
+    tags: Tag[];
+    _parentAccount: Account;
+    parentAccounts : Account[];
+    fromParentSelect: Account;  
+    toParentSelect: Account;
+    fromAccountPresent: Boolean;
+    toAccountPresent: Boolean;
+    showFromAccountParents: Boolean;
+    showToAccountParents: Boolean;
+    toParentAccountsList: Account[];
+    fromParentAccountsList: Account[];
+    
+
+    addTransaction() {
+        let that = this;
+
+        this.dummyModel = this.model;
+        this.model = new Transaction();
+
+        if(this.showFromAccountParents) {
+            this.dummyModel.from.parent = this.fromParentSelect;
+            this.dummyModel.from.removeAmount(this.dummyModel.amount)       
+            this.accountService.addAccount(this.dummyModel.from).then((result) => { ; });
+        }else{
+            
+            this.accountService.getAccount(this.dummyModel.from).then((_account)=> {
+                this.dummyModel.from = _account;
+                this.dummyModel.from.removeAmount(this.dummyModel.amount);
+            });       
+        }
+
+        if (this.showToAccountParents) {
+            this.dummyModel.to.parent = this.toParentSelect;
+            this.dummyModel.to.addAmount(this.dummyModel.amount);   
+            this.accountService.addAccount(this.dummyModel.to).then((result) => { ; });
+        }else{
+            this.accountService.getAccount(this.dummyModel.to).then((_account) => {
+                this.dummyModel.to = _account;
+                this.dummyModel.to.addAmount(this.dummyModel.amount);
+            });
+        }
+
+        
+       
+
+          
+        this.transactionService.createTransaction(this.model).then((result) => {
+
+            
+          });
+          
+        
+    }
+
+  onBlurFromMethod(account : Account) {
+    if (!account.name)
+      return;
+
+    this.accountService.getAccount(account).then(_account => {
+          if(!_account){
+            this.accountService.getParentAccounts().then(_accounts => {
+              this.fromParentAccountsList = _accounts;
+              this.showFromAccountParents = true;
+            });  
+          }
+    })
+    
+  }
 
    
-
-    updateAccounts(that, accountType){
-
-    that.accountService.getAccount(that.dummyModel[accountType]).then((_account) => {
-      if (_account) {
-           _account.addAmount(that.dummyModel[accountType].amount);
-               that.dummyModel[accountType] = _account;
-         
-         //Updating the Parents
-         that.updateParents(that.dummyModel[accountType], that.dummyModel[accountType].amount, accountType)
-        }
-        else {
-          that.accountService.addAccount(that.dummyModel[accountType]).then(() => {
-          });
-        }
-      });
-    }
-
-    updateParents(account: Account, amount, accountType) {
-
-    this._parentAccount = account.parent;     
-          while (this._parentAccount) {
-            this._parentAccount.addAmount(amount);
-              account = account.parent;
-              this._parentAccount = account.parent;
+  onBlurToMethod(account : Account) {
+    if (!account.name)
+      return;
+    this.accountService.getAccount(account).then(_account => {
+          if (!_account) {
+        this.accountService.getParentAccounts().then(_accounts => {
+          this.toParentAccountsList = _accounts;
+          this.showToAccountParents = true;
+        });
           }
-    }
+    })
+    
+  }
+
+
+  onFocusFromMethod(account: Account) {
+     this.fromParentAccountsList = null;
+     this.showFromAccountParents = false;
+  }
 
   public getAsyncData(accountType:string,transactionType:string):Function {
     let accountFilter:string[];
@@ -145,6 +176,11 @@ export class AddComponent implements OnInit {
 
 
 
+  onFocusToMethod(account: Account) {
+    this.toParentAccountsList = null;
+    this.showToAccountParents = false;
+  }
+
   constructor(
   	private tagService: TagService, 
   	private transactionService: TransactionService, 
@@ -161,12 +197,5 @@ export class AddComponent implements OnInit {
 
   }
 
-  openModal(){
-    return this.modal.alert()
-      .size('lg')
-      .showClose(true)
-      .title('A simple Alert style modal window')
-      .open();
-  }
-
+  
 }  
