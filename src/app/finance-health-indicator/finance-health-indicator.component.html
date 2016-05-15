@@ -2,7 +2,7 @@
    <div class="widget-content">
       <div class="healthCard clearfix">
       	<div *ngIf="financeHealthIndicator.health === -1">
-            <span class="health-icon no-star pull-left"></span>
+            
          	<p class="healthText">Not enough data to calculate financial health. Click <a href="#"  class="" [routerLink]="['/transactions/add']">here</a> to add a new transaction.</p>
       	</div>
       	<div *ngIf="financeHealthIndicator.health === 0">
@@ -63,7 +63,7 @@
                </span>  
             </p>
       	</div>
-         <a href="#" class="bigHelp" tooltip="Financial health is calculated by analysing your budget, expenses, liabilities, assets and cash."><span class="ion-help-circled ion"></span></a>
+         
       </div>
    </div>
 </div>

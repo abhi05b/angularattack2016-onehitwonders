@@ -6,13 +6,14 @@ import { AccountCardComponent } from '../dashboard/account-card/account-card.com
 import { BadgeListComponent } from '../badge-list/badge-list.component';
 import { FinanceHealthIndicatorComponent } from '../finance-health-indicator/finance-health-indicator.component';
 import { GuideComponent } from '../guide/guide.component';
+import {TOOLTIP_DIRECTIVES} from 'ng2-bootstrap';
 
 @Component({
   moduleId: module.id,
   selector: 'app-dashboard',
   templateUrl: 'dashboard.component.html',
   styleUrls: ['dashboard.component.css'],
-  directives: [AccountCardComponent, BadgeListComponent, FinanceHealthIndicatorComponent, GuideComponent]
+  directives: [AccountCardComponent, BadgeListComponent, FinanceHealthIndicatorComponent, GuideComponent, TOOLTIP_DIRECTIVES]
 })
 export class DashboardComponent implements OnInit {
 
