@@ -13,23 +13,23 @@
                <div class="widget-content text-center">
                   <div class="row quick-widget">
                         <div class="col-sm-3 single-widget">
-                           <a href="#"><span class="transaction-icon"></span></a>
-                           <div class="text"><a href="#">Add new transaction</a></div>
+                           <a [routerLink]="['/transactions/add']"><span class="transaction-icon"></span></a>
+                           <div class="text"><a [routerLink]="['/transactions/add']">Add transaction</a></div>
                         </div>
 
                         <div class="col-sm-3 single-widget">
-                           <a href="#"><span class="budget-icon"></span></a>
-                           <div class="text"><a href="#">Add new budget</a></div>
+                           <a [routerLink]="['/budget']"><span class="budget-icon"></span></a>
+                           <div class="text"><a [routerLink]="['/budget']">Add budget</a></div>
                         </div>
 
                         <div class="col-sm-3 single-widget">
-                           <a href="#"><span class="bank-icon"></span></a>
-                           <div class="text"><a href="#">Add new account</a></div>
+                           <a [routerLink]="['/accounts']" ><span class="bank-icon"></span></a>
+                           <div class="text"><a [routerLink]="['/accounts']" >Add account</a></div>
                         </div>
 
                         <div class="col-sm-3 single-widget">
                            <a href="#"><span class="tags-icon"></span></a>
-                           <div class="text"><a href="#">Add new tags</a></div>
+                           <div class="text"><a href="#">Add tags</a></div>
                         </div>
                   </div>
                </div>
