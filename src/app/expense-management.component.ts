@@ -21,12 +21,15 @@ import { FinanceHealthIndicatorService } from './finance-health-indicator/financ
 import { NotificationComponent } from './notifications/notification/notification.component';
 import { Notification } from './notifications/notificationDto';
 import { BS_MODAL_PROVIDERS , Modal} from 'angular2-modal/plugins/bootstrap';
+
+import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { Location } from '@angular/common';
 import { GuideService } from './guide/guide.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserContextService } from './user/user-context.service';
 import { User } from './user/user';
 import { BudgetService } from './budget/budget.service';
+
 
 @Component({
   moduleId: module.id,
@@ -72,3 +75,5 @@ export class ExpenseManagementAppComponent implements OnInit {
     return this.userContextService.getUser().demo;
   }
 }
+
+
