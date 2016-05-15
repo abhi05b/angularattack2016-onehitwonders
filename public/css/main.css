@@ -4023,7 +4023,7 @@ hr.alt {
 }
 .landingPage {
   margin: 0 auto;
-  background-color: #0099cc;
+  background-color: #1991ec;
   padding-bottom: 100px;
   text-align: center;
 }
@@ -4150,8 +4150,28 @@ hr.alt {
 .badgeCard .trend_setter {
   margin-right: 5px;
 }
+a.bigHelp {
+    margin-top: 26px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.bigHelp .ion-help-circled {
+  font-size: 28px;
+}
+.loading {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 1200px;
+  background: #1991ec;
 
-
+}
+.loading img {
+    padding: 200px 200px;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
 
 
 
