@@ -50,7 +50,6 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     
     this.transactionService.getTransactions().then(transactions => {
-      console.log('Here ', transactions);
           this.transactions = transactions;
           if (transactions.length)
               this.formatTransactions(transactions);
@@ -62,8 +61,7 @@ export class ListComponent implements OnInit {
   formatTransactions(transactions : Transaction[]){
     
       this.dataModel = transactions.map(transaction => {
-        let t = new TableDataModel(transaction.date, transaction.merchant, transaction.amount, transaction.from.name, transaction.to.name, transaction.comments);      
-        console.log(t);
+        let t = new TableDataModel(transaction.date, transaction.merchant, transaction.amount, transaction.from.name, transaction.to.name, transaction.comments);        
         return t;
       });
 
@@ -75,7 +73,6 @@ export class ListComponent implements OnInit {
   }
 
   changePage(page: any, data: Array<any> = this.data): Array<any> {
-    console.log(page);
     let start = (page.page - 1) * page.itemsPerPage;
     let end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
     return data.slice(start, end);
