@@ -4182,9 +4182,31 @@ a.bigHelp {
 .form-group.form-group-lg label.control-label {
   color: #999;
 }
-.landingContent {
-  width: 1170px;
-  margin: 0 auto;
+.landingContainer {
+  background: #e0f1fd;
 }
-
+.landingContent {
+  width: 1024px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+.landingContent h2 {
+  color: #008fe2;
+}
+.landingContent p {
+  font-size: 18px;
+  color: #777;
+}
+hr.dash {
+  border-bottom: 2px dashed #0099cc;
+}
+.badgesGroup {
+  background: url("../images/badges.png") no-repeat;
+  width: 225px;
+  height: 216px;
+  float: left;
+}
+.content {
+  margin-left: 260px;
+}
 
