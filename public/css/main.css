@@ -4253,7 +4253,13 @@ hr.dash {
 .budget {
 font-size: 16px;
 }
-
+.budgetBar {
+  margin-left: 120px;
+}
+.budgetBreakdownText {
+  min-width: 120px;
+  line-height: 30px;
+}
 
 
 
