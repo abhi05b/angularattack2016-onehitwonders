@@ -58,7 +58,10 @@ const barrels: string[] = [
 const cliSystemConfigPackages: any = {
   'vendor/ng2-bootstrap': {
           defaultExtension: 'js',           
-        }
+        },
+  'vendor/ng2-table': {
+    defaultExtension: 'js',
+  }
 };
 barrels.forEach((barrelName: string) => {
   cliSystemConfigPackages[barrelName] = { main: 'index' };
@@ -77,7 +80,9 @@ System.config({
     'moment': 'vendor/moment/moment.js',
     'ng2-bootstrap': 'vendor/ng2-bootstrap/ng2-bootstrap.js',
     'angular2-modal': 'vendor/angular2-modal',
-    'ng2-bs3-modal': 'vendor/ng2-bs3-modal'
+    'ng2-bs3-modal': 'vendor/ng2-bs3-modal',
+    'ng2-table': 'vendor/ng2-table',
+    'angular2': 'vendor/@angular'
   },
   packages: cliSystemConfigPackages
 });

@@ -19,7 +19,8 @@ module.exports = function(defaults) {
       'bootstrap-material-design/dist/js/*.js',
       'bootstrap-material-design/dist/css/*.css',
       'arrive/minified/arrive.min.js',
-      'ng2-bs3-modal/**/*.js'
+      'ng2-bs3-modal/**/*.js',
+      'ng2-table/**/*.js'
      ]
   });
 };

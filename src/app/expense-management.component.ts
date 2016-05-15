@@ -31,6 +31,7 @@ import { User } from './user/user';
 import { BudgetService } from './budget/budget.service';
 
 
+
 @Component({
   moduleId: module.id,
   selector: 'expense-management-app',

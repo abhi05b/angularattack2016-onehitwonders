@@ -4,9 +4,30 @@
       <div class="widget-header">
         <h3>Transaction List</h3>
       </div>
-        <div class="widget-content">
-          Transaction list goes here.
-        </div>
-      </div>
-    </div>
+      <div *ngIf="data" class="widget-content">            
+        <input *ngIf="config.filtering" placeholder="Filter"
+        [ngTableFiltering]="config.filtering"
+        (tableChanged)="onChangeTable(config)"/>
+
+        <ngTable [config]="config.sorting"
+        (tableChanged)="onChangeTable(config)"
+        [rows]="rows" [columns]="columns">
+      </ngTable>
+      <pagination *ngIf="config.paging"
+      class="pagination-sm"
+      [(ngModel)]="page"
+      [totalItems]="length"
+      [itemsPerPage]="itemsPerPage"
+      [maxSize]="maxSize"
+      [boundaryLinks]="true"
+      [rotate]="false"
+      (pageChanged)="onChangeTable(config, $event)"
+      (numPages)="numPages = $event">
+      </pagination>
+      <!-- <pre *ngIf="config.paging" class="card card-block card-header">Page:  / </pre> -->
+  </div>
+  <div *ngIf="!data" class="widget-content">No Transaction Done Yet.</div>
 </div>
+</div>
+</div>
+
