@@ -6,11 +6,11 @@
       <badge-list></badge-list>
    </div>
    <hr class="alt">
-   <div class="row" *ngIf="editBudget">
+   <div class="row" *ngIf="editBudget || addBudget">
       <div class="col-sm-12">
          <div class="widget bottom-30px">
             <div class="widget-header">
-               <h3 class="">Add new transaction</h3>
+               <h3 class="">{{(editBudget)? 'Update':'Add'}} budget</h3>
             </div>
             <div class="widget-content">
                <form (ngSubmit)="updateBudget()">
@@ -32,14 +32,14 @@
                         </div>
                      </div>
                   </div>
-                  <button type="submit" class="btn btn-raised btn-primary">Update</button>
-                  <button type="cancel" (click)="cancel()" class="btn btn-link">Cancel</button>
+                  <button type="submit" class="btn btn-raised btn-primary">{{(addBudget) ? 'Add' : 'Update'}}</button>
+                  <button type="button" (click)="cancel()" class="btn btn-link" *ngIf="!addBudget">Cancel</button>
                </form>
             </div>
          </div>
       </div>
    </div>
-   <div  *ngIf="!editBudget">
+   <div  *ngIf="!editBudget && !addBudget">
       <div class="row" >
          <div class="col-sm-12 cards">
             <h3 class="pull-left">Budget Summary</h3>
@@ -49,24 +49,24 @@
                <div class="col-md-4">
                   <div class="widget bottom-30px">
                      <h3 class="">Budget Balance</h3>
-                     <div class="widget-content">
-                        <p class="text-success">+ {{model.budget}}</p>
+                     <div class="widget-content"  *ngIf="expenseAccount">
+                        <p [ngClass]="{'text-success' : isExpenseLessThanBudget(), 'text-danger': !isExpenseLessThanBudget()}">{{model.budget - expenseAccount.amount  | currency:'USD':'$'}}</p>
                      </div>
                   </div>
                </div>
                <div class="col-md-4">
                   <div class="widget bottom-30px">
                      <h3 class="">Budget Limit</h3>
-                     <div class="widget-content">
-                        <p>{{model.budget}}</p>
+                     <div class="widget-content ">
+                        <p class="text-success">{{model.budget | currency:'USD':'$'}}</p>
                      </div>
                   </div>
                </div>
                <div class="col-md-4">
                   <div class="widget bottom-30px">
                      <h3 class="">Expense</h3>
-                     <div class="widget-content">
-                        <p class="text-danger">-{{model.budget}}</p>
+                     <div class="widget-content" *ngIf="expenseAccount">
+                        <p>{{expenseAccount.amount | currency:'USD':'$'}}</p>
                      </div>
                   </div>
                </div>
