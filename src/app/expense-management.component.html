@@ -15,29 +15,10 @@
       </div>
         <div class="logged-user">
           <div class="btn-group">
-            <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-             <span class="name">Welcome, Test User <i class="icon ion-ios-arrow-down"></i></span>
+            <a href="/" class="btn btn-link">
+             <span class="name" *ngIf="isDemoUser()">Quit Demo <i class="icon ion-power"></i></span>
+             <span class="name" *ngIf="!isDemoUser()">Logout <i class="icon ion-power"></i></span>
             </a>
-            <ul class="dropdown-menu" role="menu">
-              <li class="">
-                <a href="#">
-                  <i class="icon ion-ios-person"></i>
-                  <span class="text">Profile</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="icon ion-ios-gear"></i>
-                  <span class="text">Settings</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="icon ion-power"></i>
-                  <span class="text">Logout</span>
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
         

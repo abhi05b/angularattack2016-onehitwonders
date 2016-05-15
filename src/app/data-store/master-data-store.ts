@@ -32,6 +32,7 @@ export class MasterDataStore {
 		var gym = new Account('Gym', 0, expenses);
 		var gadgets = new Account('Gadgets', 0, expenses);
 		var groceries = new Account('Groceries', 0, expenses);
+		var health = new Account('Health', 0, expenses);
 		var salary = new Account('Salary', 0,income);
 		var foodieBadge = new Badge('Foodie',[dining], 0, 0);
 		var firstTimerBadge = new Badge('Trend Setter', [], 0, 1);
@@ -42,7 +43,7 @@ export class MasterDataStore {
 		var homeMaker = new Badge('Home Maker', [groceries],0, 0);
 		var hulk = new Badge('Gym Rat', [gym],0, 0);
 		var mrRobot = new Badge('Mr. Robot', [gadgets],0, 0);
-		this.accounts = [assets, expenses, liability, income, cash, currentAccount, creditCard, dining, travel, books, magazines, salary, movies, fuel, gym, gadgets, groceries];
+		this.accounts = [assets, expenses, liability, income, cash, currentAccount, creditCard, dining, travel, books, magazines, salary, movies, fuel, gym, gadgets, groceries, health];
 		this.badges = [firstTimerBadge, foodieBadge, travelerBadge, bookwormBadge, oilBaronBadge, movieBuff, homeMaker, hulk, mrRobot];
 	}
 
