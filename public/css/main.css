@@ -1992,7 +1992,7 @@ hr {
   background-color: #fafcfe;
   background-image: url("../images/gray_jean.png");
   background-repeat: repeat;
-  min-height: 800px;
+  min-height: 900px;
   padding: 0 0px 30px 15px;
 }
 #col-right.no-heading {
@@ -4239,7 +4239,7 @@ hr.dash {
   height: 184px;
   float: left;
 }
-.content.helpContent {
+.helpContent {
   margin-top: 50px;
 }
 .btn:disabled, .btn[disabled][disabled] {
@@ -4260,7 +4260,28 @@ font-size: 16px;
   min-width: 120px;
   line-height: 30px;
 }
-
+.voteUs {
+  background: #b4e6e1;
+  color: #09544c;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 0;
+  min-height: 30px;
+  line-height: 40px;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+}
+.voteLink {
+  color: #f3830b;
+  text-decoration: underline;
+  font-weight: 400;
+  padding: 8px 0;
+}
+.voteLink:hover,
+.voteLink:focus {
+  color: #db7406;
+}
 
 
 

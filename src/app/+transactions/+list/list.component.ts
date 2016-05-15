@@ -24,8 +24,8 @@ export class ListComponent implements OnInit {
   public columns: Array<any> = [
     { title: 'Merchant', name: 'merchant' },
     { title: 'Transaction Amount', name: 'amount', sort: false },
-    { title: 'Date', name: 'date', sort: 'asc' },
-    { title: 'From Account', name: 'from', sort: 'desc' },
+    { title: 'Date', name: 'date' },
+    { title: 'From Account', name: 'from'},
     { title: 'To Account', name: 'to' },
     { title: 'Comments', name: 'comments' }
   ];
