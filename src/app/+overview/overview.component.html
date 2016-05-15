@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
   overview works!
 </p>
 
@@ -9,4 +9,29 @@
 			{{account.name}}
 		</li>
 	</ul>
-</div>
+</div> -->
+<div class="overview">
+	<div class="overviewInner">
+		<div class="row">
+		         <div class="col-sm-12">
+		            <h3>Get Started</h3>
+		            <div class="row overviewCards">
+		               <div class="col-md-3" *ngFor="let parentAccount of parentAccounts">
+		               	<div class="widget bottom-30px">
+		               		<div class="widget-header">
+		    				<h3 class="">{{parentAccount.name}}</h3>
+		    			</div>
+		                   	<div class="widget-content">
+			                   	<ul>
+									<li *ngFor="let account of accounts[parentAccount.name]">
+										<span class="ion-arrow-right-a ion"></span>{{account.name}}
+									</li>
+								</ul>
+							</div>
+						</div>
+		               </div>
+		            </div>
+		         </div>
+		      </div>
+  		</div>
+  </div>

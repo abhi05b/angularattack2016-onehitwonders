@@ -4066,8 +4066,32 @@ hr.alt {
 .footer a {
   color: #fff;
 }
-
-
+.overview {
+  background-color: #fafcfe;
+  background-image: url("../images/gray_jean.png");
+  background-repeat: repeat;
+  min-height: 1200px;
+}
+.overviewInner {
+  width: 1200px;
+  margin: 0 auto;
+}
+.overviewCards .widget-header h3 {
+  color: #008fe2;
+  font-size: 24px;
+}
+.overviewCards .widget ul li {
+  list-style: none;
+  color: #07747e;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.overviewCards ul {
+  padding-left: 0;
+}
+.overviewCards ul li span {
+  margin-right: 5px;
+}
 
 
 
