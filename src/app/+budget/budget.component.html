@@ -13,17 +13,17 @@
                <h3 class="">{{(editBudget)? 'Update':'Add'}} budget</h3>
             </div>
 
-            <div class="widget-content">
-            
+            <div class="widget-content">           
                <form #budgetForm="ngForm" (ngSubmit)="updateBudget()">
                   <span *ngIf="!budgetForm.form.pristine">
                   <alert *ngIf="model.budget && getBalance(budgetBreakup)>model.budget"type="danger" dismissible="true">
-                    Reduce expense below Budget Limit
+                  Individual budgets above budget limit
                   </alert>
                   <alert *ngIf="!model.budget" type="danger" dismissible="true">
-                    Please Enter Budget Limit
+                     Please Enter Budget Limit
                   </alert>
                   </span>
+
                   <div class="inputs">
                      <div class="row">
                         <div class="col-sm-12">
@@ -103,37 +103,3 @@
       </div>
    </div>
 </div>
-<!-- 
-   <div id="col-right" class="col-right ">
-      <div class="container-fluid primary-content">
-        
-         <div class="primary-content-heading clearfix">
-            <h2 class="pull-left">BUDGET</h2>
-        </div>
-         <hr class="alt">
-   		      <p>
-   		  budget works!
-   		</p>
-   		<div *ngIf="!editBudget">
-   		Budget : {{model.budget}}
-   
-   		Budget breakup
-   
-   		<div *ngFor="let account of accounts">
-   			{{account | json}}
-   		</div>
-   		<button type="button" (click)="edit()">Edit Budget</button>
-   		</div>	
-   
-   	
-   		<div *ngIf="editBudget" >
-   			<form (ngSubmit)="updateBudget()">
-   				Budget: <input type="number" [(ngModel)]="model.budget">
-   				<div *ngFor="let account of accounts">
-   					{{account.name}} : <input type="number" [(ngModel)]="budgetBreakup[account.name]">
-   				</div>
-   				<button type="submit">Update</button>
-   				<button type="cancel" (click)="cancel()">Cancel</button>
-   			</form>
-   		</div>
-   </div> -->
