@@ -4,6 +4,7 @@ import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router} from '@angular/ro
 import { ReportsComponent } from './+reports';
 import { OverviewComponent } from './+overview';
 import { BadgesComponent } from './+badges';
+import { BudgetComponent } from './+budget';
 
 import { DashboardComponent } from './+dashboard';
 import { TagService } from './tag/tag.service';
@@ -25,6 +26,7 @@ import { GuideService } from './guide/guide.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserContextService } from './user/user-context.service';
 import { User } from './user/user';
+import { BudgetService } from './budget/budget.service';
 
 @Component({
   moduleId: module.id,
@@ -32,14 +34,15 @@ import { User } from './user/user';
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES, NotificationComponent, LandingPageComponent],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService, BS_MODAL_PROVIDERS, Location, GuideService, LandingPageComponent, UserContextService]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService, BS_MODAL_PROVIDERS, Location, GuideService, LandingPageComponent, UserContextService, BudgetService]
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},
   {path: '/dashboard', component: DashboardComponent},
   {path: '/reports', component: ReportsComponent},
   {path: '/overview', component: OverviewComponent},
-  {path: '/badges', component: BadgesComponent}
+  {path: '/badges', component: BadgesComponent},
+  {path: '/budget', component: BudgetComponent}
 ])
 export class ExpenseManagementAppComponent implements OnInit {
 

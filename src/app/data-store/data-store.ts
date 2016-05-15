@@ -17,6 +17,7 @@ export class DataStore {
 	badges: Badge[];
 	notifications: Notification[];
 	guides: Guide[];
+	budget: number;
 
 	constructor(masterDataStore: MasterDataStore){
 		this.transactions = [];
