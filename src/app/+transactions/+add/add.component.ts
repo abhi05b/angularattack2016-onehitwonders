@@ -49,6 +49,15 @@ export class AddComponent implements OnInit {
 
       this.updateAccount('from');
       this.updateAccount('to');  
+
+          this.transactionService.createTransaction(this.dummyModel).then((result) => {
+          this.guideService.trigger();
+        this.badgeService.processBadge(this.dummyModel);
+        this.financehealthIndicatorService.updateFinanceHealthIndicator();
+        this.transactionService.getTransactions().then((_transactions => console.log(_transactions)));
+        this.clearList('to');
+        this.clearList('from');
+          });
     }
 
 
@@ -62,15 +71,7 @@ export class AddComponent implements OnInit {
             that.dummyModel[type].addAmount(that.dummyModel.amount);
           else
             that.dummyModel[type].removeAmount(that.dummyModel.amount);
-
-              that.accountService.addAccount(that.dummyModel[type]).then((result) => { ; });
-              that.transactionService.createTransaction(that.dummyModel).then((result) => { 
-                  that.guideService.trigger();
-                  that.badgeService.processBadge(that.dummyModel);
-                  that.financehealthIndicatorService.updateFinanceHealthIndicator();
-                  that.clearList('to');
-                  that.clearList('from');
-              });
+                          
       } else {
         
         that.accountService.getAccount(that.dummyModel[type]).then((_account) => {
@@ -80,14 +81,7 @@ export class AddComponent implements OnInit {
             else
               that.dummyModel[type].removeAmount(that.dummyModel.amount);
 
-                  that.transactionService.createTransaction(that.dummyModel).then((result) => { 
-                    that.guideService.trigger();
-                    that.badgeService.processBadge(that.dummyModel);
-                    that.financehealthIndicatorService.updateFinanceHealthIndicator();
 
-                    that.clearList('to');
-                    that.clearList('from');
-                  });
         });
       }
       this.tagsList=[];
