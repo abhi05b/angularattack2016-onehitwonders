@@ -47,46 +47,58 @@ export class AddComponent implements OnInit {
       this.dummyModel = this.model;
       this.model = new Transaction();
 
-      this.updateAccount('from');
-      this.updateAccount('to');  
+    if (this.showfromAccountParents) {
+          this.dummyModel.from.parent = this.fromParentSelect;          
+            this.dummyModel.from.removeAmount(this.dummyModel.amount);             
+              this.accountService.addAccount(this.dummyModel.from).then(() => {
+                  this.updateAccount();    
+              });
 
-          this.transactionService.createTransaction(this.dummyModel).then((result) => {
-              this.guideService.trigger();
-              this.badgeService.processBadge(this.dummyModel);
-              this.financehealthIndicatorService.updateFinanceHealthIndicator();
-              this.transactionService.getTransactions().then((_transactions => console.log(_transactions)));
-              this.clearList('to');
-              this.clearList('from');
-              this.router.navigate(['/transactions/list']);
-          });
+      } else {
+      
+        this.accountService.getAccount(this.dummyModel.from).then((_account) => {
+          this.dummyModel.from = _account;
+            this.dummyModel.from.removeAmount(this.dummyModel.amount);
+                  this.updateAccount();    
+              });
+      }
     }
 
 
-    updateAccount(type : string){
+    updateAccount(){
     let that = this;
 
-      if (that['show' + type + 'AccountParents']) {      
-        
-        that.dummyModel[type].parent = that[type + 'ParentSelect'];
-          if (type == 'to')
-            that.dummyModel[type].addAmount(that.dummyModel.amount);
-          else
-            that.dummyModel[type].removeAmount(that.dummyModel.amount);
-                          
-      } else {
-        
-        that.accountService.getAccount(that.dummyModel[type]).then((_account) => {
-          that.dummyModel[type] = _account;          
-            if(type == 'to')
-                that.dummyModel[type].addAmount(that.dummyModel.amount);          
-            else
-              that.dummyModel[type].removeAmount(that.dummyModel.amount);
+    if (that.showtoAccountParents) {
+      that.dummyModel.to.parent = that.toParentSelect;          
+      that.dummyModel.to.addAmount(that.dummyModel.amount);             
+      that.accountService.addAccount(that.dummyModel.to).then(() => {
+          that.addNewTransaction();
+      });
 
+    } else {
 
-        });
-      }
+      that.accountService.getAccount(that.dummyModel.to).then((_account) => {
+        that.dummyModel.to = _account;
+        that.dummyModel.to.addAmount(that.dummyModel.amount);
+          that.addNewTransaction();    
+      });
+    }
       this.tagsList=[];
     }
+
+   addNewTransaction(){
+     let that = this;
+     
+     that.transactionService.createTransaction(that.dummyModel).then((result) => {
+       that.guideService.trigger();
+       that.badgeService.processBadge(that.dummyModel);
+       that.financehealthIndicatorService.updateFinanceHealthIndicator();
+       that.transactionService.getTransactions().then((_transactions => console.log(_transactions)));
+       that.clearList('to');
+       that.clearList('from');
+       that.router.navigate(['/transactions/list']);
+     });
+   }
    
   onBlurMethod( type : string) {
     if (jQuery('typeahead-container').length === 0) {

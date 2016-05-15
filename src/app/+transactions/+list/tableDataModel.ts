@@ -6,8 +6,10 @@ export class TableDataModel{
 	to: string;
 	merchant: string;
 	comments: string;
-	tags: Tag[];
-	constructor(date?: any, merchant?: string, amount?: number, from?: string, to?: string, comments?: string, tags?: any[]) {
+
+	constructor(date?: any, merchant?: string, amount?: number, from?: string, to?: string, comments?: string) {
+
+	
 		date = date || new Date(); 
 		if(typeof date === 'string'){
 			date = new Date(date);
@@ -19,12 +21,14 @@ export class TableDataModel{
 		this.from = from || '';
 		this.to = to || '';
 		this.comments = comments || '';
-		tags = tags || [];
+
+		/*tags = tags || [];
 		if(tags.length>0 && typeof tags[0] !== 'string'){
 			tags = tags.map(tag => {
 				return tag.name;
 			});
 		}
-		this.tags = tags;
+		this.tags = tags;*/
+
 	}
 }
