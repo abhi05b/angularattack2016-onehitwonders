@@ -69,6 +69,10 @@ export class DemoData{
 			this.budgetService.setBudget(3000).then(() => {
 				this.guideService.trigger();
 			});
+		}).then( () => {
+			this.badgeService.findBadge('Trend Setter').then(badge => {
+		      badge.count++;
+		    });
 		});
 	}
 }
