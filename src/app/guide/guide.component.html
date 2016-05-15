@@ -9,5 +9,11 @@
 		<p *ngIf="guide.type==='defineExpenseCategoryBudget'">
 			Some expense categories have no budget allocated. Allocate budget in these categories. Click <a href="#"  class="" [routerLink]="['/bugdet']">here</a> to define budget.
 		</p>
-      </div>  
+		
+      </div>
+      <div class="widget-content" *ngIf="!guides || guides.length === 0">
+      	<p>
+      		No suggestions. 
+      	</p>
+      </div>
  </div>
