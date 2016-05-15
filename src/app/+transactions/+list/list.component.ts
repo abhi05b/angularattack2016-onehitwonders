@@ -27,8 +27,7 @@ export class ListComponent implements OnInit {
     { title: 'Date', name: 'date', sort: 'asc' },
     { title: 'From Account', name: 'from', sort: 'desc' },
     { title: 'To Account', name: 'to' },
-    { title: 'Comments', name: 'comments' },
-    { title: 'Tags', name:'tags'}
+    { title: 'Comments', name: 'comments' }
   ];
   public page: number = 1;
   public itemsPerPage: number = 10;
@@ -63,7 +62,7 @@ export class ListComponent implements OnInit {
   formatTransactions(transactions : Transaction[]){
     
       this.dataModel = transactions.map(transaction => {
-        let t = new TableDataModel(transaction.date, transaction.merchant, transaction.amount, transaction.from.name, transaction.to.name, transaction.comments, transaction.tags);      
+        let t = new TableDataModel(transaction.date, transaction.merchant, transaction.amount, transaction.from.name, transaction.to.name, transaction.comments);      
         console.log(t);
         return t;
       });

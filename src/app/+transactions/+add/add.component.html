@@ -73,10 +73,7 @@
                <div [hidden]="toParentSelect1.pristine || toParentSelect1.valid">This is a required field</div>
             </div>
 
-           <div class="form-group form-group-lg label-static">
-              <label for="tags" class="control-label">Tags</label>
-              <tag-input  [tagsList]="tagsList" [(bindModelData)]="model.tags"></tag-input>
-            </div>
+           
             <div class="form-group form-group-lg label-static">
               <label for="comments" class="control-label">Comments</label>
               <input type="text" class="form-control" [(ngModel)]="model.comments">

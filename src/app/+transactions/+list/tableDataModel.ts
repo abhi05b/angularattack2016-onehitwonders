@@ -6,8 +6,7 @@ export class TableDataModel{
 	to: string;
 	merchant: string;
 	comments: string;
-	tags: Tag[];
-	constructor(date?: Date, merchant?: string, amount?: number, from?: string, to?: string, comments?: string, tags?: Tag[]) {
+	constructor(date?: Date, merchant?: string, amount?: number, from?: string, to?: string, comments?: string) {
 		date = date || new Date(); 
 		/*if(typeof date === 'string'){
 			this.date = new Date(date).toLocaleDateString('en-US');
@@ -20,6 +19,6 @@ export class TableDataModel{
 		this.from = from || '';
 		this.to = to || '';
 		this.comments = comments || '';
-		this.tags = tags || [];
+		
 	}
 }
