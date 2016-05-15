@@ -12,6 +12,10 @@ import { AccountService } from '../../account/account.service';
 import { Modal, TwoButtonPresetBuilder} from 'angular2-modal/plugins/bootstrap';
 import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { BadgeService } from '../../badge/badge.service';
+import { GuideService } from '../../guide/guide.service';
+import { FinanceHealthIndicatorService } from '../../finance-health-indicator/finance-health-indicator.service';
+
+
 declare var jQuery: any;
 
 @Component({
@@ -27,16 +31,14 @@ export class AddComponent implements OnInit {
     model: Transaction;
     dummyModel: Transaction;
     tags: Tag[];
-    _parentAccount: Account;
-    parentAccounts : Account[];
-    fromParentSelect: Account;  
-    toParentSelect: Account;
     fromAccountPresent: Boolean;
     toAccountPresent: Boolean;
     showfromAccountParents: Boolean;
     showtoAccountParents: Boolean;
     toParentAccountsList: Account[];
     fromParentAccountsList: Account[];
+    fromParentSelect: Account;
+    toParentSelect: Account;
     tagsList: string[] = [];
 
     addTransaction() {
@@ -54,23 +56,38 @@ export class AddComponent implements OnInit {
     let that = this;
 
       if (that['show' + type + 'AccountParents']) {      
-              that.dummyModel[type].parent = that[type + 'ParentSelect'];
-                if (type == 'to')
-                  that.dummyModel[type].addAmount(that.dummyModel.amount);
-                else
-                  that.dummyModel[type].removeAmount(that.dummyModel.amount);
-                    that.accountService.addAccount(that.dummyModel[type]).then((result) => { ; });
-                    that.transactionService.createTransaction(that.dummyModel).then((result) => { 
-                      
-                    });
+        
+        that.dummyModel[type].parent = that[type + 'ParentSelect'];
+          if (type == 'to')
+            that.dummyModel[type].addAmount(that.dummyModel.amount);
+          else
+            that.dummyModel[type].removeAmount(that.dummyModel.amount);
+
+              that.accountService.addAccount(that.dummyModel[type]).then((result) => { ; });
+              that.transactionService.createTransaction(that.dummyModel).then((result) => { 
+                  that.guideService.trigger();
+                  that.badgeService.processBadge(that.dummyModel);
+                  that.financehealthIndicatorService.updateFinanceHealthIndicator();
+                  that.clearList('to');
+                  that.clearList('from');
+              });
       } else {
+        
         that.accountService.getAccount(that.dummyModel[type]).then((_account) => {
           that.dummyModel[type] = _account;          
             if(type == 'to')
                 that.dummyModel[type].addAmount(that.dummyModel.amount);          
             else
               that.dummyModel[type].removeAmount(that.dummyModel.amount);
-                  that.transactionService.createTransaction(that.dummyModel).then((result) => { });
+
+                  that.transactionService.createTransaction(that.dummyModel).then((result) => { 
+                    that.guideService.trigger();
+                    that.badgeService.processBadge(that.dummyModel);
+                    that.financehealthIndicatorService.updateFinanceHealthIndicator();
+
+                    that.clearList('to');
+                    that.clearList('from');
+                  });
         });
       }
       this.tagsList=[];
@@ -84,14 +101,25 @@ export class AddComponent implements OnInit {
 
   handleParentSelectBox(type : string){
     let that = this;
-    
+    let index;
+
     if (!that.model[type].name)
       return;
     that.accountService.getAccount(that.model[type]).then(_account => {
           if (!_account) {
               that.accountService.getParentAccounts().then(_accounts => {
+                
+                if(type === 'to'){
+                    index = _accounts.findIndex((_account => _account.name === 'Income'));
+                    _accounts.splice(index, 1);
+                }else{
+                    index = _accounts.findIndex((_account => _account.name === 'Expenses'));
+                    _accounts.splice(index, 1);
+                }
+                  
                 that[type + 'ParentAccountsList'] = _accounts;
                 that['show' + type + 'AccountParents'] = true;
+                
               });
           }
           else{
@@ -105,6 +133,7 @@ export class AddComponent implements OnInit {
   clearList(type : string) {
     this[type + 'ParentAccountsList'] = null;
     this['show' + type + 'AccountParents'] = false;
+    this[type + 'ParentSelect'] = null;
   }
 
   public getAsyncData(accountType:string,transactionType:string):Function {
@@ -161,7 +190,9 @@ export class AddComponent implements OnInit {
     private accountService: AccountService,
   	private router: Router,
     private modal: Modal,
-    private badgeService: BadgeService  
+    private badgeService: BadgeService,
+    private guideService: GuideService,
+    private financehealthIndicatorService: FinanceHealthIndicatorService
   	) {}
 
   ngOnInit() {

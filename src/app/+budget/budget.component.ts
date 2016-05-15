@@ -20,19 +20,29 @@ export class BudgetComponent implements OnInit {
   model: any = {};
   accounts: Account[];
   editBudget: boolean = false;
+  addBudget: boolean = false;
   budgetBreakup: any = {};
+  expenseAccount: Account;
   ngOnInit() {
-  	this.budgetService.getBudget().then(budget => this.model.budget = budget);
   	this.accountService.getExpenseAccount().then(expenseAccount => {
+  		this.expenseAccount = expenseAccount;
   		this.accountService.getChildrenAccounts(expenseAccount).then(childrenAccounts => {
   			this.accounts = childrenAccounts;
   		})
+  		.then( () => {
+  			this.budgetService.getBudget().then(budget => {
+		  		this.model.budget = budget
+		  		if(budget === 0){
+		  			this.addBudget = true;
+		  			this.initBudgetBreakup();
+		  		}
+		  	});
+  		})
   	});
+  	
   }
   edit(){
-  	this.accounts.forEach(account => {
-  		this.budgetBreakup[account.name] = account.budget;
-  	});
+  	this.initBudgetBreakup();
   	this.editBudget = true;
   }
   updateBudget(){
@@ -43,6 +53,7 @@ export class BudgetComponent implements OnInit {
   		this.guideService.trigger();
   		this.financeHealthIndicatorService.updateFinanceHealthIndicator();
   		this.editBudget = false;
+  		this.addBudget = false;
   	});
   	
   }
@@ -50,5 +61,18 @@ export class BudgetComponent implements OnInit {
   cancel(){
   	this.budgetService.getBudget().then(budget => this.model.budget = budget);
   	this.editBudget = false;
+  }
+
+  isExpenseLessThanBudget(){
+  	if(this.expenseAccount){
+  		return this.expenseAccount.amount < this.model.budget;
+  	}
+  	return false;
+  }
+
+  private initBudgetBreakup(){
+  	this.accounts.forEach(account => {
+  		this.budgetBreakup[account.name] = account.budget || 0;
+  	});
   }
 }
