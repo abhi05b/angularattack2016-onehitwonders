@@ -4199,7 +4199,7 @@ a.bigHelp {
 }
 hr.dash {
   border-top: 1px dashed #0099cc;
-  width: 85%;
+  width: 75%;
   margin: 50px auto;
 }
 .badgesGroup {
@@ -4231,7 +4231,15 @@ hr.dash {
 .helpGuide a {
   text-decoration: underline;
 }
-
+.helpGroup {
+  background: url("../images/helpLanding.png") no-repeat;
+  width: 225px;
+  height: 184px;
+  float: left;
+}
+.content.helpContent {
+  margin-top: 50px;
+}
 
 
 
