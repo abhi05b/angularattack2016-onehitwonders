@@ -37,7 +37,7 @@ export class AddComponent implements OnInit {
     showtoAccountParents: Boolean;
     toParentAccountsList: Account[];
     fromParentAccountsList: Account[];
-    public tagsList: string[] = [];
+    tagsList: string[] = [];
 
     addTransaction() {
       let that = this;
@@ -73,6 +73,7 @@ export class AddComponent implements OnInit {
                   that.transactionService.createTransaction(that.dummyModel).then((result) => { });
         });
       }
+      this.tagsList=[];
     }
    
   onBlurMethod( type : string) {
