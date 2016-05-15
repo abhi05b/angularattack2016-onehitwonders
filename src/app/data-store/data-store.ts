@@ -26,5 +26,6 @@ export class DataStore {
 		this.badges = masterDataStore.badges;
 		this.notifications = [];
 		this.guides = [new Guide('firstTransaction')];
+		this.budget = 0;
 	}
 }
