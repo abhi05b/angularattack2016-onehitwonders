@@ -28,7 +28,7 @@ export class FinanceHealthIndicatorService {
 		  			let finalHealth = 0;
 		  			if(totalAssets === 0){
 		  				if(liabilityAccountAmount === 0){
-		  					finalHealth = 2;
+		  					finalHealth = -1;
 		  				}
 		  				else{
 		  					finalHealth = 4;
@@ -56,7 +56,7 @@ export class FinanceHealthIndicatorService {
 			  			}
 		  			}
 		  			
-		  			if(initialHealth != finalHealth){
+		  			if(initialHealth != finalHealth && finalHealth != -1){
 		  				this.notificationService.addNotification(new Notification('financialHealth', {initialHealth: initialHealth, finalHealth:finalHealth}));
 		  			}
 		  			this.financeHealthIndicator.health = finalHealth;
