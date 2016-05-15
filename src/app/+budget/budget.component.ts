@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertComponent} from 'ng2-bootstrap';
-import {CORE_DIRECTIVES} from '@angular/common';
+import {CORE_DIRECTIVES,NgForm} from '@angular/common';
 import { AccountService } from '../account/account.service';
 import { Account } from '../account/account';
 import { BudgetService } from '../budget/budget.service';

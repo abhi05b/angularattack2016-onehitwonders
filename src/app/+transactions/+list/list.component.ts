@@ -64,6 +64,7 @@ export class ListComponent implements OnInit {
     
       this.dataModel = transactions.map(transaction => {
         let t = new TableDataModel(transaction.date, transaction.merchant, transaction.amount, transaction.from.name, transaction.to.name, transaction.comments, transaction.tags);      
+        console.log(t);
         return t;
       });
 

@@ -57,26 +57,26 @@ export class FinanceHealthIndicatorService {
   			}
   		}
   		else{
-			let percentage = Math.abs(quotient)/base;
-  			if(0 <= percentage && percentage < 0.125){
-  				rating = 0;
-  			}
-  			else if(0.125 <= percentage && percentage < 0.375){
-  				rating = 1;
-  			}
-  			else if(0.375 <= percentage && percentage < 0.625){
-  				rating = 2;
-  			}
-  			else if(0.625 <= percentage && percentage < 0.875){
-  				rating = 3;
-  			}
-  			else if(0.875 <= percentage && percentage < 1){
-  				rating = 4;
-  			}
-  			else {
-  				rating = 4;
-  			}
-		}
+  			let percentage = Math.abs(quotient)/base;
+    			if(0 <= percentage && percentage < 0.125){
+    				rating = 0;
+    			}
+    			else if(0.125 <= percentage && percentage < 0.375){
+    				rating = 1;
+    			}
+    			else if(0.375 <= percentage && percentage < 0.625){
+    				rating = 2;
+    			}
+    			else if(0.625 <= percentage && percentage < 0.875){
+    				rating = 3;
+    			}
+    			else if(0.875 <= percentage && percentage < 1){
+    				rating = 4;
+    			}
+    			else {
+    				rating = 4;
+    			}
+  		}
 		return rating;
   	}
 }

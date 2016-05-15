@@ -32,7 +32,7 @@ export class LandingPageComponent implements OnInit {
 
   beginFlow(){
   	this.userContextService.setUser(new User());
-    this.guideService.trigger().then(() => this.router.navigate(['/dashboard']));
+    this.guideService.trigger().then(() => this.router.navigate(['/overview']));
   	this.badgeService.findBadge('Trend Setter').then(badge => {
       badge.count++;
       this.notificationService.addNotification(new Notification('badge', {name: badge.name}));
