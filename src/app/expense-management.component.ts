@@ -18,6 +18,7 @@ import { BadgeService } from './badge/badge.service';
 import { FinanceHealthIndicatorService } from './finance-health-indicator/finance-health-indicator.service';
 import { BS_MODAL_PROVIDERS , Modal} from 'angular2-modal/plugins/bootstrap';
 
+import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 @Component({
   moduleId: module.id,
@@ -46,3 +47,5 @@ export class ExpenseManagementAppComponent {
     this.demoData.populateDemoData().then(() => this.router.navigate(['/dashboard']));
   }
 }
+
+

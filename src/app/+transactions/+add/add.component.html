@@ -39,3 +39,32 @@
 
 </div>
 
+
+<button type="button" class="btn btn-default" (click)="open()">Open me!</button>
+
+<modal #modal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">I'm a modal!</h4>
+    </modal-header>
+    <modal-body>
+      From Account
+    <div ng-if="fromAccountPresent">
+        <select [(ngModel)]="selectedParent">
+          <option value="">Select</option>
+          {{parentAccounts}}
+          <option *ngFor="let account of parentAccounts">{{account.name}}</option>
+        </select>
+    </div>
+    To Account
+    <div ng-if="toAccountPresent">
+        <select [(ngModel)]="selectedParent">
+          <option value="">Select</option>
+          {{parentAccounts}}
+          <option *ngFor="let account of parentAccounts">{{account.name}}</option>
+        </select>
+    </div>
+
+    </modal-body>
+     <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="ok()">Ok</button>
+</modal>

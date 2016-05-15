@@ -27,6 +27,7 @@ const barrels: string[] = [
   'rxjs',
   'angular2-modal',
   'angular2-modal/plugins/bootstrap',
+  'ng2-bs3-modal',
 
   // App specific barrels.
   'app',
@@ -62,13 +63,15 @@ declare var System: any;
 
 // Apply the CLI SystemJS configuration.
 System.config({
+  defaultJSExtensions: true,
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
     'moment': 'vendor/moment/moment.js',
     'ng2-bootstrap': 'vendor/ng2-bootstrap/bundles/ng2-bootstrap.js',
-    'angular2-modal': 'vendor/angular2-modal'
+    'angular2-modal': 'vendor/angular2-modal',
+    'ng2-bs3-modal': 'vendor/ng2-bs3-modal'
   },
   packages: cliSystemConfigPackages
 });
