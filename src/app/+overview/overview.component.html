@@ -1,4 +1,4 @@
-<div class="overview">
+<div class="overview" *ngIf="isOverviewPage">
 	    <nav class="top-bar navbar-fixed-top" role="navigation">
 	      <div class="logo-area col-sm-12">
 	        <div class="logo pull-left">
@@ -55,3 +55,54 @@
 		</div>
 	</footer>
   </div>
+
+  <!-- COLUMN RIGHT -->
+<div id="col-right" class="col-right" *ngIf="!isOverviewPage">
+   <div class="container-fluid primary-content">
+      <!-- PRIMARY CONTENT HEADING -->
+      <div class="primary-content-heading clearfix">
+         <h2 class="pull-left">ACCOUNT</h2>
+         <badge-list></badge-list>
+      </div>
+      <hr class="alt">
+
+      <div class="row">
+		         <div class="col-sm-12">
+		            <div class="row overviewCards">
+		               <div class="col-md-3" *ngFor="let parentAccount of parentAccounts">
+		               	<div class="widget bottom-30px">
+		               		<div class="widget-header">
+		    				<h3 class="">{{parentAccount.name}}</h3>
+		    			</div>
+		                   	<div class="widget-content">
+			                   	<ul>
+									<li *ngFor="let account of accounts[parentAccount.name]">
+										<span class="ion-arrow-right-a ion"></span>{{account.name}}
+									</li>
+								</ul>
+								<div class="addItem" *ngIf="!parentAccount.add">
+									<button class="btn btn-link" (click)="parentAccount.add=true">+ Add New</button>
+								</div>
+								<form  #addCategoryForm="ngForm">
+									<div class="inputs" *ngIf="parentAccount.add">
+				                     <div class="form-group label-floating">
+				                        <label for="i5" class="control-label">Sub Category</label>
+				                        <input type="text"  [(ngModel)]="parentAccount.newAccountName" required ngControl="name" #name="ngForm" class="form-control" id="i5">
+				                        <div [hidden]="name.pristine || name.valid">This is a required field</div>
+				                     </div>
+				                        <button [disabled]="!addCategoryForm.form.valid" class="btn btn-raised btn-primary" (click)="addAccount(
+											parentAccount.newAccountName,parentAccount);parentAccount.add=false;parentAccount.newAccountName=null">
+				                           Ok
+				                           <div class="ripple-container"></div>
+				                        </button>
+				                  </div>
+			              	  </form>
+							</div>
+						</div>
+		               </div>
+		            </div>
+		         </div>
+		      </div>
+
+  </div>
+</div>
