@@ -46,6 +46,11 @@ const barrels: string[] = [
   'app/+overview',
   'app/badge-list',
   'app/finance-health-indicator',
+  'app/notifications/notification/financial-health/financial-health',
+  'app/notifications/notification/financial-health',
+  'app/+badges',
+  'app/guide',
+  'app/landing-page',
   /** @cli-barrel */
 ];
 
@@ -69,7 +74,7 @@ System.config({
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
     'moment': 'vendor/moment/moment.js',
-    'ng2-bootstrap': 'vendor/ng2-bootstrap/bundles/ng2-bootstrap.js',
+    'ng2-bootstrap': 'vendor/ng2-bootstrap/ng2-bootstrap.js',
     'angular2-modal': 'vendor/angular2-modal',
     'ng2-bs3-modal': 'vendor/ng2-bs3-modal'
   },

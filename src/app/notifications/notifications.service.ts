@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {Notification} from './notification';
+import {Notification} from './notificationDto';
 import { DataStoreService } from '../data-store/data-store.service';
 
 @Injectable()

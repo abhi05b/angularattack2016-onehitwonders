@@ -3,7 +3,6 @@ import { Transaction } from '../transaction/transaction';
 import { Account } from '../account/account';
 import { Tag } from '../tag/tag';
 import { Badge } from '../badge/badge';
-import { Notification } from '../notifications/notification';
 
 export class MasterDataStore {
 
@@ -35,7 +34,8 @@ export class MasterDataStore {
 		var groceries = new Account('Groceries', 0, expenses);
 		var salary = new Account('Salary', 0,income);
 		var foodieBadge = new Badge('Foodie',[dining], 0, 0);
-		var travelerBadge = new Badge('Traveler', [travel],0, 0);
+		var firstTimerBadge = new Badge('Trend Setter', [], 0, 1);
+		var travelerBadge = new Badge('Traveller', [travel],0, 0);
 		var bookwormBadge = new Badge('Book Worm', [books, magazines],0, 0);
 		var oilBaronBadge =  new Badge('Oil Baron', [fuel],0, 0);
 		var movieBuff = new Badge('Movie Buff', [movies],0, 0);
@@ -43,7 +43,7 @@ export class MasterDataStore {
 		var hulk = new Badge('Hulk', [gym],0, 0);
 		var mrRobot = new Badge('Mr. Robot', [gadgets],0, 0);
 		this.accounts = [assets, expenses, liability, income, cash, currentAccount, creditCard, dining, travel, books, magazines, salary, movies, fuel, gym, gadgets, groceries];
-		this.badges = [foodieBadge, travelerBadge, bookwormBadge, oilBaronBadge, movieBuff, homeMaker, hulk, mrRobot];
+		this.badges = [firstTimerBadge, foodieBadge, travelerBadge, bookwormBadge, oilBaronBadge, movieBuff, homeMaker, hulk, mrRobot];
 	}
 
 	populateTags(){

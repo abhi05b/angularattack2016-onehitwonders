@@ -5,9 +5,10 @@ import { Transaction } from '../transaction/transaction';
 import { Account } from '../account/account';
 import { Tag } from '../tag/tag';
 import { Badge } from '../badge/badge';
-import { Notification} from '../notifications/notification';
+import { Notification} from '../notifications/notificationDto';
 import { DataStore} from './data-store';
 import { MasterDataStore} from './master-data-store';
+import { Guide } from '../guide/guide';
 
 
 @Injectable()
@@ -95,12 +96,12 @@ export class DataStoreService {
     }
 
     addNotification(notification: Notification){
-      this.data.notifications.push(Notification);
+      this.data.notifications.push(notification);
       return Promise.resolve();
     }
 
     deleteNotification(notification: Notification){
-      let index = this.data.notifications.indexOf(Notification);
+      let index = this.data.notifications.indexOf(notification);
       if(index > -1){
         this.data.notifications.splice(index, 1);
       }
@@ -111,7 +112,26 @@ export class DataStoreService {
       return Promise.resolve(this.data.notifications); 
     }
 
+    addGuide(guide: Guide){
+      this.data.guides.push(guide);
+      return Promise.resolve();
+    }
+
+    deleteGuide(guide: Guide){
+      let index = this.data.guides.indexOf(guide);
+      if(index > -1){
+        this.data.guides.splice(index, 1);
+      }
+      return Promise.resolve();
+    }
+
+    getGuides(){
+      return Promise.resolve(this.data.guides); 
+    }
+
     setData(data: DataStore){
       this.data = data;
     }
+
+
 }

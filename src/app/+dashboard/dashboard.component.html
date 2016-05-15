@@ -3,9 +3,10 @@
    <div class="container-fluid primary-content">
       <!-- PRIMARY CONTENT HEADING -->
       <div class="primary-content-heading clearfix">
-         <h2>DASHBOARD</h2>
-         <hr>
+         <h2 class="pull-left">DASHBOARD</h2>
+         <badge-list></badge-list>
       </div>
+      <hr class="alt">
       <div class="row">
          <div class="col-sm-12">
             <div class="widget">
@@ -39,65 +40,31 @@
          <div class="col-md-8 cards">
             <h3>Summary</h3>
             <div class="row">
-               <div class="col-md-4">
-                  <div class="widget bottom-30px">
-                        <h3 class="">Assest</h3>
-                     <div class="widget-content">
-                        $3,000
-                     </div>  
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="widget bottom-30px">
-                        <h3 class="">Expenses</h3>
-                     <div class="widget-content">
-                        $3,000
-                     </div>  
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="widget bottom-30px">
-                        <h3 class="">Income</h3>
-                     <div class="widget-content">
-                        $3,000
-                     </div>  
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-4">
-                  <div class="widget bottom-30px">
-                        <h3 class="">Cash</h3>
-                     <div class="widget-content">
-                        $3,000
-                     </div>  
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="widget bottom-30px">
-                        <h3 class="">Liability</h3>
-                     <div class="widget-content">
-                        $3,000
-                     </div>  
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="widget bottom-30px">
-                        <h3 class="">Other</h3>
-                     <div class="widget-content">
-                        $3,000
-                     </div>  
-                  </div>
+               <div class="col-md-4" *ngFor="let account of parentAccounts">
+                   <account-card [account]="account"></account-card>
                </div>
             </div>
          </div>
          <div class="col-md-4">
-            <h3 class="">Badges</h3>
+            <h3 class="">Quick Help</h3>
             <div class="widget bottom-30px">
                   <div class="widget-content">
                      $3,000
                   </div>  
                </div>
+         </div>
+      </div>
+      <h3>Financial Health</h3>
+      <div class="row">
+         <div class="col-sm-12">
+            <div class="widget bottom-30px">
+               <div class="widget-content">
+                  <div class="healthCard clearfix">
+                     <span class="health-icon two-star pull-left"></span>
+                     <p class="healthText">Your financial health is weak. Please manage your <a href="#"><em>budget</em></a> in more organised way.</p>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
       <!-- <div class="row">
@@ -142,16 +109,9 @@
 </div>
 <!-- END COLUMN RIGHT -->
 
-
-<p>
-  dashboard works!
-</p>
-
-<div *ngFor="let account of parentAccounts">
-	<account-card [account]="account"></account-card>
-</div>
-
-<badge-list></badge-list>
 <finance-health-indicator></finance-health-indicator>
+
+<guide></guide>
+
 
 

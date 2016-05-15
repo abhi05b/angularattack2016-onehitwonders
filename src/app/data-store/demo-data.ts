@@ -6,10 +6,11 @@ import { Tag } from '../tag/tag';
 import { MasterDataStore} from './master-data-store';
 import { DataStoreService } from './data-store.service';
 import { DataStore } from './data-store';
+import { BadgeService } from '../badge/badge.service';
 
 @Injectable()
 export class DemoData{
-	constructor(private masterDataStore: MasterDataStore, private dataStoreService: DataStoreService, private transactionService: TransactionService){
+	constructor(private masterDataStore: MasterDataStore, private dataStoreService: DataStoreService, private transactionService: TransactionService, private badgeService: BadgeService){
 
 	}
 	populateDemoData(){
@@ -46,7 +47,14 @@ export class DemoData{
 		, new Transaction(new Date(2016,1,15), 'Gold Gym', 50, creditCard, gym, 'Gym Membership')]
 		let counter = 0;
 		var promise = Promise.resolve();
-		promise = transactions.reduce((prev, transaction) => prev.then(() => this.transactionService.createTransaction(transaction)), promise);
+		promise = transactions.reduce((prev, transaction) => prev.then(() => {
+			return this.transactionService.createTransaction(transaction).then(() => {
+				let amount  = transaction.amount;
+				transaction.from.removeAmount(amount);
+				transaction.to.addAmount(amount);	
+				this.badgeService.processBadge(transaction);
+			});
+		}), promise);
 		return promise;
 	}
 }

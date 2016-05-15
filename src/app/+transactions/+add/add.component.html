@@ -1,4 +1,3 @@
-
 <div class="container">
 <form  #transactionForm="ngForm" (ngSubmit)="addTransaction()">
       <div class="form-group">
@@ -16,20 +15,41 @@
       </div>
       <div class="form-group">
         <label for="from">From</label>
-        <input type="text" class="form-control" [(ngModel)]="model.from.name">
+        <input type="text" class="form-control" [(ngModel)]="model.from.name" (focus)="onFocusFromMethod()" (blur)="onBlurFromMethod(model.from)">        
       </div>
+
+      <div *ngIf="showFromAccountParents" class="form-group">
+      <label for="fromParentSelect1">Please Select Associated Account</label>
+        <select [(ngModel)]="fromParentSelect" class="form-control" required ngControl="fromParentSelect1" #fromParentSelect1="ngForm">
+          <option value="">Select</option>
+          <option *ngFor="let account of fromParentAccountsList" [ngValue]="account">{{account.name}}</option>
+        </select>
+        <div [hidden]="fromParentSelect1.pristine || fromParentSelect1.valid">This is a required field</div>
+      </div>
+      
+
       <div class="form-group">
         <label for="to">To</label>
-        <input type="text" class="form-control" [(ngModel)]="model.to.name">
+        <input type="text" class="form-control" [(ngModel)]="model.to.name" (focus)="onFocusToMethod()" (blur)="onBlurToMethod(model.to)">
       </div>
+
+      <div *ngIf="showToAccountParents" class="form-group">
+      <label for="toParentSelect1">Please Select Associated Account</label>
+        <select [(ngModel)]="toParentSelect" class="form-control" required ngControl="toParentSelect1" #toParentSelect1="ngForm">
+          <option value="">Select</option>
+          <option *ngFor="let account of toParentAccountsList" [ngValue]="account">{{account.name}}</option>
+        </select>
+         <div [hidden]="toParentSelect1.pristine || toParentSelect1.valid">This is a required field</div>
+      </div>
+      
      <div class="form-group">
         <label for="tags">Tags</label>
-        <input type="text" class="form-control" [(ngModel)]="model.tags">
+        <tag-input  [(bindModelData)]="model.tags"></tag-input>
       </div>
       <div class="form-group">
         <label for="comments">Comments</label>
         <input type="text" class="form-control" [(ngModel)]="model.comments">
-      </div>
+      </div>  
       
       <button type="submit" class="btn btn-default" [disabled]="!transactionForm.form.valid">Submit</button>
       
@@ -40,7 +60,7 @@
 </div>
 
 
-<button type="button" class="btn btn-default" (click)="open()">Open me!</button>
+<!-- <button type="button" class="btn btn-default" (click)="open()">Open me!</button>
 
 <modal #modal>
     <modal-header [show-close]="true">
@@ -68,3 +88,4 @@
      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dismiss()">Cancel</button>
         <button type="button" class="btn btn-primary" (click)="ok()">Ok</button>
 </modal>
+ -->

@@ -1,24 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Notification } from '../notification';
+import { Notification } from '../notificationDto';
 import { BadgeComponent } from './badge/badge.component';
+import { FinancialHealthComponent } from './financial-health/financial-health.component';
+
+import { NotificationsService } from '../notifications.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'notification',
+  selector: 'notifications',
   templateUrl: 'notification.component.html',
   styleUrls: ['notification.component.css'],
-  directives: [BadgeComponent]
+  directives: [BadgeComponent, FinancialHealthComponent]
 })
 export class NotificationComponent implements OnInit {
 
-	@Input()
-	notification: Notification;
-
+  @Input()
+  notifications: Notification[];
   constructor() {}
 
   ngOnInit() {
-
   }
 
 }

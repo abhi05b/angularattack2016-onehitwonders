@@ -1,3 +1,3 @@
 export class Tag{
-	constructor(name: string){}
+	constructor(public name: string){}
 }

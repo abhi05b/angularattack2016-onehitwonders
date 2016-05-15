@@ -1,10 +1,11 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input, OnInit, ElementRef,Output, EventEmitter} from '@angular/core';
 import {NgFor} from '@angular/common';
 import {isBlank} from '@angular/common/src/facade/lang';
 import {TagInputItemComponent} from './../tag-input-item/tag-input-item.component';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
 import {TYPEAHEAD_DIRECTIVES} from 'ng2-bootstrap';
-console.log('dir',TYPEAHEAD_DIRECTIVES,CORE_DIRECTIVES, FORM_DIRECTIVES);
+import { TagService } from './../tag/tag.service';
+declare var jQuery:any;
 @Component({
   moduleId: module.id,
   selector: 'tag-input',
@@ -20,47 +21,64 @@ export class TagInputComponent{
   @Input() addOnEnter: boolean = true;
   @Input() addOnPaste: boolean = true;
   @Input() allowedTagsPattern: RegExp = /.+/;
-    @HostBinding('class.ng2-tag-input-focus') isFocussed;e
+  @HostBinding('class.ng2-tag-input-focus') isFocussed;
+  @Input() bindModelData: any;
+  @Output() bindModelDataChange: EventEmitter<any> = new EventEmitter();
 
+  private _cache:any;
+  private _prevContext:any;
   public tagsList: string[] = [];
   public inputValue: string = '';
   public delimiter: number;
   public selectedTag: number;
-  public typeaheadOnSelect(e:any):void {
-    console.log('Selected value', e.item);
-    this._addTags([e.item.name]);
-    setTimeout(() => this.inputValue = '');
-    
+  public tagService: TagService;
+  public hasTypeAheadResults = false;
+  public getContext():any {
+    return this;
   }
-  public statesComplex:Array<any> = [
-    {id: 1, name: 'Alabama'}, {id: 2, name: 'Alaska'}, {id: 3, name: 'Arizona'},
-    {id: 4, name: 'Arkansas'}, {id: 5, name: 'California'},
-    {id: 6, name: 'Colorado'}, {id: 7, name: 'Connecticut'},
-    {id: 8, name: 'Delaware'}, {id: 9, name: 'Florida'},
-    {id: 10, name: 'Georgia'}, {id: 11, name: 'Hawaii'},
-    {id: 12, name: 'Idaho'}, {id: 13, name: 'Illinois'},
-    {id: 14, name: 'Indiana'}, {id: 15, name: 'Iowa'},
-    {id: 16, name: 'Kansas'}, {id: 17, name: 'Kentucky'},
-    {id: 18, name: 'Louisiana'}, {id: 19, name: 'Maine'},
-    {id: 21, name: 'Maryland'}, {id: 22, name: 'Massachusetts'},
-    {id: 23, name: 'Michigan'}, {id: 24, name: 'Minnesota'},
-    {id: 25, name: 'Mississippi'}, {id: 26, name: 'Missouri'},
-    {id: 27, name: 'Montana'}, {id: 28, name: 'Nebraska'},
-    {id: 29, name: 'Nevada'}, {id: 30, name: 'New Hampshire'},
-    {id: 31, name: 'New Jersey'}, {id: 32, name: 'New Mexico'},
-    {id: 33, name: 'New York'}, {id: 34, name: 'North Dakota'},
-    {id: 35, name: 'North Carolina'}, {id: 36, name: 'Ohio'},
-    {id: 37, name: 'Oklahoma'}, {id: 38, name: 'Oregon'},
-    {id: 39, name: 'Pennsylvania'}, {id: 40, name: 'Rhode Island'},
-    {id: 41, name: 'South Carolina'}, {id: 42, name: 'South Dakota'},
-    {id: 43, name: 'Tennessee'}, {id: 44, name: 'Texas'},
-    {id: 45, name: 'Utah'}, {id: 46, name: 'Vermont'},
-    {id: 47, name: 'Virginia'}, {id: 48, name: 'Washington'},
-    {id: 49, name: 'West Virginia'}, {id: 50, name: 'Wisconsin'},
-    {id: 51, name: 'Wyoming'}];
 
-  constructor() {
-    //this._ngControl.valueAccessor = this;
+  public getAsyncData(context:any):Function {
+
+    let that:any =this;
+    this.hasTypeAheadResults = false;
+    let query = new RegExp(that.inputValue, 'ig');
+    let f:Function = function ():Promise<string[]>{
+      let p:Promise<string[]> = that.tagService.getTags().then(data=>{
+      	let typeAheadResult =  data.map(tag => {
+      		return tag.name;
+      	}).filter(tagName => {
+      		let matches = tagName.match(query);
+      		return matches && matches.length>0;
+      	});
+      	if(typeAheadResult.length>0){
+      		that.hasTypeAheadResults = true;
+      	}else{
+      		that.hasTypeAheadResults = false;
+      	}
+      	return typeAheadResult;
+      });
+      return p;
+    };
+    this._cache = f;
+    return this._cache;
+  }
+  public typeaheadLoading:boolean = false;
+  public typeaheadNoResults:boolean = false;
+  public changeTypeaheadLoading(e:boolean):void {
+    this.typeaheadLoading = e;
+  }
+
+  public changeTypeaheadNoResults(e:boolean):void {
+    this.typeaheadNoResults = e;
+  }
+
+
+  public typeaheadOnSelect(e:any):void {
+    this._addTags([e.item]);
+    setTimeout(() => this.inputValue = '');
+  }
+  constructor(private _tagService: TagService) {
+    this.tagService=_tagService;
   }
 
   ngOnInit() {
@@ -70,13 +88,14 @@ export class TagInputComponent{
   }
 
   inputChanged(event) {
+
     let key = event.keyCode;
     switch(key) {
       case 8: // Backspace
         this._handleBackspace();
         break;
       case 13: //Enter
-        this.addOnEnter && this._addTags([this.inputValue]);
+        this.addOnEnter && jQuery('typeahead-container').length===0 && this._addTags([this.inputValue]);
         event.preventDefault();
         break;
 
@@ -92,8 +111,8 @@ export class TagInputComponent{
   }
 
   inputBlurred(event) {
-    //this.addOnBlur && this._addTags([this.inputValue]);
-    //this.isFocussed = false;
+    this.addOnBlur && jQuery('typeahead-container').length===0 && this._addTags([this.inputValue]);
+    this.isFocussed = false;
   }
   inputFocused(event) {
     this.isFocussed = true;
@@ -124,6 +143,8 @@ export class TagInputComponent{
     this._resetSelected();
     this._resetInput();
     this.onChange(this.tagsList);
+    this.bindModelData = this.tagsList;
+    this.bindModelDataChange.emit(this.tagsList);
   }
 
   private _removeTag(tagIndexToRemove) {
@@ -166,4 +187,3 @@ export class TagInputComponent{
     this.onTouched = fn;
   }
 }
-

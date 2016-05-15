@@ -1,7 +1,25 @@
-<p>
-  notification works!
-</p>
-
-<div *ngIf="notification.type === 'badge'">
-	<badge badge="notification.data"></badge>
-</div>
+<ul class="notify">
+          <!-- notification: general -->
+            <li class="action-item general">
+              <div class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="icon ion-ios-bell-outline"></i>
+                  <span class="count" *ngIf="notifications && notifications.length">{{notifications.length}}</span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="menu-item-header" *ngIf="notifications">You have {{notifications.length}} notification(s)</li>
+                  <li *ngFor="let notification of notifications">
+                  	<div *ngIf="notification.type === 'badge'">
+                  		<badge [data]="notification.data"></badge>
+                  	</div>
+                  	<div *ngIf="notification.type === 'financialHealth'">
+                  		<financial-health [data]="notification.data"></financial-health>
+                  	</div>
+                    
+                  </li>
+                  <li class="menu-item-header" *ngIf="!notifications">You have no notifications</li>
+                </ul>
+              </div>
+            </li>
+            <!-- end notification: general -->
+        </ul>

@@ -1,2 +1,6 @@
-Account name is {{account.name}} 
-Account amount is {{account.amount}}
+<div class="widget bottom-30px">
+    <h3 class="">{{account.name}}</h3>
+ <div class="widget-content">
+    {{account.amount | currency:'USD':'$'}}
+ </div>  
+</div>
