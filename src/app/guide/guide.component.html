@@ -1,5 +1,6 @@
 <div class="widget bottom-30px">
-      <div class="widget-content" *ngFor="let guide of guides">
+      <div class="widget-content helpGuide" *ngFor="let guide of guides">
+      	<div class="help"></div>
       	<p *ngIf="guide.type==='firstTransaction'">
 		Get started by adding your first transaction. Click <a href="#"  class="" [routerLink]="['/transactions/add']">here</a>.
 		</p>
@@ -9,5 +10,11 @@
 		<p *ngIf="guide.type==='defineExpenseCategoryBudget'">
 			Some expense categories have no budget allocated. Allocate budget in these categories. Click <a href="#"  class="" [routerLink]="['/bugdet']">here</a> to define budget.
 		</p>
-      </div>  
+		
+      </div>
+      <div class="widget-content" *ngIf="!guides || guides.length === 0">
+      	<p>
+      		No suggestions. 
+      	</p>
+      </div>
  </div>
