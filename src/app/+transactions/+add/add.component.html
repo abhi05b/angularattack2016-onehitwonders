@@ -8,23 +8,23 @@
       <form  #transactionForm="ngForm" (ngSubmit)="addTransaction()">
         <div class="inputs">
             <div class="form-group-lg label-floating">
-              <label for="name">Merchant</label>
+              <label for="name" class="control-label">Merchant</label>
               <input type="text" class="form-control" [(ngModel)]="model.merchant" required ngControl="name" #name="ngForm">
               <div [hidden]="name.pristine || name.valid">Please provide a merchant. For eg, Pizza Hut, Amazon etc.</div>
             </div>
             <div class="form-group-lg label-floating">
-              <label for="amount">Transaction</label>
+              <label for="amount" class="control-label">Transaction</label>
               <input type="number" class="form-control" [(ngModel)]="model.amount" required ngControl="transaction" #transaction="ngForm">
                <div [hidden]="transaction.pristine || transaction.valid">We need a transaction amount too. Please provide.</div>
             </div>
             <div class="form-group-lg label-floating">
-              <label for="dateTime">Date</label>
+              <label for="dateTime" class="control-label">Date</label>
               <input type="date" class="form-control" [(ngModel)]="model.date" required ngControl="dateTime" #dateTime="ngForm">
               <div [hidden]="dateTime.pristine || dateTime.valid">It will help you to maintain your history. Please provide.</div>
             </div>
 
             <div class="form-group-lg label-floating">
-              <label for="fromAccount1">From</label>
+              <label for="fromAccount1" class="control-label">From</label>
               <input type="text" 
               [typeahead]="getAsyncData('from','Expense')"
               (typeaheadLoading)="changeTypeaheadLoading($event)"
@@ -36,7 +36,7 @@
             </div>
 
             <div *ngIf="showfromAccountParents" class="form-group-lg label-floating">
-            <label for="fromParentSelect1">Please Select Associated Account</label>
+            <label for="fromParentSelect1" class="control-label">Please Select Associated Account</label>
               <select [(ngModel)]="fromParentSelect" class="form-control" required ngControl="fromParentSelect1" #fromParentSelect1="ngForm">
                 <option value="">Select</option>
                 <option *ngFor="let account of fromParentAccountsList" [ngValue]="account">{{account.name}}</option>
@@ -46,7 +46,7 @@
             
 
             <div class="form-group-lg label-floating">
-              <label for="to">To</label>
+              <label for="to" class="control-label">To</label>
               <input type="text" class="form-control" 
               [typeahead]="getAsyncData('to','Income')"
               (typeaheadLoading)="changeTypeaheadLoading($event)"
@@ -58,7 +58,7 @@
             </div>
 
             <div *ngIf="showtoAccountParents" class="form-group-lg label-floating">
-            <label for="toParentSelect1">Please Select Associated Account</label>
+            <label for="toParentSelect1" class="control-label">Please Select Associated Account</label>
               <select [(ngModel)]="toParentSelect" class="form-control" required ngControl="toParentSelect1" #toParentSelect1="ngForm">
                 <option value="">Select</option>
                 <option *ngFor="let account of toParentAccountsList" [ngValue]="account">{{account.name}}</option>
@@ -67,11 +67,11 @@
             </div>
 
            <div class="form-group-lg label-floating">
-              <label for="tags">Tags</label>
+              <label for="tags" class="control-label">Tags</label>
               <tag-input  [tagsList]="tagsList" [(bindModelData)]="model.tags"></tag-input>
             </div>
             <div class="form-group-lg label-floating">
-              <label for="comments">Comments</label>
+              <label for="comments" class="control-label">Comments</label>
               <input type="text" class="form-control" [(ngModel)]="model.comments">
             </div>  
             </div>
