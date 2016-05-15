@@ -18,7 +18,7 @@
           </div>
           <div class="col-sm-6">
             <div class="form-group form-group-lg label-static">
-              <label for="amount" class="control-label">Transaction</label>
+              <label for="amount" class="control-label">Transaction Amount</label>
               <input type="number" class="form-control" [(ngModel)]="model.amount" required ngControl="transaction" #transaction="ngForm">
                <div [hidden]="transaction.pristine || transaction.valid">We need a transaction amount too. Please provide.</div>
              </div>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group form-group-lg label-static">
-              <label for="fromAccount1" class="control-label">From</label>
+              <label for="fromAccount1" class="control-label">From Account</label>
               <input type="text" 
               [typeahead]="getAsyncData('from','Expense')"
               (typeaheadLoading)="changeTypeaheadLoading($event)"
@@ -48,12 +48,12 @@
                 <option value="">Select</option>
                 <option *ngFor="let account of fromParentAccountsList" [ngValue]="account">{{account.name}}</option>
               </select>
-              <div [hidden]="fromParentSelect1.pristine || fromParentSelect1.valid">This is a required field</div>
+              <div [hidden]="fromParentSelect1.pristine || fromParentSelect1.valid">Please choose a category to associate the 'From Account'.</div>
             </div>
             
 
             <div class="form-group form-group-lg label-static">
-              <label for="to" class="control-label">To</label>
+              <label for="to" class="control-label">To Account</label>
               <input type="text" class="form-control" 
               [typeahead]="getAsyncData('to','Income')"
               (typeaheadLoading)="changeTypeaheadLoading($event)"
@@ -70,7 +70,7 @@
                 <option value="">Select</option>
                 <option *ngFor="let account of toParentAccountsList" [ngValue]="account">{{account.name}}</option>
               </select>
-               <div [hidden]="toParentSelect1.pristine || toParentSelect1.valid">This is a required field</div>
+               <div [hidden]="toParentSelect1.pristine || toParentSelect1.valid">Please choose a category to associate the 'To Account'.</div>
             </div>
 
            
