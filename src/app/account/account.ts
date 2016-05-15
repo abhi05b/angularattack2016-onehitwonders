@@ -7,7 +7,7 @@ export class Account{
 		this.parent = parent;
 		this.name = name;
 		this.amount = amount;
-		this.budget = budget;
+		this.budget = budget || 0;
 	}
 	addAmount(amount: number){
 		this.amount += amount;

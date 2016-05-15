@@ -3665,8 +3665,8 @@ ul.widget-inbox-list .timestamp {
 }
 .widget .widget-header h3, .widget.widget-no-header h3 {
   margin-top: 0;
-  font-size: 14px;
-  color: #6a6a6a;
+  font-size: 24px;
+  color: #008fe2;
 }
 .widget.widget-transparent {
   border: none;

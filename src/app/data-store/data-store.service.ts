@@ -125,6 +125,11 @@ export class DataStoreService {
       return Promise.resolve();
     }
 
+    deleteGuides(){
+      this.data.guides.length = 0;
+      return Promise.resolve();
+    }
+
     getGuides(){
       return Promise.resolve(this.data.guides); 
     }
@@ -140,6 +145,11 @@ export class DataStoreService {
      setBudget(budget: number){
        this.data.budget = budget;
        return Promise.resolve();
+    }
+
+    setGuide(guide: Guide){
+      this.data.guides.length = 0;
+      this.data.guides.push(guide);
     }
 
 

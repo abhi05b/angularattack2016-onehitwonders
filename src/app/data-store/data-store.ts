@@ -25,6 +25,7 @@ export class DataStore {
 		this.tags = masterDataStore.tags;
 		this.badges = masterDataStore.badges;
 		this.notifications = [];
-		this.guides = [new Guide('firstTransaction')];
+		this.guides = [];
+		this.budget = 0;
 	}
 }

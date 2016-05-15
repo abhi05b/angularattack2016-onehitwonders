@@ -4,6 +4,8 @@ import { AccountService } from '../account/account.service';
 import { Account } from '../account/account';
 import { BudgetService } from '../budget/budget.service';
 import { BadgeListComponent } from '../badge-list/badge-list.component';
+import { GuideService } from '../guide/guide.service';
+
  
 @Component({
   moduleId: module.id,
@@ -14,9 +16,11 @@ import { BadgeListComponent } from '../badge-list/badge-list.component';
 })
 export class BudgetComponent implements OnInit {
 
-  constructor(private accountService: AccountService, private budgetService: BudgetService) {}
+  constructor(private accountService: AccountService, private budgetService: BudgetService, private guideService: GuideService) {}
   model: any = {};
   accounts: Account[];
+  editBudget: boolean = false;
+  budgetBreakup: any = {};
   ngOnInit() {
   	this.budgetService.getBudget().then(budget => this.model.budget = budget);
   	this.accountService.getExpenseAccount().then(expenseAccount => {
@@ -25,7 +29,25 @@ export class BudgetComponent implements OnInit {
   		})
   	});
   }
+  edit(){
+  	this.accounts.forEach(account => {
+  		this.budgetBreakup[account.name] = account.budget;
+  	});
+  	this.editBudget = true;
+  }
+  updateBudget(){
+  	this.accounts.forEach(account => {
+  		account.budget = this.budgetBreakup[account.name];
+  	});
+  	this.budgetService.setBudget(this.model.budget).then(() => {
+  		this.guideService.trigger();
+  		this.editBudget = false;
+  	});
+  	
+  }
 
-
-
+  cancel(){
+  	this.budgetService.getBudget().then(budget => this.model.budget = budget);
+  	this.editBudget = false;
+  }
 }

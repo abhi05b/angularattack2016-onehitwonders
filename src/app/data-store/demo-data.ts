@@ -8,10 +8,11 @@ import { DataStoreService } from './data-store.service';
 import { DataStore } from './data-store';
 import { BadgeService } from '../badge/badge.service';
 import { BudgetService } from '../budget/budget.service';
+import { GuideService } from '../guide/guide.service';
 
 @Injectable()
 export class DemoData{
-	constructor(private masterDataStore: MasterDataStore, private dataStoreService: DataStoreService, private transactionService: TransactionService, private badgeService: BadgeService, private budgetService: BudgetService){
+	constructor(private masterDataStore: MasterDataStore, private dataStoreService: DataStoreService, private transactionService: TransactionService, private badgeService: BadgeService, private budgetService: BudgetService, private guideService: GuideService){
 
 	}
 	populateDemoData(){
@@ -64,8 +65,10 @@ export class DemoData{
 		movies.budget = 1000;
 		fuel.budget = 100;
 		groceries.budget = 700;
-
-		this.budgetService.setBudget(3000);
-		return promise;
+		return promise.then(() => {
+			this.budgetService.setBudget(3000).then(() => {
+				this.guideService.trigger();
+			});
+		});
 	}
 }
