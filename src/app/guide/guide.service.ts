@@ -23,7 +23,7 @@ export class GuideService {
   }
 
   trigger(){
-    this.transactionService.getTransactions().then(transactions =>{
+    return this.transactionService.getTransactions().then(transactions =>{
       if(transactions.length === 0){
         this.setGuide(new Guide('firstTransaction'));
       }
@@ -40,7 +40,7 @@ export class GuideService {
                   this.setGuide(new Guide('defineExpenseCategoryBudget'));
                 }
                 else{
-                  this.setGuide(new Guide(''));
+                  this.removeGuide();
                 }
               })
             });
