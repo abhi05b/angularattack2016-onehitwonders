@@ -4085,6 +4085,7 @@ hr.alt {
   padding-top: 60px;
   padding-bottom: 60px;
   color: #008fe2;
+  font-size: 16px;
 }
 .footer span {
     font-size: 18px;
@@ -4241,7 +4242,9 @@ hr.dash {
 .content.helpContent {
   margin-top: 50px;
 }
-
+.btn-rasied.btn-primary.btn:disabled {
+  background: #009688;
+}
 
 
 
