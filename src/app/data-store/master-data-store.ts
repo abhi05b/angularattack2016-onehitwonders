@@ -35,7 +35,7 @@ export class MasterDataStore {
 		var health = new Account('Health', 0, expenses);
 		var salary = new Account('Salary', 0,income);
 		var foodieBadge = new Badge('Foodie',[dining], 0, 0);
-		var firstTimerBadge = new Badge('Trend Setter', [], 0, 1);
+		var firstTimerBadge = new Badge('Trend Setter', [], 0, 0);
 		var travelerBadge = new Badge('Traveller', [travel],0, 0);
 		var bookwormBadge = new Badge('Book Worm', [books, magazines],0, 0);
 		var oilBaronBadge =  new Badge('Oil Baron', [fuel],0, 0);
