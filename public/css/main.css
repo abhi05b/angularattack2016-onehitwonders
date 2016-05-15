@@ -906,7 +906,7 @@
 }
 .progress {
   overflow: hidden;
-  height: 20px;
+  height: 8px;
   margin-bottom: 20px;
   background-color: #f5f5f5;
   border-radius: 4px;
@@ -1115,7 +1115,9 @@
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
-
+.progress .progress-bar, .progress .progress-bar.progress-bar-default {
+  background-color: #13b654;
+}
 
 div.dataTables_length label {
   font-weight: normal;
@@ -3663,8 +3665,8 @@ ul.widget-inbox-list .timestamp {
 }
 .widget .widget-header h3, .widget.widget-no-header h3 {
   margin-top: 0;
-  font-size: 14px;
-  color: #6a6a6a;
+  font-size: 24px;
+  color: #008fe2;
 }
 .widget.widget-transparent {
   border: none;

@@ -3,14 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account/account.service';
 import { Account } from '../account/account';
 import { BudgetService } from '../budget/budget.service';
+import { BadgeListComponent } from '../badge-list/badge-list.component';
 import { GuideService } from '../guide/guide.service';
 import { FinanceHealthIndicatorService } from '../finance-health-indicator/finance-health-indicator.service';
- 
+
 @Component({
   moduleId: module.id,
   selector: 'app-budget',
   templateUrl: 'budget.component.html',
-  styleUrls: ['budget.component.css']
+  styleUrls: ['budget.component.css'],
+  directives: [BadgeListComponent]
 })
 export class BudgetComponent implements OnInit {
 
