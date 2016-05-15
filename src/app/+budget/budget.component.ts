@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account/account.service';
 import { Account } from '../account/account';
 import { BudgetService } from '../budget/budget.service';
+import { GuideService } from '../guide/guide.service';
  
 @Component({
   moduleId: module.id,
@@ -12,7 +13,7 @@ import { BudgetService } from '../budget/budget.service';
 })
 export class BudgetComponent implements OnInit {
 
-  constructor(private accountService: AccountService, private budgetService: BudgetService) {}
+  constructor(private accountService: AccountService, private budgetService: BudgetService, private guideService: GuideService) {}
   model: any = {};
   accounts: Account[];
   editBudget: boolean = false;
@@ -35,8 +36,11 @@ export class BudgetComponent implements OnInit {
   	this.accounts.forEach(account => {
   		account.budget = this.budgetBreakup[account.name];
   	});
-  	this.budgetService.setBudget(this.model.budget);
-  	this.editBudget = false;
+  	this.budgetService.setBudget(this.model.budget).then(() => {
+  		this.guideService.trigger();
+  		this.editBudget = false;
+  	});
+  	
   }
 
   cancel(){
