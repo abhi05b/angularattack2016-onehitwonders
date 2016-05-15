@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {AlertComponent} from 'ng2-bootstrap';
+import {CORE_DIRECTIVES} from '@angular/common';
 import { AccountService } from '../account/account.service';
 import { Account } from '../account/account';
 import { BudgetService } from '../budget/budget.service';
@@ -12,7 +13,7 @@ import { FinanceHealthIndicatorService } from '../finance-health-indicator/finan
   selector: 'app-budget',
   templateUrl: 'budget.component.html',
   styleUrls: ['budget.component.css'],
-  directives: [BadgeListComponent]
+  directives: [BadgeListComponent,AlertComponent, CORE_DIRECTIVES]
 })
 export class BudgetComponent implements OnInit {
 
@@ -68,6 +69,24 @@ export class BudgetComponent implements OnInit {
   		return this.expenseAccount.amount < this.model.budget;
   	}
   	return false;
+  }
+
+  getBalance(budgetBreakup: string[],budgetLimit:number){
+    let budget=0;
+    this.accounts.forEach(account => {
+      budget+= budgetBreakup[account.name]||0;
+    });
+    return budget;
+  }
+  progressBarWidth(account: Account){
+    let budget = account.budget;
+    let amount = account.amount;
+    if(amount <= budget){
+      return amount/budget*100;
+    }
+    if(amount/budget > 2)
+      return 100;
+    return (budget - (amount % budget))/budget*100;
   }
 
   private initBudgetBreakup(){

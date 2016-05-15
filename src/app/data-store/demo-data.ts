@@ -44,7 +44,7 @@ export class DemoData{
 		, new Transaction(new Date(2016,1,5), 'Apple Store', 599, creditCard, gadgets, 'Iphone 6s')
 		, new Transaction(new Date(2016,1,5), 'Apple Store', 10, creditCard, gadgets, 'Iphone 6s cover')
 		, new Transaction(new Date(2016,1,6), 'Harvard Business Review', 15, creditCard, magazines)
-		, new Transaction(new Date(2016,1,7), 'Amazon', 30, creditCard, magazines, 'Continuos Integration')
+		, new Transaction(new Date(2016,1,7), 'Amazon', 3000, creditCard, magazines, 'Continuos Integration')
 		, new Transaction(new Date(2016,1,8), 'Booking.com', 3500, creditCard, travel, 'Mauritius hotel bookings and tickets', [new Tag('Mauritius')])
 		, new Transaction(new Date(2016,1,14), 'Shell', 40, cash, fuel, 'Fuel', [new Tag('Chevy')])
 		, new Transaction(new Date(2016,1,15), 'Gold Gym', 50, creditCard, gym, 'Gym Membership')
@@ -69,6 +69,10 @@ export class DemoData{
 			this.budgetService.setBudget(3000).then(() => {
 				this.guideService.trigger();
 			});
+		}).then( () => {
+			this.badgeService.findBadge('Trend Setter').then(badge => {
+		      badge.count++;
+		    });
 		});
 	}
 }
