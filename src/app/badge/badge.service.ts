@@ -33,6 +33,10 @@ export class BadgeService {
     return this.dataStoreService.getAllBadges();
   }
 
+  findBadge(name: string){
+    return this.getAllBadges().then(badges => badges.find(badge => badge.name === name));
+  }
+
   processBadge(transaction: Transaction){
     let account = transaction.to;
     this.getAllBadges().then(badges => {
