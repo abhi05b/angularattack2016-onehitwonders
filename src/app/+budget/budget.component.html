@@ -15,7 +15,7 @@
 
             <div class="widget-content">
             <alert *ngIf="model.budget && getBalance(budgetBreakup)>model.budget"type="danger" dismissible="true">
-              Reduce expense below Budget Limit
+              Individual budgets above budget limit
             </alert>
             <alert *ngIf="!model.budget" type="danger" dismissible="true">
               Please Enter Budget Limit
@@ -100,37 +100,3 @@
       </div>
    </div>
 </div>
-<!-- 
-   <div id="col-right" class="col-right ">
-      <div class="container-fluid primary-content">
-        
-         <div class="primary-content-heading clearfix">
-            <h2 class="pull-left">BUDGET</h2>
-        </div>
-         <hr class="alt">
-   		      <p>
-   		  budget works!
-   		</p>
-   		<div *ngIf="!editBudget">
-   		Budget : {{model.budget}}
-   
-   		Budget breakup
-   
-   		<div *ngFor="let account of accounts">
-   			{{account | json}}
-   		</div>
-   		<button type="button" (click)="edit()">Edit Budget</button>
-   		</div>	
-   
-   	
-   		<div *ngIf="editBudget" >
-   			<form (ngSubmit)="updateBudget()">
-   				Budget: <input type="number" [(ngModel)]="model.budget">
-   				<div *ngFor="let account of accounts">
-   					{{account.name}} : <input type="number" [(ngModel)]="budgetBreakup[account.name]">
-   				</div>
-   				<button type="submit">Update</button>
-   				<button type="cancel" (click)="cancel()">Cancel</button>
-   			</form>
-   		</div>
-   </div> -->
