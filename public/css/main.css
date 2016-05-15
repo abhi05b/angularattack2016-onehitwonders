@@ -4083,18 +4083,19 @@ hr.alt {
 }
 .footer {
   padding-top: 60px;
-  color: #f0f0f0;
+  padding-bottom: 60px;
+  color: #008fe2;
 }
 .footer span {
     font-size: 18px;
     vertical-align: middle;
 }
 .footer a {
-  color: #fff;
+  color: #009688;
 }
 .footer-inner,
 .footer-inner a{
-  color: #666;
+  color: #009688;
 }
 .overview {
   background-color: #fafcfe;
