@@ -37,7 +37,7 @@
                         <div class="col-sm-4" *ngFor="let account of accounts">
                            <div class="form-group form-group-lg label-floating">
                               <label class="control-label">{{account.name}}</label>
-                              <input ngControl="account" #account="ngForm" type="number" class="form-control" [(ngModel)]="budgetBreakup[account.name]">
+                              <input ngControl="accountName" #accountName="ngForm" type="number" class="form-control" [(ngModel)]="budgetBreakup[account.name]">
                            </div>
                         </div>
                      </div>
