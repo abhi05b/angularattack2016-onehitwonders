@@ -4083,18 +4083,19 @@ hr.alt {
 }
 .footer {
   padding-top: 60px;
-  color: #f0f0f0;
+  padding-bottom: 60px;
+  color: #008fe2;
 }
 .footer span {
     font-size: 18px;
     vertical-align: middle;
 }
 .footer a {
-  color: #fff;
+  color: #009688;
 }
 .footer-inner,
 .footer-inner a{
-  color: #666;
+  color: #009688;
 }
 .overview {
   background-color: #fafcfe;
@@ -4199,7 +4200,7 @@ a.bigHelp {
 }
 hr.dash {
   border-top: 1px dashed #0099cc;
-  width: 85%;
+  width: 75%;
   margin: 50px auto;
 }
 .badgesGroup {
@@ -4228,7 +4229,18 @@ hr.dash {
 .helpGuide p {
   font-size: 16px;
 }
-
+.helpGuide a {
+  text-decoration: underline;
+}
+.helpGroup {
+  background: url("../images/helpLanding.png") no-repeat;
+  width: 225px;
+  height: 184px;
+  float: left;
+}
+.content.helpContent {
+  margin-top: 50px;
+}
 
 
 
