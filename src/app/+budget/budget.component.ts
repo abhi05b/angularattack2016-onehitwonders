@@ -5,8 +5,8 @@ import { Account } from '../account/account';
 import { BudgetService } from '../budget/budget.service';
 import { BadgeListComponent } from '../badge-list/badge-list.component';
 import { GuideService } from '../guide/guide.service';
+import { FinanceHealthIndicatorService } from '../finance-health-indicator/finance-health-indicator.service';
 
- 
 @Component({
   moduleId: module.id,
   selector: 'app-budget',
@@ -16,7 +16,7 @@ import { GuideService } from '../guide/guide.service';
 })
 export class BudgetComponent implements OnInit {
 
-  constructor(private accountService: AccountService, private budgetService: BudgetService, private guideService: GuideService) {}
+  constructor(private accountService: AccountService, private budgetService: BudgetService, private guideService: GuideService, private financeHealthIndicatorService: FinanceHealthIndicatorService) {}
   model: any = {};
   accounts: Account[];
   editBudget: boolean = false;
@@ -41,6 +41,7 @@ export class BudgetComponent implements OnInit {
   	});
   	this.budgetService.setBudget(this.model.budget).then(() => {
   		this.guideService.trigger();
+  		this.financeHealthIndicatorService.updateFinanceHealthIndicator();
   		this.editBudget = false;
   	});
   	
