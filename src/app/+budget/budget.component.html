@@ -12,7 +12,14 @@
             <div class="widget-header">
                <h3 class="">{{(editBudget)? 'Update':'Add'}} budget</h3>
             </div>
+
             <div class="widget-content">
+            <alert *ngIf="model.budget && getBalance(budgetBreakup)>model.budget"type="danger" dismissible="true">
+              Reduce expense below Budget Limit
+            </alert>
+            <alert *ngIf="!model.budget" type="danger" dismissible="true">
+              Please Enter Budget Limit
+            </alert>
                <form (ngSubmit)="updateBudget()">
                   <div class="inputs">
                      <div class="row">
@@ -32,7 +39,7 @@
                         </div>
                      </div>
                   </div>
-                  <button type="submit" class="btn btn-raised btn-primary">{{(addBudget) ? 'Add' : 'Update'}}</button>
+                  <button [disabled]="!(model.budget && getBalance(budgetBreakup)<model.budget)" type="submit" class="btn btn-raised btn-primary">{{(addBudget) ? 'Add' : 'Update'}}</button>
                   <button type="button" (click)="cancel()" class="btn btn-link" *ngIf="!addBudget">Cancel</button>
                </form>
             </div>

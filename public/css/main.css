@@ -4012,11 +4012,11 @@ hr.alt {
 }
 
 .healthText {
-  float: left;
-  font-size: 24px;
-  vertical-align: middle;
-  margin-left: 20px;
-  padding-top: 20px;
+    display: inherit;
+    font-size: 24px;
+    vertical-align: middle;
+    padding-left: 90px;
+    padding-top: 0px;
 }
 .healthText a {
   text-decoration: underline;
@@ -4151,7 +4151,7 @@ hr.alt {
   margin-right: 5px;
 }
 a.bigHelp {
-    margin-top: 26px;
+    margin-top: 20px;
     display: inline-block;
     margin-left: 10px;
 }
@@ -4171,6 +4171,9 @@ a.bigHelp {
     text-align: center;
     margin: auto;
     display: block;
+}
+.popover, .tooltip-inner {
+  line-height: 1.3em;
 }
 
 
