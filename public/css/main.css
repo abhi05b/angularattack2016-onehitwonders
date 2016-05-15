@@ -3193,7 +3193,7 @@ div[class*="col-"] > .form-group {
 }
 .top-bar .action-group .action-item {
   position: relative;
-  width: 50px;
+  width: 30px;
   margin: 0 15px;
   top: 2px;
 }
@@ -3947,6 +3947,8 @@ hr.alt {
 }
 .trend_setter {
   background-image: url("../images/trendsetter.png");
+  height: 54px;
+  width: 55px;
 }
 .foodie {
   background-image: url("../images/foodie.png");
@@ -3962,6 +3964,9 @@ hr.alt {
 .gymrat {
   background-image: url("../images/gymrat.png");
 }
+.mr_robot {
+  background-image: url("../images/gadget.png");
+}
 
 .health-icon {
   background-repeat: no-repeat;
@@ -3970,19 +3975,19 @@ hr.alt {
   height: 88px;
   display: inline-block;
 }
-.one-star {
+.four-star {
   background-image: url("../images/1star.png");
 }
-.two-star {
+.three-star {
   background-image: url("../images/2star.png");
 }
-.three-star {
+.two-star {
   background-image: url("../images/3star.png");
 }
-.four-star {
+.one-star {
   background-image: url("../images/4star.png");
 }
-.five-star {
+.zero-star {
   background-image: url("../images/5star.png");
 }
 .healthText {
