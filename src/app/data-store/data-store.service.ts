@@ -133,5 +133,14 @@ export class DataStoreService {
       this.data = data;
     }
 
+    getBudget(){
+      return Promise.resolve(this.data.budget);
+    }
+
+     setBudget(budget: number){
+       this.data.budget = budget;
+       return Promise.resolve();
+    }
+
 
 }

@@ -15,14 +15,26 @@
       </div>
       <div class="form-group">
         <label for="from">From</label>
+
         <input type="text" 
         [typeahead]="getAsyncData('from','Expense')"
         (typeaheadLoading)="changeTypeaheadLoading($event)"
         (typeaheadNoResults)="changeTypeaheadNoResults($event)"
         (typeaheadOnSelect)="typeaheadOnSelect($event,'from','Expense')"
         [typeaheadOptionsLimit]="7"
-        class="form-control" [(ngModel)]="model.from.name">
+        class="form-control" [(ngModel)]="model.from.name" (focus)="onFocusFromMethod()" (blur)="onBlurFromMethod(model.from)">
       </div>
+
+      <div *ngIf="showFromAccountParents" class="form-group">
+      <label for="fromParentSelect1">Please Select Associated Account</label>
+        <select [(ngModel)]="fromParentSelect" class="form-control" required ngControl="fromParentSelect1" #fromParentSelect1="ngForm">
+          <option value="">Select</option>
+          <option *ngFor="let account of fromParentAccountsList" [ngValue]="account">{{account.name}}</option>
+        </select>
+        <div [hidden]="fromParentSelect1.pristine || fromParentSelect1.valid">This is a required field</div>
+      </div>
+      
+
       <div class="form-group">
         <label for="to">To</label>
         <input type="text" class="form-control" 
@@ -31,8 +43,18 @@
         (typeaheadNoResults)="changeTypeaheadNoResults($event)"
         (typeaheadOnSelect)="typeaheadOnSelect($event,'to','Expense')"
         [typeaheadOptionsLimit]="7"
-        [(ngModel)]="model.to.name">
+        [(ngModel)]="model.to.name" (focus)="onFocusToMethod()" (blur)="onBlurToMethod(model.to)">
       </div>
+
+      <div *ngIf="showToAccountParents" class="form-group">
+      <label for="toParentSelect1">Please Select Associated Account</label>
+        <select [(ngModel)]="toParentSelect" class="form-control" required ngControl="toParentSelect1" #toParentSelect1="ngForm">
+          <option value="">Select</option>
+          <option *ngFor="let account of toParentAccountsList" [ngValue]="account">{{account.name}}</option>
+        </select>
+         <div [hidden]="toParentSelect1.pristine || toParentSelect1.valid">This is a required field</div>
+      </div>
+
      <div class="form-group">
         <label for="tags">Tags</label>
         <tag-input  [(bindModelData)]="model.tags"></tag-input>
@@ -40,7 +62,7 @@
       <div class="form-group">
         <label for="comments">Comments</label>
         <input type="text" class="form-control" [(ngModel)]="model.comments">
-      </div>
+      </div>  
       
       <button type="submit" class="btn btn-default" [disabled]="!transactionForm.form.valid">Submit</button>
       
@@ -50,3 +72,33 @@
 
 </div>
 
+
+<!-- <button type="button" class="btn btn-default" (click)="open()">Open me!</button>
+
+<modal #modal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">I'm a modal!</h4>
+    </modal-header>
+    <modal-body>
+      From Account
+    <div ng-if="fromAccountPresent">
+        <select [(ngModel)]="selectedParent">
+          <option value="">Select</option>
+          {{parentAccounts}}
+          <option *ngFor="let account of parentAccounts">{{account.name}}</option>
+        </select>
+    </div>
+    To Account
+    <div ng-if="toAccountPresent">
+        <select [(ngModel)]="selectedParent">
+          <option value="">Select</option>
+          {{parentAccounts}}
+          <option *ngFor="let account of parentAccounts">{{account.name}}</option>
+        </select>
+    </div>
+
+    </modal-body>
+     <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="ok()">Ok</button>
+</modal>
+ -->

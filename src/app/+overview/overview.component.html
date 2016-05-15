@@ -1,20 +1,17 @@
-<!-- <p>
-  overview works!
-</p>
-
-<div *ngFor="let parentAccount of parentAccounts">
-	{{parentAccount.name}}
-	<ul>
-		<li *ngFor="let account of accounts[parentAccount.name]">
-			{{account.name}}
-		</li>
-	</ul>
-</div> -->
 <div class="overview">
+	    <nav class="top-bar navbar-fixed-top" role="navigation">
+	      <div class="logo-area col-sm-12">
+	        <div class="logo pull-left">
+	          <a href="index.html">
+	            <img src="images/logo.png" alt="Expense Manager" />
+	          </a>
+	        </div>
+	      </div>
+	    </nav>
 	<div class="overviewInner">
 		<div class="row">
 		         <div class="col-sm-12">
-		            <h3>Get Started</h3>
+		            <h3 class="pull-left">We have setup your categories, based on common usage, you can add more sub-categories here.</h3> <button class="btn btn-primary btn-raised btn-good">Look's Good</button>
 		            <div class="row overviewCards">
 		               <div class="col-md-3" *ngFor="let parentAccount of parentAccounts">
 		               	<div class="widget bottom-30px">
@@ -35,6 +32,21 @@
 										parentAccount.newAccountName,parentAccount);parentAccount.add=false;parentAccount.newAccountName=null">Add</button>
 									</li>
 								</ul>
+								<div class="addItem">
+									<button class="btn btn-link">+ Add New</button>
+								</div>
+								<div class="inputs hide">
+			                     <div class="form-group label-floating">
+			                        <label for="i5" class="control-label">Sub Category</label>
+			                        <input type="email" class="form-control" id="i5">
+			                     </div>
+			                     
+			                        <a class="btn btn-raised btn-primary" href="javascript:void(0)">
+			                           Ok
+			                           <div class="ripple-container"></div>
+			                        </a>
+			                  
+			                  </div>
 							</div>
 						</div>
 		               </div>
@@ -42,4 +54,10 @@
 		         </div>
 		      </div>
   		</div>
+  		<footer class="footer footer-inner text-center">
+		<div class="col-sm-12 col-xs-12">
+			<p><span>&#169;</span> 2016, One Hit Wonders. All Rights Reserved.</p>
+			<a href="#">Our Team</a>
+		</div>
+	</footer>
   </div>

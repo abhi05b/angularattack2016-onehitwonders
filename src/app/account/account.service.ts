@@ -53,6 +53,14 @@ export class AccountService {
     );
   }
 
+  getChildrenAccounts(parentAccount: Account){
+    return this.getAccounts().then(accounts => {
+      return accounts.filter(account => {
+        return account.parent === parentAccount;
+      })
+    });
+  }
+
   getExpenseAccount(){
     return this.getAccountByName('Expenses');
   }
