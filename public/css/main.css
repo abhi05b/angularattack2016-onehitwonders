@@ -4162,9 +4162,13 @@ a.bigHelp {
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  min-height: 1200px;
+  min-height: 700px;
   background: #1991ec;
-
+}
+@media screen and (min-width: 1281px) {
+  .loading {
+    min-height: 1000px;
+  }
 }
 .loading img {
     padding: 200px 200px;
@@ -4175,6 +4179,12 @@ a.bigHelp {
 .popover, .tooltip-inner {
   line-height: 1.3em;
 }
-
+.form-group.form-group-lg label.control-label {
+  color: #999;
+}
+.landingContent {
+  width: 1170px;
+  margin: 0 auto;
+}
 
 
