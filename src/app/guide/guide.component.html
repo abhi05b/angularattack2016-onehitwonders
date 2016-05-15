@@ -1,0 +1,14 @@
+<p *ngFor="let guide of guides">
+	<span *ngIf="guide.type==='firstTransaction'">
+		Get started by adding your first transaction. Click here.
+	</span>
+	<span *ngIf="guide.type==='reviewCategories'">
+		Review categories allocated to accounts. Click here.
+	</span>
+	<span *ngIf="guide.type==='defineBudget'">
+		Allocate budget in each category of expenses. Click here.
+	</span>
+	<span *ngIf="guide.type==='newExpenseBudget'">
+		Allocate budget in new categories of expenses. Click here.
+	</span>
+</p>

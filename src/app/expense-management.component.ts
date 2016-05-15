@@ -21,6 +21,7 @@ import { NotificationComponent } from './notifications/notification/notification
 import { Notification } from './notifications/notificationDto';
 import { BS_MODAL_PROVIDERS , Modal} from 'angular2-modal/plugins/bootstrap';
 import { Location } from '@angular/common';
+import { GuideService } from './guide/guide.service'
 
 @Component({
   moduleId: module.id,
@@ -28,7 +29,7 @@ import { Location } from '@angular/common';
   templateUrl: 'expense-management.component.html',
   styleUrls: ['expense-management.component.css'],
   directives: [ROUTER_DIRECTIVES, NotificationComponent],
-  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService, BS_MODAL_PROVIDERS, Location]
+  providers: [ROUTER_PROVIDERS, TagService, DataStoreService, DataStore, TransactionService, MasterDataStore, DemoData, AccountService, NotificationsService, BadgeService, FinanceHealthIndicatorService, BS_MODAL_PROVIDERS, Location, GuideService]
 })
 @Routes([
   {path: '/transactions', component: TransactionsComponent},

@@ -48,6 +48,7 @@ const barrels: string[] = [
   'app/notifications/notification/financial-health/financial-health',
   'app/notifications/notification/financial-health',
   'app/+badges',
+  'app/guide',
   /** @cli-barrel */
 ];
 
