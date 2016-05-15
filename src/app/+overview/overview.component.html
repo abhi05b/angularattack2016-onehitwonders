@@ -26,6 +26,14 @@
 									<li *ngFor="let account of accounts[parentAccount.name]">
 										<span class="ion-arrow-right-a ion"></span>{{account.name}}
 									</li>
+									<li *ngIf="!parentAccount.add">
+										<button (click)="parentAccount.add=true">Add More</button>
+									</li>
+									<li *ngIf="parentAccount.add">
+										<input type="text" [(ngModel)]="parentAccount.newAccountName">
+										<button (click)="addAccount(
+										parentAccount.newAccountName,parentAccount);parentAccount.add=false;parentAccount.newAccountName=null">Add</button>
+									</li>
 								</ul>
 							</div>
 						</div>

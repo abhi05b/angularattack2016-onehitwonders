@@ -14,6 +14,12 @@ export class OverviewComponent implements OnInit {
 
 	accounts: any;
 	parentAccounts: Account[];
+  addAccount(accountName:string,parentAccount: Account){
+    var account = new Account(accountName,0,parentAccount);
+    this.accountService.addAccount(account);
+    
+    this.accounts[parentAccount.name].push(account);
+  }
   constructor(private accountService: AccountService) {}
 
   ngOnInit() {
