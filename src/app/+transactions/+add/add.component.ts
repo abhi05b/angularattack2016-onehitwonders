@@ -51,12 +51,13 @@ export class AddComponent implements OnInit {
       this.updateAccount('to');  
 
           this.transactionService.createTransaction(this.dummyModel).then((result) => {
-          this.guideService.trigger();
-        this.badgeService.processBadge(this.dummyModel);
-        this.financehealthIndicatorService.updateFinanceHealthIndicator();
-        this.transactionService.getTransactions().then((_transactions => console.log(_transactions)));
-        this.clearList('to');
-        this.clearList('from');
+              this.guideService.trigger();
+              this.badgeService.processBadge(this.dummyModel);
+              this.financehealthIndicatorService.updateFinanceHealthIndicator();
+              this.transactionService.getTransactions().then((_transactions => console.log(_transactions)));
+              this.clearList('to');
+              this.clearList('from');
+              
           });
     }
 

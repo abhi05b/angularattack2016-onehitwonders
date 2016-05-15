@@ -30,8 +30,8 @@ export class ListComponent implements OnInit {
     { title: 'Tags', name:'tags'}
   ];
   public page: number = 1;
-  public itemsPerPage: number = 1;
-  public maxSize: number = 1;
+  public itemsPerPage: number = 10;
+  public maxSize: number = 5;
   public numPages: number = 1;
   public length: number = 0;
 
