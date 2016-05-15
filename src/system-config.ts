@@ -51,7 +51,8 @@ const barrels: string[] = [
   'app/+badges',
   'app/guide',
   'app/landing-page',
-  'app/+budget'
+  'app/+budget',
+  'app/+team'
   /** @cli-barrel */
 ];
 

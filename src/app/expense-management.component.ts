@@ -5,6 +5,7 @@ import { ReportsComponent } from './+reports';
 import { OverviewComponent } from './+overview';
 import { BadgesComponent } from './+badges';
 import { BudgetComponent } from './+budget';
+import { TeamComponent } from './+team';
 
 import { DashboardComponent } from './+dashboard';
 import { TagService } from './tag/tag.service';
@@ -47,7 +48,8 @@ import { BudgetService } from './budget/budget.service';
   {path: '/overview', component: OverviewComponent},
   {path: '/badges', component: BadgesComponent},
   {path: '/budget', component: BudgetComponent},
-  {path: '/accounts', component: OverviewComponent}
+  {path: '/accounts', component: OverviewComponent},
+  {path: '/team', component: TeamComponent}
 ])
 export class ExpenseManagementAppComponent implements OnInit {
 
@@ -67,6 +69,12 @@ export class ExpenseManagementAppComponent implements OnInit {
       let currentPath = this.location.path();
       return currentPath === '/overview';
   }
+
+  isTeamPage(){
+      let currentPath = this.location.path();
+      return currentPath === '/team';
+  }
+  
   ngOnInit() {
     this.notificationsService.getNotifications().then(notifications => {
       this.notifications = notifications;
