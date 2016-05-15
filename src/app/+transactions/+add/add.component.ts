@@ -11,6 +11,7 @@ import {TagInputComponent} from './../../tag-input/tag-input.component';
 import { Account } from '../../account/account';
 import { AccountService } from '../../account/account.service';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { BadgeService } from '../../badge/badge.service';
 
 @Component({
   moduleId: module.id,
@@ -63,7 +64,7 @@ export class AddComponent implements OnInit {
 
 
       this.transactionService.createTransaction(this.dummyModel).then(() => {
-
+        this.badgeService.processBadge(this.dummyModel);
         this.transactionService.getTransactions().then((_transactions) => {
           console.log("Transactions: ", _transactions);
         });
@@ -113,7 +114,8 @@ export class AddComponent implements OnInit {
   	private transactionService: TransactionService, 
     private accountService: AccountService,
   	private router: Router,
-    private modal: Modal  
+    private modal: Modal,
+    private badgeService: BadgeService  
   	) {}
 
   ngOnInit() {
