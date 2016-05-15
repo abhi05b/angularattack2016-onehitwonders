@@ -18,5 +18,6 @@ export class Transaction{
 		this.comments = comments || '';
 		this.tags = tags || [];
 
+		(this.date).getTime();
 	}
 }
