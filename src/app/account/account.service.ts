@@ -20,6 +20,24 @@ export class AccountService {
   	return this.dataStoreService.getAccounts();
   }
 
+  getFilteredAccounts(filterByAccounts: string[], include: boolean){
+    if(!filterByAccounts || filterByAccounts.length===0){
+      return this.getAccounts();
+    }
+    let filteredAccunts = [];
+    return this.getAccounts().then(accounts => {
+      return accounts.filter(account => {
+        if(filterByAccounts.indexOf(account.name)>-1 ||
+            (account.parent && filterByAccounts.indexOf(account.parent.name)>-1)
+          ){
+          return include;
+        }else{
+          return !include;
+        }
+      });
+    });
+  }
+
   isExistingAccount(account: Account){
     return this.getAccounts().
       then(accounts => accounts.findIndex(_account => _account.name === account.name))

@@ -26,6 +26,7 @@ import { Location } from '@angular/common';
 import { GuideService } from './guide/guide.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserContextService } from './user/user-context.service';
+import { User } from './user/user';
 
 
 @Component({
@@ -45,7 +46,7 @@ import { UserContextService } from './user/user-context.service';
 ])
 export class ExpenseManagementAppComponent implements OnInit {
 
-  constructor(private demoData: DemoData, public router: Router, public modal: Modal, viewContainer: ViewContainerRef, private notificationsService: NotificationsService, private location: Location) {
+  constructor(private demoData: DemoData, public router: Router, public modal: Modal, viewContainer: ViewContainerRef, private notificationsService: NotificationsService, private location: Location, private userContextService: UserContextService) {
       modal.defaultViewContainer = viewContainer;
   }
   title = 'expense-management works!';
@@ -57,10 +58,18 @@ export class ExpenseManagementAppComponent implements OnInit {
       let currentPath = this.location.path();
       return currentPath === '' || currentPath === '/';
   }
+  isOverviewPage(){
+      let currentPath = this.location.path();
+      return currentPath === '/overview';
+  }
   ngOnInit() {
     this.notificationsService.getNotifications().then(notifications => {
       this.notifications = notifications;
-    })
+    });
+    this.userContextService.setUser(new User());
+  }
+  isDemoUser(){
+    return this.userContextService.getUser().demo;
   }
 }
 

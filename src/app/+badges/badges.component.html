@@ -6,8 +6,9 @@
      </div>
       <hr class="alt">
       <div *ngFor="let badge of badgeList" class="badges pull-left" >
-	   		<span [ngClass]="getClassName(badge.name)" class="badge-icon" *ngIf="badge.count"></span> 
-	</div>
+	   		<span [ngClass]="getClassName(badge.name)" class="badge-icon"></span>
+        {{badge.name}} x {{badge.count}}
+	     </div>
     </div>
 </div>
 

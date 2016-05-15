@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 import {NgForm} from '@angular/common';
 import { Router } from '@angular/router';
 import {TYPEAHEAD_DIRECTIVES} from 'ng2-bootstrap';
-
 import { Tag } from '../../tag/tag';
 import { TagService } from '../../tag/tag.service';
 import { Transaction } from '../../transaction/transaction';
@@ -12,19 +11,20 @@ import { Account } from '../../account/account';
 import { AccountService } from '../../account/account.service';
 import { Modal, TwoButtonPresetBuilder} from 'angular2-modal/plugins/bootstrap';
 import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { BadgeService } from '../../badge/badge.service';
+
 
 @Component({
   moduleId: module.id,
   selector: 'app-add',
   templateUrl: 'add.component.html',
   styleUrls: ['add.component.css'],
-  directives: [TagInputComponent, MODAL_DIRECTIVES]
-
+  directives: [TagInputComponent,TYPEAHEAD_DIRECTIVES]
 })
 
 export class AddComponent implements OnInit {
    
-   @ViewChild('modal')
+   /*@ViewChild('modal')
     modal: ModalComponent;
 
     saveModal() {
@@ -40,7 +40,7 @@ export class AddComponent implements OnInit {
 
     dismissModal() {
         this.modal.close().then(result => console.log('Dismiss'));               
-    }
+    }*/
 
     model: Transaction;
     dummyModel: Transaction;
@@ -89,16 +89,12 @@ export class AddComponent implements OnInit {
         
        
 
-          this.accountService.getAccounts().then((_accounts) => {
-            console.log(_accounts);
+          
+        this.transactionService.createTransaction(this.model).then((result) => {
 
-            this.transactionService.createTransaction(this.model).then((result) => {
-
-            this.accountService.getAccounts().then((_accounts) => {
-              console.log(_accounts);
-            });
+            
           });
-          });
+          
         
     }
 
@@ -117,6 +113,7 @@ export class AddComponent implements OnInit {
     
   }
 
+   
   onBlurToMethod(account : Account) {
     if (!account.name)
       return;
@@ -131,10 +128,53 @@ export class AddComponent implements OnInit {
     
   }
 
+
   onFocusFromMethod(account: Account) {
      this.fromParentAccountsList = null;
      this.showFromAccountParents = false;
   }
+
+  public getAsyncData(accountType:string,transactionType:string):Function {
+    let accountFilter:string[];
+    let includeFilter: boolean;
+    if(accountType === 'from'){
+      accountFilter=['Expenses'];
+      includeFilter=false;
+    }else{
+      accountFilter=['Expenses'];
+      includeFilter=true;
+    }
+    let that:any =this;
+    let query = new RegExp(that.model[accountType].name, 'ig');
+    let f:Function = function ():Promise<string[]>{
+      let p:Promise<string[]> = that.accountService.getFilteredAccounts(accountFilter,includeFilter).then(accounts=>{
+        return  accounts.map(account => {
+          return account.name;
+        }).filter(accountName => {
+          let matches = accountName.match(query);
+          return matches && matches.length>0;
+        });
+      });
+      return p;
+    };
+    return f;
+  }
+  public typeaheadLoading:boolean = false;
+  public typeaheadNoResults:boolean = false;
+  public changeTypeaheadLoading(e:boolean):void {
+    this.typeaheadLoading = e;
+  }
+
+  public changeTypeaheadNoResults(e:boolean):void {
+    this.typeaheadNoResults = e;
+  }
+
+
+  public typeaheadOnSelect(e:any,accountType:string):void {
+    setTimeout(() => this.model[accountType].name = e.item);
+  }
+
+
 
   onFocusToMethod(account: Account) {
     this.toParentAccountsList = null;
@@ -145,7 +185,9 @@ export class AddComponent implements OnInit {
   	private tagService: TagService, 
   	private transactionService: TransactionService, 
     private accountService: AccountService,
-  	private router: Router
+  	private router: Router,
+    private modal: Modal,
+    private badgeService: BadgeService  
   	) {}
 
   ngOnInit() {
