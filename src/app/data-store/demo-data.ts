@@ -7,10 +7,12 @@ import { MasterDataStore} from './master-data-store';
 import { DataStoreService } from './data-store.service';
 import { DataStore } from './data-store';
 import { BadgeService } from '../badge/badge.service';
+import { BudgetService } from '../budget/budget.service';
+import { GuideService } from '../guide/guide.service';
 
 @Injectable()
 export class DemoData{
-	constructor(private masterDataStore: MasterDataStore, private dataStoreService: DataStoreService, private transactionService: TransactionService, private badgeService: BadgeService){
+	constructor(private masterDataStore: MasterDataStore, private dataStoreService: DataStoreService, private transactionService: TransactionService, private badgeService: BadgeService, private budgetService: BudgetService, private guideService: GuideService){
 
 	}
 	populateDemoData(){
@@ -34,7 +36,7 @@ export class DemoData{
 		let gadgets = accounts[15];
 		let groceries = accounts[16];
 		let health = accounts[17];
-		let transactions: Transaction[] = [new Transaction(new Date(2016,1,1), 'hCentive Inc.', 600000, salary, currentAccount, 'Salary!!!')
+		let transactions: Transaction[] = [new Transaction(new Date(2016,1,1), 'hCentive Inc.', 10000, salary, currentAccount, 'Salary!!!')
 		, new Transaction(new Date(2016,1,2), 'AMC Cinemas', 5, creditCard, movies, 'Batman vs Superman')
 		, new Transaction(new Date(2016,1,2), 'TGIF', 30, creditCard, dining)
 		, new Transaction(new Date(2016,1,3), 'Target', 20, creditCard, groceries, 'Vegetables, Milk, Eggs')
@@ -57,6 +59,16 @@ export class DemoData{
 				this.badgeService.processBadge(transaction);
 			});
 		}), promise);
-		return promise;
+		dining.budget = 1000;
+		magazines.budget = 100;
+		books.budget = 100;
+		movies.budget = 1000;
+		fuel.budget = 100;
+		groceries.budget = 700;
+		return promise.then(() => {
+			this.budgetService.setBudget(3000).then(() => {
+				this.guideService.trigger();
+			});
+		});
 	}
 }

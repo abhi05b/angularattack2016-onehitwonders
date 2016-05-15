@@ -42,7 +42,7 @@ export class MasterDataStore {
 		var movieBuff = new Badge('Movie Buff', [movies],0, 0);
 		var homeMaker = new Badge('Home Maker', [groceries],0, 0);
 		var hulk = new Badge('Gym Rat', [gym],0, 0);
-		var mrRobot = new Badge('Mr. Robot', [gadgets],0, 0);
+		var mrRobot = new Badge('Mr Robot', [gadgets],0, 0);
 		this.accounts = [assets, expenses, liability, income, cash, currentAccount, creditCard, dining, travel, books, magazines, salary, movies, fuel, gym, gadgets, groceries, health];
 		this.badges = [firstTimerBadge, foodieBadge, travelerBadge, bookwormBadge, oilBaronBadge, movieBuff, homeMaker, hulk, mrRobot];
 	}
