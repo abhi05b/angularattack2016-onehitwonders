@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { Router, ROUTER_DIRECTIVES} from '@angular/router';
 import { DemoData } from '../data-store/demo-data';
 import { UserContextService } from '../user/user-context.service';
 import { User } from '../user/user';
@@ -12,7 +12,8 @@ import { Notification } from '../notifications/notificationDto';
   moduleId: module.id,
   selector: 'landing-page',
   templateUrl: 'landing-page.component.html',
-  styleUrls: ['landing-page.component.css']
+  styleUrls: ['landing-page.component.css'],
+  directives: [ROUTER_DIRECTIVES]
 })
 export class LandingPageComponent implements OnInit {
 
