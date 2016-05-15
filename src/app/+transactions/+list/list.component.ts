@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap';
 import {NG_TABLE_DIRECTIVES} from 'ng2-table/ng2-table';
+import { Router } from '@angular/router';
 //import {TableData} from './table-data';
 
 import { TransactionService } from '../../transaction/transaction.service';
@@ -44,7 +45,7 @@ export class ListComponent implements OnInit {
 
   private data: Array<any>;
 
-  constructor(private transactionService: TransactionService) {    
+  constructor(private transactionService: TransactionService, private router: Router) {    
   }
 
   ngOnInit() {
@@ -63,6 +64,7 @@ export class ListComponent implements OnInit {
     
       this.dataModel = transactions.map(transaction => {
         let t = new TableDataModel(transaction.date, transaction.merchant, transaction.amount, transaction.from.name, transaction.to.name, transaction.comments, transaction.tags);      
+        console.log(t);
         return t;
       });
 
@@ -129,7 +131,9 @@ export class ListComponent implements OnInit {
 
 
 
-
+  navigate(){
+      this.router.navigate(['/transactions/add']);
+  }
 
 
   // transactions: Transaction[];

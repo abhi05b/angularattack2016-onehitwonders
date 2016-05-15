@@ -57,7 +57,7 @@ export class AddComponent implements OnInit {
               this.transactionService.getTransactions().then((_transactions => console.log(_transactions)));
               this.clearList('to');
               this.clearList('from');
-              
+              this.router.navigate(['/transactions/list']);
           });
     }
 
@@ -176,7 +176,9 @@ export class AddComponent implements OnInit {
   }
 
 
-
+  navigate(){
+     this.router.navigate(['/transactions/list']);
+        }
  
 
   constructor(
