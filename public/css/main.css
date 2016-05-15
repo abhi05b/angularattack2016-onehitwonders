@@ -4242,10 +4242,14 @@ hr.dash {
 .content.helpContent {
   margin-top: 50px;
 }
-.btn-rasied.btn-primary.btn:disabled {
-  background: #009688;
+.btn:disabled, .btn[disabled][disabled] {
+  background: #00aa9a;
+  color: #f0f0f0;
 }
-
+.alert .close {
+  margin-top: -13px;
+  opacity: 0.7;
+}
 
 
 
