@@ -1,5 +1,6 @@
 <div class="widget bottom-30px">
-      <div class="widget-content" *ngFor="let guide of guides">
+      <div class="widget-content helpGuide" *ngFor="let guide of guides">
+      	<div class="help"></div>
       	<p *ngIf="guide.type==='firstTransaction'">
 		Get started by adding your first transaction. Click <a href="#"  class="" [routerLink]="['/transactions/add']">here</a>.
 		</p>
