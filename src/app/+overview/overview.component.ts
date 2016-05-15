@@ -4,6 +4,7 @@ import { AccountService } from '../account/account.service';
 import { GuideService } from '../guide/guide.service';
 import { Account } from '../account/account';
 import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router} from '@angular/router';
+import { Location } from '@angular/common';
 import {NgForm} from '@angular/common';
 
 @Component({
@@ -17,6 +18,7 @@ export class OverviewComponent implements OnInit {
 
 	accounts: any;
 	parentAccounts: Account[];
+  isOverviewPage: boolean;
   addAccount(accountName:string,parentAccount: Account){
     var that = this;
     var account = new Account(accountName,0,parentAccount);
@@ -28,9 +30,10 @@ export class OverviewComponent implements OnInit {
     this.accounts[parentAccount.name].push(account);
   }
   constructor(private accountService: AccountService,
-              private guideService: GuideService) {}
+              private guideService: GuideService, private location: Location) {}
 
   ngOnInit() {
+    this.isOverviewPage =  this.location.path() === '/overview';
   	this.accounts = {};
   	this.parentAccounts = [];
   	this.accountService.getParentAccounts().then(parentAccounts => {

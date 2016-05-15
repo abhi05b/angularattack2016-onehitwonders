@@ -2,8 +2,7 @@
    <!-- TOP NAV BAR -->
     <nav class="top-bar navbar-fixed-top" role="navigation" *ngIf="!isLandingPage() && !isOverviewPage()">
       <div class="logo-area">
-        <a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i class="icon ion-arrow-swap"></i></a>
-        <a class="btn btn-link btn-off-canvas pull-left"><i class="icon ion-navicon"></i></a>
+        
         <div class="logo pull-left">
           <a href="index.html">
             <img src="images/logo.png" alt="Expense Manager" />
@@ -44,7 +43,9 @@
             <li class="withripple" [class.active]="getLinkStyle('/budget')">
               <a href="" class="" [routerLink]="['/budget']"><i class="icon icon-budget"></i><span class="text">Budget</span></a>
             </li>
-            <li><a href="#"  [routerLink]="['/overview']"><i class="icon icon-bank"></i><span class="text">Account</span></a></li>
+            <li class="withripple" [class.active]="getLinkStyle('/accounts')">
+              <a href="#"  [routerLink]="['/accounts']"><i class="icon icon-bank"></i><span class="text">Account</span></a>
+            </li>
             <li class="withripple">
               <a href="#" class=""><i class="icon icon-tags"></i><span class="text">Tags</span></a>
             </li>
