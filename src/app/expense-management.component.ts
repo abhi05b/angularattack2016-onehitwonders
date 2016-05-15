@@ -45,7 +45,8 @@ import { BudgetService } from './budget/budget.service';
   {path: '/reports', component: ReportsComponent},
   {path: '/overview', component: OverviewComponent},
   {path: '/badges', component: BadgesComponent},
-  {path: '/budget', component: BudgetComponent}
+  {path: '/budget', component: BudgetComponent},
+  {path: '/accounts', component: OverviewComponent}
 ])
 export class ExpenseManagementAppComponent implements OnInit {
 
