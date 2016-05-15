@@ -1,5 +1,34 @@
-<p>
-  finance-health-indicator works!
-</p>
+<div class="widget bottom-30px">
+   <div class="widget-content">
+      <div class="healthCard clearfix">
+      	<div *ngIf="financeHealthIndicator.health === -1">
+         	<p class="healthText">Not enough data to calculate financial health. Click <a href="#"  class="" [routerLink]="['/transactions/add']">here</a> to add a new transaction.</p>
+      	</div>
+      	<div *ngIf="financeHealthIndicator.health === 0">
+      		<span class="health-icon zero-star pull-left"></span>
+         	<p class="healthText">Your financial health is strong. Is this Warren Buffet?</p>
+      	</div>
 
-{{financeHealthIndicator.health}}
+      	<div *ngIf="financeHealthIndicator.health === 1">
+      		 <span class="health-icon one-star pull-left"></span>
+         	 <p class="healthText">Your financial health is good. Keep Going!</p>
+      	</div>
+
+      	<div *ngIf="financeHealthIndicator.health === 2">
+      		 <span class="health-icon two-star pull-left"></span>
+         	  <p class="healthText">Your financial health is ok. Beware of the pilling liabilities though.</p>
+      	</div>
+
+      	<div *ngIf="financeHealthIndicator.health === 3">
+      		 <span class="health-icon three-star pull-left"></span>
+         	 <p class="healthText">Your financial health is not ok. Take care of the liabilities before things get out of control!</p>
+      	</div>
+
+      	<div *ngIf="financeHealthIndicator.health === 4">
+      		 <span class="health-icon four-star pull-left"></span>
+         	 <p class="healthText">Your financial health is in a bad shape. Reducing liabilities should be your topmost concern.</p>
+      	</div>
+         <a href="#" tooltip="Financial health is calculated by comparing liabilities with assets and cash.">?</a>
+      </div>
+   </div>
+</div>

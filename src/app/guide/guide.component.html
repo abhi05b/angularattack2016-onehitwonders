@@ -1,0 +1,16 @@
+<div class="widget bottom-30px">
+      <div class="widget-content" *ngFor="let guide of guides">
+      	<p *ngIf="guide.type==='firstTransaction'">
+		Get started by adding your first transaction. Click <a href="#"  class="" [routerLink]="['/transactions/add']">here</a>.
+		</p>
+		<p *ngIf="guide.type==='reviewCategories'">
+			Review categories allocated to accounts. Click here.
+		</p>
+		<p *ngIf="guide.type==='defineBudget'">
+			Allocate budget in each category of expenses. Click here.
+		</p>
+		<p *ngIf="guide.type==='newExpenseBudget'">
+			Allocate budget in new categories of expenses. Click here.
+		</p>
+      </div>  
+ </div>

@@ -6,10 +6,11 @@ import { Tag } from '../tag/tag';
 import { MasterDataStore} from './master-data-store';
 import { DataStoreService } from './data-store.service';
 import { DataStore } from './data-store';
+import { BadgeService } from '../badge/badge.service';
 
 @Injectable()
 export class DemoData{
-	constructor(private masterDataStore: MasterDataStore, private dataStoreService: DataStoreService, private transactionService: TransactionService){
+	constructor(private masterDataStore: MasterDataStore, private dataStoreService: DataStoreService, private transactionService: TransactionService, private badgeService: BadgeService){
 
 	}
 	populateDemoData(){
@@ -32,6 +33,7 @@ export class DemoData{
 		let gym = accounts[14];
 		let gadgets = accounts[15];
 		let groceries = accounts[16];
+		let health = accounts[17];
 		let transactions: Transaction[] = [new Transaction(new Date(2016,1,1), 'hCentive Inc.', 600000, salary, currentAccount, 'Salary!!!')
 		, new Transaction(new Date(2016,1,2), 'AMC Cinemas', 5, creditCard, movies, 'Batman vs Superman')
 		, new Transaction(new Date(2016,1,2), 'TGIF', 30, creditCard, dining)
@@ -43,10 +45,18 @@ export class DemoData{
 		, new Transaction(new Date(2016,1,7), 'Amazon', 30, creditCard, magazines, 'Continuos Integration')
 		, new Transaction(new Date(2016,1,8), 'Booking.com', 3500, creditCard, travel, 'Mauritius hotel bookings and tickets', [new Tag('Mauritius')])
 		, new Transaction(new Date(2016,1,14), 'Shell', 40, cash, fuel, 'Fuel', [new Tag('Chevy')])
-		, new Transaction(new Date(2016,1,15), 'Gold Gym', 50, creditCard, gym, 'Gym Membership')]
+		, new Transaction(new Date(2016,1,15), 'Gold Gym', 50, creditCard, gym, 'Gym Membership')
+		, new Transaction(new Date(2016,1,16), 'Max Hospital', 1000, creditCard, health, 'Root Canal')]
 		let counter = 0;
 		var promise = Promise.resolve();
-		promise = transactions.reduce((prev, transaction) => prev.then(() => this.transactionService.createTransaction(transaction)), promise);
+		promise = transactions.reduce((prev, transaction) => prev.then(() => {
+			return this.transactionService.createTransaction(transaction).then(() => {
+				let amount  = transaction.amount;
+				transaction.from.removeAmount(amount);
+				transaction.to.addAmount(amount);	
+				this.badgeService.processBadge(transaction);
+			});
+		}), promise);
 		return promise;
 	}
 }

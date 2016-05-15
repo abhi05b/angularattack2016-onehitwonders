@@ -6,6 +6,7 @@ import { Tag } from '../tag/tag';
 import { Badge } from '../badge/badge';
 import { Notification } from '../notifications/notificationDto';
 import { MasterDataStore } from './master-data-store';
+import { Guide } from '../guide/guide';
 
 @Injectable()
 export class DataStore {
@@ -15,6 +16,7 @@ export class DataStore {
 	tags: Tag[]; 
 	badges: Badge[];
 	notifications: Notification[];
+	guides: Guide[];
 
 	constructor(masterDataStore: MasterDataStore){
 		this.transactions = [];
@@ -22,5 +24,6 @@ export class DataStore {
 		this.tags = masterDataStore.tags;
 		this.badges = masterDataStore.badges;
 		this.notifications = [];
+		this.guides = [new Guide('firstTransaction')];
 	}
 }

@@ -1,3 +1,3 @@
 export class User{
-	constructor(type: string){}
+	constructor(public demo?: boolean){}
 }
