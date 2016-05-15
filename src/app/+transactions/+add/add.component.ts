@@ -55,7 +55,7 @@ export class AddComponent implements OnInit {
     showToAccountParents: Boolean;
     toParentAccountsList: Account[];
     fromParentAccountsList: Account[];
-    
+    public tagsList: string[] = [];
 
     addTransaction() {
         let that = this;
