@@ -4066,6 +4066,10 @@ hr.alt {
 .footer a {
   color: #fff;
 }
+.footer-inner,
+.footer-inner a{
+  color: #666;
+}
 .overview {
   background-color: #fafcfe;
   background-image: url("../images/gray_jean.png");
@@ -4098,6 +4102,10 @@ hr.alt {
 }
 .overviewInner h3 {
   margin-bottom: 40px;
+}
+.overviewInner .btn-good {
+  margin-left: 15px;
+  margin-top: 15px;
 }
 
 
