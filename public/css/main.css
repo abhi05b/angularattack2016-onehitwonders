@@ -4270,12 +4270,13 @@ font-size: 16px;
   min-height: 30px;
   line-height: 40px;
   font-size: 16px;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.2px;
 }
 .voteLink {
   color: #f3830b;
   text-decoration: underline;
   font-weight: 400;
+  padding: 8px 0;
 }
 .voteLink:hover,
 .voteLink:focus {
