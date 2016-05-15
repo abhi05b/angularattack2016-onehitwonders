@@ -55,6 +55,10 @@ export class ExpenseManagementAppComponent implements OnInit {
       let currentPath = this.location.path();
       return currentPath === '' || currentPath === '/';
   }
+  isOverviewPage(){
+      let currentPath = this.location.path();
+      return currentPath === '/overview';
+  }
   ngOnInit() {
     this.notificationsService.getNotifications().then(notifications => {
       this.notifications = notifications;
