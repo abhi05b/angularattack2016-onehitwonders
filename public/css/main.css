@@ -4102,7 +4102,7 @@ hr.alt {
   background-color: #fafcfe;
   background-image: url("../images/gray_jean.png");
   background-repeat: repeat;
-  min-height: 1200px;
+  min-height: 800px;
 }
 .overviewInner {
   width: 1200px;
@@ -4249,6 +4249,9 @@ hr.dash {
 .alert .close {
   margin-top: -13px;
   opacity: 0.7;
+}
+.budget {
+font-size: 16px;
 }
 
 
