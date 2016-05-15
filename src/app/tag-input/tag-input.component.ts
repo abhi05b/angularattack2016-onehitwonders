@@ -21,13 +21,15 @@ export class TagInputComponent{
   @Input() addOnEnter: boolean = true;
   @Input() addOnPaste: boolean = true;
   @Input() allowedTagsPattern: RegExp = /.+/;
+  @Input() tagsList: string[]=[];
+
   @HostBinding('class.ng2-tag-input-focus') isFocussed;
   @Input() bindModelData: any;
   @Output() bindModelDataChange: EventEmitter<any> = new EventEmitter();
 
   private _cache:any;
   private _prevContext:any;
-  public tagsList: string[] = [];
+  //public tagsList: string[] = [];
   public inputValue: string = '';
   public delimiter: number;
   public selectedTag: number;
@@ -137,7 +139,7 @@ export class TagInputComponent{
     return this.allowedTagsPattern.test(tagString);
   }
 
-  private _addTags(tags: string[]) {
+  public _addTags(tags: string[]) {
     let validTags = tags.filter((tag) => this._isTagValid(tag));
     this.tagsList = this.tagsList.concat(validTags);
     this._resetSelected();

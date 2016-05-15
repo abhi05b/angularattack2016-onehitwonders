@@ -3,12 +3,28 @@
       <!-- PRIMARY CONTENT HEADING -->
       <div class="primary-content-heading clearfix">
          <h2 class="pull-left">BADGES</h2>
+          <badge-list></badge-list>
      </div>
       <hr class="alt">
-      <div *ngFor="let badge of badgeList" class="badges pull-left" >
-	   		<span [ngClass]="getClassName(badge.name)" class="badge-icon"></span>
-        {{badge.name}} x {{badge.count}}
-	     </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="widget badgeCard">
+            <div class="widget-header">
+              <h3>Available Badges</h3>
+            </div>
+            <div class="widget-content">
+              <h4 class="bottom-30px">You've unlocked 1 out of 11 available badges. You can unlock more badge(s) in your next transaction.</h4>
+
+              <div class="row">
+                <div *ngFor="let badge of badgeList" class="badges col-sm-6" >
+          	   		<span [ngClass]="getClassName(badge.name)" class="badge-icon"></span>
+                  <span class="badgeText">{{badge.name}} x {{badge.count}}</span>
+          	     </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
     </div>
 </div>
 

@@ -3955,6 +3955,12 @@ hr.alt {
 .foodie {
   background-image: url("../images/foodie.png");
 }
+.book_worm {
+  background-image: url("../images/bookworm.png");
+}
+.oil_baron {
+  background-image: url("../images/fuel.png");
+}
 .traveller {
   background-image: url("../images/traveller.png");
 }
@@ -3969,7 +3975,15 @@ hr.alt {
 .mr_robot {
   background-image: url("../images/gadget.png");
 }
-
+.movie_buff {
+  background-image: url("../images/movie-buff.png");
+}
+.home_maker {
+  background-image: url("../images/grocery.png");
+}
+.gym_rat {
+  background-image: url("../images/gymrat.png");
+}
 .health-icon {
   background-repeat: no-repeat;
   background-color: transparent;
@@ -3992,6 +4006,7 @@ hr.alt {
 .zero-star {
   background-image: url("../images/5star.png");
 }
+
 .healthText {
   float: left;
   font-size: 24px;
@@ -4114,7 +4129,23 @@ hr.alt {
   margin-left: 15px;
   margin-top: 15px;
 }
+.badgeCard .badges {
+  text-align: left;
+  min-height: 80px;
+}
 
+.badgeCard .badgeText {
+    font-size: 16px;
+    vertical-align: top;
+    display: inline-block;
+    padding-top: 15px;
+}
+.badgeCard .badge-icon {
+  margin-right: 10px;
+}
+.badgeCard .trend_setter {
+  margin-right: 5px;
+}
 
 
 
