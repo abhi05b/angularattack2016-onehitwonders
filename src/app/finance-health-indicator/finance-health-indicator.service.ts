@@ -5,13 +5,13 @@ import { AccountService } from '../account/account.service';
 import { Notification } from '../notifications/notificationDto';
 import { NotificationsService } from '../notifications/notifications.service';
 
+
 @Injectable()
 export class FinanceHealthIndicatorService {
 
 	financeHealthIndicator: FinanceHealthIndicator = new FinanceHealthIndicator();
 
-  	constructor(private accountService: AccountService
-  		, private notificationService: NotificationsService
+  	constructor(private accountService: AccountService , private notificationService: NotificationsService
   		) {
   		this.updateFinanceHealthIndicator();
   	}

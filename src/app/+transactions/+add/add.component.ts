@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/common';
 import { Router } from '@angular/router';
 import {TYPEAHEAD_DIRECTIVES} from 'ng2-bootstrap';
-
 import { Tag } from '../../tag/tag';
 import { TagService } from '../../tag/tag.service';
 import { Transaction } from '../../transaction/transaction';
@@ -11,13 +10,14 @@ import {TagInputComponent} from './../../tag-input/tag-input.component';
 import { Account } from '../../account/account';
 import { AccountService } from '../../account/account.service';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { BadgeService } from '../../badge/badge.service';
 
 @Component({
   moduleId: module.id,
   selector: 'app-add',
   templateUrl: 'add.component.html',
   styleUrls: ['add.component.css'],
-  directives: [TagInputComponent]
+  directives: [TagInputComponent,TYPEAHEAD_DIRECTIVES]
 })
 
 
@@ -63,7 +63,7 @@ export class AddComponent implements OnInit {
 
 
       this.transactionService.createTransaction(this.dummyModel).then(() => {
-
+        this.badgeService.processBadge(this.dummyModel);
         this.transactionService.getTransactions().then((_transactions) => {
           console.log("Transactions: ", _transactions);
         });
@@ -90,11 +90,8 @@ export class AddComponent implements OnInit {
           that.accountService.addAccount(that.dummyModel[accountType]).then(() => {
           });
         }
-
-   
       });
     }
-
 
     updateParents(account: Account, amount, accountType) {
 
@@ -106,6 +103,46 @@ export class AddComponent implements OnInit {
           }
     }
 
+  public getAsyncData(accountType:string,transactionType:string):Function {
+    let accountFilter:string[];
+    let includeFilter: boolean;
+    if(accountType === 'from'){
+      accountFilter=['Expenses'];
+      includeFilter=false;
+    }else{
+      accountFilter=['Expenses'];
+      includeFilter=true;
+    }
+    let that:any =this;
+    let query = new RegExp(that.model[accountType].name, 'ig');
+    let f:Function = function ():Promise<string[]>{
+      let p:Promise<string[]> = that.accountService.getFilteredAccounts(accountFilter,includeFilter).then(accounts=>{
+        return  accounts.map(account => {
+          return account.name;
+        }).filter(accountName => {
+          let matches = accountName.match(query);
+          return matches && matches.length>0;
+        });
+      });
+      return p;
+    };
+    return f;
+  }
+  public typeaheadLoading:boolean = false;
+  public typeaheadNoResults:boolean = false;
+  public changeTypeaheadLoading(e:boolean):void {
+    this.typeaheadLoading = e;
+  }
+
+  public changeTypeaheadNoResults(e:boolean):void {
+    this.typeaheadNoResults = e;
+  }
+
+
+  public typeaheadOnSelect(e:any,accountType:string):void {
+    setTimeout(() => this.model[accountType].name = e.item);
+  }
+
 
 
   constructor(
@@ -113,7 +150,8 @@ export class AddComponent implements OnInit {
   	private transactionService: TransactionService, 
     private accountService: AccountService,
   	private router: Router,
-    private modal: Modal  
+    private modal: Modal,
+    private badgeService: BadgeService  
   	) {}
 
   ngOnInit() {

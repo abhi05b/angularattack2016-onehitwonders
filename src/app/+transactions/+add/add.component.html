@@ -15,11 +15,23 @@
       </div>
       <div class="form-group">
         <label for="from">From</label>
-        <input type="text" class="form-control" [(ngModel)]="model.from.name">
+        <input type="text" 
+        [typeahead]="getAsyncData('from','Expense')"
+        (typeaheadLoading)="changeTypeaheadLoading($event)"
+        (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+        (typeaheadOnSelect)="typeaheadOnSelect($event,'from','Expense')"
+        [typeaheadOptionsLimit]="7"
+        class="form-control" [(ngModel)]="model.from.name">
       </div>
       <div class="form-group">
         <label for="to">To</label>
-        <input type="text" class="form-control" [(ngModel)]="model.to.name">
+        <input type="text" class="form-control" 
+        [typeahead]="getAsyncData('to','Expense')"
+        (typeaheadLoading)="changeTypeaheadLoading($event)"
+        (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+        (typeaheadOnSelect)="typeaheadOnSelect($event,'to','Expense')"
+        [typeaheadOptionsLimit]="7"
+        [(ngModel)]="model.to.name">
       </div>
      <div class="form-group">
         <label for="tags">Tags</label>
